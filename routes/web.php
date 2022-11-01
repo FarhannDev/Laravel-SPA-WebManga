@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Livewire\Page\Homepage\AboutIndex;
+use App\Http\Livewire\Page\Homepage\ContactIndex;
+use App\Http\Livewire\Page\Homepage\HomepageIndex;
+use App\Http\Livewire\Page\Homepage\Komik\KomikIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomepageIndex::class)->name('homePageIndex');
+Route::get('/about', AboutIndex::class)->name('aboutIndex');
+Route::get('/contact', ContactIndex::class)->name('contactIndex');
+Route::get('/komik', KomikIndex::class)->name('komikIndex');
