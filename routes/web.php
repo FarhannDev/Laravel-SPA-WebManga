@@ -4,6 +4,7 @@ use App\Http\Livewire\Page\Homepage\AboutIndex;
 use App\Http\Livewire\Page\Homepage\ContactIndex;
 use App\Http\Livewire\Page\Homepage\HomepageIndex;
 use App\Http\Livewire\Page\Homepage\Komik\KomikIndex;
+use App\Http\Livewire\Page\Homepage\Komik\KomikShow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomepageIndex::class)->name('homePageIndex');
 Route::get('/about', AboutIndex::class)->name('aboutIndex');
 Route::get('/contact', ContactIndex::class)->name('contactIndex');
+
+
+
 Route::get('/komik', KomikIndex::class)->name('komikIndex');
+Route::get('/komik/{comic:comic_slug}', KomikShow::class)->name('komikShow');

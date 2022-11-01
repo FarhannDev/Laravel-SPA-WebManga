@@ -124,7 +124,7 @@ h6,
 }
 
 .navbar-light .navbar-brand h1 {
-    color: #FFFFFF;
+    color: transparent;
 }
 
 .navbar-light .navbar-brand img {
@@ -215,7 +215,11 @@ h6,
 .hero-header {
     margin-bottom: 6rem;
     padding: 18rem 0;
-    background-color: var(--dark) !important;
+    /* background-color: var(--dark) !important; */
+    background-image: url('https://wallpapercrafter.com/desktop/125334-Hyouka-Chitanda-Eru-white-background-anime-anime-girls-Oreki-Houtarou.png') !important;
+    background-position: center;
+    min-height: 100vh;
+    background-size: cover;
 }
 
 @media (max-width: 991.98px) {

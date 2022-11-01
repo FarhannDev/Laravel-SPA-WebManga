@@ -22,19 +22,17 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     @livewireStyles
+
+    @stack('css')
 </head>
 
 <body>
     <div class="container-xxl bg-white p-0">
         <x-loader />
-        @include('layouts.homepage.navbar')
-
         @yield('content')
         @include('layouts.homepage.btn-scrool')
-        @include('layouts.homepage.footer')
+        {{-- @include('layouts.homepage.footer') --}}
     </div>
-
-
 
     @livewireScripts
 

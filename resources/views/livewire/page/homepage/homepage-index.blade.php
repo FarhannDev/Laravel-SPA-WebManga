@@ -1,11 +1,12 @@
+@include('layouts.homepage.navbar')
 <div class="container-xxl position-relative p-0">
     <div class="container-xxl bg-primary hero-header">
         <div class="container px-lg-6">
-            <div class="row g-5 justify-content-center align-content-center">
+            <div class="row g-5 justify-content-end align-content-center">
                 <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="text-white mb-4 animated slideInDown">Halo, Selamat datang di <span class="">
+                    <h1 class="text-dark mb-4 animated slideInDown">Halo, Selamat datang di <span class="">
                             Zaotaku - Situs Download Komik Manga</span></h1>
-                    <a href=""
+                    <a href="{{ route('komikIndex') }}"
                         class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Temukan
                         Daftar
                         Komik</a>
@@ -19,35 +20,22 @@
         <div class="d-flex justify-content-center mb-3">
             <div class="kategori">
                 <div class="kategori-title">
-                    <h3>Semua Kategori</h3>
+                    <h3>Semua Daftar Genre</h3>
                 </div>
             </div>
         </div>
         <div class="row g-4">
-            <div class="col-lg-2 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-bookmark text-primary mb-4"></i>
-                    <h5 class="mb-3">Adventure</h5>
+
+            @foreach ($genres as $genre)
+                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="feature-item bg-light rounded text-center p-4">
+                        <i class="fa fa-3x fa-bookmark text-primary mb-4"></i>
+                        <h5 class="mb-3"><a href="" class="text-dark">
+                                {{ $genre->genre_name }}
+                            </a></h5>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-2 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-bookmark text-primary mb-4"></i>
-                    <h5 class="mb-3">Horror</h5>
-                </div>
-            </div>
-            <div class="col-lg-2 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-bookmark text-primary mb-4"></i>
-                    <h5 class="mb-3">Drama</h5>
-                </div>
-            </div>
-            <div class="col-lg-2 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-bookmark text-primary mb-4"></i>
-                    <h5 class="mb-3">Komedi</h5>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -64,145 +52,31 @@
         </div>
 
         <div class="row justify-content-arround g-4 portfolio-container">
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                <div class="rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100"
-                            src="https://cdn.idntimes.com/content-images/duniaku/post/20210305/9786230023903-cover-the-promised-neverland-16-21b27004cfb21247da8cc4e6e1d0eeef.jpg"
-                            style="height: 350px;">
-                    </div>
-                    <div class="bg-light p-4">
-                        <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill mx-2">UI / UX
-                                Design</a>
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
-                        </div>
-                        <h5 class="lh-base mb-0">Digital Agency Website Design And Development</h5>
 
-                        <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                class="fas fa-arrow-right"></span></a>
+            @foreach ($comics as $comic)
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="rounded overflow-hidden">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{{ asset('images/' . $comic->comic_cover) }}"
+                                style="height: 350px;">
+                        </div>
+                        <div class="bg-light p-4">
+                            <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
+                                <a href=""
+                                    class="ls-base btn btn-primary btn-sm rounded-pill mx-2">{{ $comic->genre['genre_name'] }}</a>
+                                <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
+                            </div>
+                            <h5 class="lh-base mb-0">{{ $comic->comic_title }}</h5>
+
+                            <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
+                                    class="fas fa-arrow-right"></span></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                <div class="rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100"
-                            src="https://cdn.idntimes.com/content-images/duniaku/post/20210305/9786230023903-cover-the-promised-neverland-16-21b27004cfb21247da8cc4e6e1d0eeef.jpg"
-                            style="height: 350px;">
-                    </div>
-                    <div class="bg-light p-4">
-                        <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill mx-2">UI / UX
-                                Design</a>
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
-                        </div>
-                        <h5 class="lh-base mb-0">Digital Agency Website Design And Development</h5>
-
-                        <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                class="fas fa-arrow-right"></span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                <div class="rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100"
-                            src="https://cdn.idntimes.com/content-images/duniaku/post/20210305/9786230023903-cover-the-promised-neverland-16-21b27004cfb21247da8cc4e6e1d0eeef.jpg"
-                            style="height: 350px;">
-                    </div>
-                    <div class="bg-light p-4">
-                        <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill mx-2">UI / UX
-                                Design</a>
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
-                        </div>
-                        <h5 class="lh-base mb-0">Digital Agency Website Design And Development</h5>
-
-                        <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                class="fas fa-arrow-right"></span></a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
     </div>
-    <div class="container py-5 px-lg-5">
-        <div class="d-flex justify-content-between align-cotent-center">
-            <div class="latest-title">
-                {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
-                <h3 class="text-center mb-5">Komik Terbaru Dari Kami</h3>
-                {{-- </div> --}}
-            </div>
-            <div class="latest-action__details">
-                <a href="" class="ls-base text-dark">Lihat Detail</a> <span class="fas fa-arrow-right"></span>
-            </div>
-        </div>
-
-        <div class="row justify-content-arround g-4 portfolio-container">
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                <div class="rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100"
-                            src="https://cdn.idntimes.com/content-images/duniaku/post/20210305/9786230023903-cover-the-promised-neverland-16-21b27004cfb21247da8cc4e6e1d0eeef.jpg"
-                            style="height: 350px;">
-                    </div>
-                    <div class="bg-light p-4">
-                        <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill mx-2">UI / UX
-                                Design</a>
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
-                        </div>
-                        <h5 class="lh-base mb-0">Digital Agency Website Design And Development</h5>
-
-                        <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                class="fas fa-arrow-right"></span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                <div class="rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100"
-                            src="https://cdn.idntimes.com/content-images/duniaku/post/20210305/9786230023903-cover-the-promised-neverland-16-21b27004cfb21247da8cc4e6e1d0eeef.jpg"
-                            style="height: 350px;">
-                    </div>
-                    <div class="bg-light p-4">
-                        <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill mx-2">UI / UX
-                                Design</a>
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
-                        </div>
-                        <h5 class="lh-base mb-0">Digital Agency Website Design And Development</h5>
-
-                        <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                class="fas fa-arrow-right"></span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                <div class="rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100"
-                            src="https://cdn.idntimes.com/content-images/duniaku/post/20210305/9786230023903-cover-the-promised-neverland-16-21b27004cfb21247da8cc4e6e1d0eeef.jpg"
-                            style="height: 350px;">
-                    </div>
-                    <div class="bg-light p-4">
-                        <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill mx-2">UI / UX
-                                Design</a>
-                            <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
-                        </div>
-                        <h5 class="lh-base mb-0">Digital Agency Website Design And Development</h5>
-
-                        <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                class="fas fa-arrow-right"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container-xxl newsletter py-5 wow fadeInUp" data-wow-delay="0.1s"
         style="background: #f1f1f1 !important;">
         <div class="container py-5 px-lg-5">

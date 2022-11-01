@@ -5,6 +5,7 @@
              </a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                  <span class="fa fa-bars"></span>
+                 <small>Menu</small>
              </button>
              <div class="collapse navbar-collapse" id="navbarCollapse">
                  <div class="navbar-nav mx-auto py-0">
@@ -20,6 +21,6 @@
                          class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Hubungi
                          Kami</a>
                  </div>
-                 <a href="" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Bergabung Sekarang</a>
+
              </div>
          </nav>
