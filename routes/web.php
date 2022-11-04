@@ -1,15 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Page\Admin\ManageAdmin;
 use App\Http\Livewire\Page\Homepage\AboutIndex;
-use App\Http\Livewire\Page\Homepage\Blog\BlogIndex;
 use App\Http\Livewire\Page\Homepage\ContactIndex;
-use App\Http\Livewire\Page\HomePage\Genre\GenreShow;
 use App\Http\Livewire\Page\Homepage\HomepageIndex;
+use App\Http\Livewire\Page\Homepage\Blog\BlogIndex;
+use App\Http\Livewire\Page\HomePage\Genre\GenreShow;
+use App\Http\Livewire\Page\Homepage\Komik\KomikShow;
 use App\Http\Livewire\Page\Homepage\Komik\KomikIndex;
 use App\Http\Livewire\Page\Homepage\Komik\KomikLatest;
 use App\Http\Livewire\Page\Homepage\Komik\KomikPopuler;
-use App\Http\Livewire\Page\Homepage\Komik\KomikShow;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +39,17 @@ Route::get('/komik/populer', KomikPopuler::class)->name('komikPopuler');
 Route::get('/genre/id-ID/{comicGenre:genre_slug}', GenreShow::class)->name('genreShow');
 
 Route::get('/blog', BlogIndex::class)->name('blogIndex');
+
+Auth::routes([
+    'register' => false,
+    'password.reset' => false
+]);
+
+
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+
+    Route::get('/dashboard/manage', ManageAdmin::class)->name('manageAdmin');
+    // Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
