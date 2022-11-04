@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\ManageKomikController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Page\Admin\Komik\ManageKomikAdd;
 use App\Http\Livewire\Page\Admin\ManageAdmin;
+use App\Http\Livewire\Page\Admin\ManageKomik;
 use App\Http\Livewire\Page\Homepage\AboutIndex;
 use App\Http\Livewire\Page\Homepage\ContactIndex;
 use App\Http\Livewire\Page\Homepage\HomepageIndex;
@@ -47,9 +50,7 @@ Auth::routes([
 
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-
-    Route::get('/dashboard/manage', ManageAdmin::class)->name('manageAdmin');
-    // Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('/dashboard/komik', ManageKomik::class)->name('manageKomik');
+    // Route::get('/dashboard/komik/add', [ManageKomikController::class, 'create'])->name('manageKomikCreate');
+    // Route::get('/dashboard/manage/komik/add', ManageKomikAdd::class)->name('manageKomikAdd');
 });
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
