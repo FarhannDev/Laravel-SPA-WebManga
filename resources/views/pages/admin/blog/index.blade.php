@@ -26,11 +26,11 @@
 
                     <div class="dashboard-inner">
                         <div class="dashboard-inner__text px-3 mx-2 pt-2">
-                            <h4 class="text-dark text-capitalize">Kelola Semua Data Komik</h4>
+                            <h4 class="text-dark text-capitalize">Kelola semua blog</h4>
                         </div>
                         <div class="dashboard-inner__addbutton  px-3  mx-2  mb-3">
-                            <a href="{{ route('manageKomikCreate') }}" class="btn btn-primary">
-                                {{ __('Buat Komik Terbaru') }} <span class="fas fa-plus"></span>
+                            <a href="{{ route('manageBlogCreate') }}" class="btn btn-primary">
+                                {{ __('Buat Blog Terbaru') }} <span class="fas fa-plus"></span>
                             </a>
                         </div>
                     </div>
@@ -44,55 +44,41 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col-lg-6">Title</th>
-                                                    <th scope="col-*">Author</th>
-                                                    <th scope="col-*">Artist</th>
+                                                    <th scope="col-*" class="text-center">Author</th>
                                                     <th scope="col-*">Created At</th>
-                                                    <th scope="col-*">Status</th>
+                                                    <th scope="col-*" class="text-center">Status</th>
                                                     <th scope="col-*">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($comics as $comic)
+                                                @foreach ($blog as $data)
                                                     <tr>
-                                                        <th scope="row" class="align-middle">
+                                                        <td class="align-middle">
                                                             {{ $loop->iteration }}
-                                                        </th>
-                                                        <td class="align-middle font-weight-dark-500">
-                                                            <a href="{{ route('manageKomikShow', $comic->comic_slug) }}"
-                                                                class="text-dark text-decoration-none">{{ $comic->comic_title }}
-                                                            </a>
                                                         </td>
-                                                        <td class="align-middle font-weight-dark-500">
-                                                            {{ $comic->comic_author }}
-                                                        </td>
-                                                        <td class="align-middle font-weight-dark-500">
-                                                            {{ $comic->comic_artist }}
+                                                        <td class="align-middle">{{ $data->blog_name }}</td>
+                                                        <td class="align-middle text-center">{{ $data->user['name'] }}</td>
+                                                        <td class="align-middle">
+                                                            {{ date('d/m/y H:i:s', strtotime($data->created_at)) }}</td>
+                                                        <td class="align-middle text-dark text-center">{{ $data->status }}
                                                         </td>
                                                         <td class="align-middle">
-                                                            {{ date('m/d/Y H:i:s', strtotime($comic->created_at)) }}</td>
-                                                        <td class="align-middle font-weight-dark-500">
-                                                            {{ $comic->is_active }}
-                                                        </td>
-                                                        <td>
                                                             <form
-                                                                action="{{ route('manageKomikDestroy', $comic->comic_slug) }}"
-                                                                method="post" class="d-inline">
+                                                                action="{{ route('manageBlogDestroy', $data->blog_slug) }}"
+                                                                method="post">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger mb-2"><i
-                                                                        class="fas fa-trash-alt"></i></button>
-                                                                <a href="{{ route('manageKomikEdit', $comic->comic_slug) }}"
-                                                                    class="btn btn-danger"><i class="fas fa-edit"></i></a>
+                                                                <button type="submit" class="btn btn-danger btn-md">
+                                                                    <span class="fas fa-trash-alt"></span>
+                                                                </button>
+                                                                <a href="{{ route('manageBlogEdit', $data->blog_slug) }}"
+                                                                    class="btn btn-danger btn-md">
+                                                                    <span class="fas fa-edit"></span>
+                                                                </a>
                                                             </form>
                                                         </td>
                                                     </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td class="align-middle">
-                                                            Data Not Found.
-                                                        </td>
-                                                    </tr>
-                                                @endforelse
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

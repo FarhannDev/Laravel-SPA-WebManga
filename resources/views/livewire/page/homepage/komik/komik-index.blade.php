@@ -38,8 +38,10 @@
                     <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden ">
                             <div class="position-relative overflow-hidden">
+
                                 <a href="{{ route('komikShow', $comic->comic_slug) }}">
-                                    <img class="img-fluid w-100" src="{{ asset('images/' . $comic->comic_cover) }}"
+                                    <img class="img-fluid w-100"
+                                        src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
                                         style="height: 450px;">
                                 </a>
                             </div>

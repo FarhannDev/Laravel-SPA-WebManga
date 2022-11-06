@@ -17,16 +17,18 @@
                         </div>
                         <div class="dashboard-inner__item">
                             <div class="dashboard-item__list px-3">
-                                <form action="{{ route('manageKomikStore') }}" autocomplete="off" method="POST"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('manageKomikUpdate', $comic->comic_slug) }}" autocomplete="off"
+                                    method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
+                                    @method('PUT')
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="title">{{ 'Title:' }}
                                                 <span class="text-danger">*</span></label>
                                             <input name="comic_title" type="text"
                                                 class="form-control @error('comic_title') is-invalid @enderror"
-                                                id="title" value="{{ old('comic_title') }}">
+                                                id="title"
+                                                value="{{ $comic->comic_title ? $comic->comic_title : old('comic_title') }}">
 
                                             @error('comic_title')
                                                 <span class="invalid-feedback">
@@ -39,7 +41,8 @@
                                                     class="text-danger">*</span></label>
                                             <input name="comic_artist" type="text"
                                                 class="form-control @error('comic_artist') is-invalid @enderror"
-                                                id="artist" value="{{ old('comic_artist') }}">
+                                                id="artist"
+                                                value="{{ $comic->comic_artist ? $comic->comic_artist : old('comic_artist') }}">
                                             @error('comic_artist')
                                                 <span class="invalid-feedback">
                                                     {{ $message }}
@@ -51,7 +54,8 @@
                                                     class="text-danger">*</span></label>
                                             <input name="comic_author" type="text"
                                                 class="form-control @error('comic_author') is-invalid @enderror"
-                                                id="author" value="{{ old('comic_author') }}">
+                                                id="author"
+                                                value="{{ $comic->comic_author ? $comic->comic_author : old('comic_author') }}">
                                             @error('comic_author')
                                                 <span class="invalid-feedback">
                                                     {{ $message }}
@@ -73,7 +77,9 @@
                                                             {{ $data->genre_name }}
                                                         </option>
                                                     @else
-                                                        <option value="{{ $data->id }}">{{ $data->genre_name }}
+                                                        <option value="{{ $data->id }}"
+                                                            {{ $comic->comic_genre_id == $data->id ? 'selected' : '' }}>
+                                                            {{ $data->genre_name }}
                                                         </option>
                                                     @endif
                                                 @endforeach
@@ -88,21 +94,25 @@
                                             <label for="comic_rating">Rating: <span class="text-danger">*</span></label>
                                             <input name="comic_rating" type="text"
                                                 class="form-control  @error('comic_rating') is-invalid @enderror"
-                                                id="comic_rating" value="{{ old('comic_rating') }}">
+                                                id="comic_rating"
+                                                value="{{ $comic->comic_rating ? $comic->comic_rating : old('comic_rating') }}">
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="comic_released">Released: <span class="text-danger">*</span></label>
                                             <input name="comic_released" type="date"
                                                 class="form-control  @error('comic_released') is-invalid @enderror"
-                                                id="comic_released" value="{{ old('comic_released') }}">
+                                                id="comic_released"
+                                                value="{{ $comic->comic_released ? $comic->comic_released : old('comic_released') }}">
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="inputZip">Upload Cover:</label>
                                             <div class="custom-file">
                                                 <input name="comic_cover" type="file"
                                                     class="custom-file-input  @error('comic_cover') is-invalid @enderror"
-                                                    id="customFile" value="{{ old('comic_cover') }}">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    id="customFile"
+                                                    value="{{ $comic->comic_cover ? $comic->comic_cover : old('comic_cover') }}">
+                                                <label class="custom-file-label"
+                                                    for="customFile">{{ $comic->comic_cover ? $comic->comic_cover : old('comic_alternative') }}</label>
                                             </div>
                                         </div>
 
@@ -112,7 +122,7 @@
                                         <textarea style="resize:none; text-align: justify; font-weight: 400;" name="comic_alternative"
                                             value="{{ old('comic_alternative') }}" class="form-control" id="comic_alternative" rows="5" cols="50"
                                             onKeyPress placeholder="Tuliskan alternative name disini...">
-                                            {{ old('comic_alternative') }}
+                                          {{ $comic->comic_alternative ? $comic->comic_alternative : old('comic_alternative') }}
                                         </textarea>
                                     </div>
                                     <div class="form-group">
@@ -120,13 +130,13 @@
                                         <textarea style="align-content:left; overflow:auto; resize:none; text-align: left; font-weight: 400;"
                                             name="comic_sinopsis" value="{{ old('comic_sinopsis') }}"class="form-control" id="comic_sinopsis" rows="10"
                                             cols="50" onKeyPress placeholder="Tuliskan sinopsis disini...">
-                                            {{ old('comic_sinopsis') }}
+                                            {{ $comic->comic_sinopsis ? $comic->comic_sinopsis : old('comic_sinopsis') }}
                                         </textarea>
                                     </div>
 
                                     <div class="form-group ">
                                         <div class="d-flex justify-content-end px-2">
-                                            <button type="submit" class="btn btn-primary mx-1">Simpan</button>
+                                            <button type="submit" class="btn btn-primary mx-1">Perbarui</button>
                                             <a href="{{ route('manageKomik') }}" class="btn btn-danger">Batalkan</a>
                                         </div>
                                     </div>

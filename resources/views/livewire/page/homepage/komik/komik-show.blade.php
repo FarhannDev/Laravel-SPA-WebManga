@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-10 col-md-6">
                     <div class="detail-sinopsis__text p-3">
-                        <p class="text-dark">{{ $comic_alternative }}</p>
+                        <p class="text-dark">{!! $comic_alternative !!} </p>
                     </div>
                 </div>
             </div>

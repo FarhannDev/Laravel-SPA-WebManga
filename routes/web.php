@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\ManageBlogController;
 use App\Http\Controllers\Admin\ManageKomikController;
+use App\Http\Controllers\Admin\ManageKomikGenre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -50,7 +52,31 @@ Auth::routes([
 
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-    Route::get('/dashboard/komik', ManageKomik::class)->name('manageKomik');
-    // Route::get('/dashboard/komik/add', [ManageKomikController::class, 'create'])->name('manageKomikCreate');
+    // Komik
+    Route::get('/dashboard/komik', [ManageKomikController::class, 'index'])->name('manageKomik');
+    Route::get('/dashboard/komik/add', [ManageKomikController::class, 'create'])->name('manageKomikCreate');
+    Route::post('/dashboard/komik/add', [ManageKomikController::class, 'store'])->name('manageKomikStore');
+    Route::get('/dashboard/komik/show/{comic:comic_slug}', [ManageKomikController::class, 'show'])->name('manageKomikShow');
+
+    Route::get('/dashboard/komik/edit/{comic:comic_slug}', [ManageKomikController::class, 'edit'])->name('manageKomikEdit');
+    Route::put('/dashboard/komik/edit/{comic:comic_slug}', [ManageKomikController::class, 'update'])->name('manageKomikUpdate');
+    Route::delete('/dashboard/komik/{comic:comic_slug}', [ManageKomikController::class, 'destroy'])->name('manageKomikDestroy');
+
+    Route::post('/dashboard/komik/volumes/add', [ManageKomikController::class, 'insert_volumes'])->name('manageVolumeAdd');
+    Route::delete('/dashboard/komik/volumes/{id}', [ManageKomikController::class, 'delete_volumes'])->name('manageVolumeDelete');
+    // Genre
+    Route::get('/dashboard/komik/genre', [ManageKomikGenre::class, 'index'])->name('manageGenre');
+
     // Route::get('/dashboard/manage/komik/add', ManageKomikAdd::class)->name('manageKomikAdd');
+    // Blog
+    Route::get('/dashboard/blog', [ManageBlogController::class, 'index'])->name('manageBlogIndex');
+    Route::get('/dashboard/blog/add', [ManageBlogController::class, 'create'])->name('manageBlogCreate');
+    Route::post('/dashboard/blog/add', [ManageBlogController::class, 'store'])->name('manageBlogStore');
+    Route::get('/dashboard/blog/edit/{blog:blog_slug}', [ManageBlogController::class, 'edit'])->name('manageBlogEdit');
+    Route::put('/dashboard/blog/edit/{blog:blog_slug}', [ManageBlogController::class, 'update'])->name('manageBlogUpdate');
+
+    Route::delete('/dashboard/blog/{blog:blog_slug}', [ManageBlogController::class, 'destroy'])->name('manageBlogDestroy');
+
+
+    Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 });

@@ -27,37 +27,13 @@
         </div>
         <div class="row g-4">
             <div class="owl-carousel">
-
-                <div class="feature-item bg-light rounded text-center p-4 mx-2">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h5 class="mb-3">Digital Marketing</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
-                <div class="feature-item bg-light rounded text-center p-4 mx-2">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h5 class="mb-3">Digital Marketing</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
-                <div class="feature-item bg-light rounded text-center p-4 mx-2">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h5 class="mb-3">Digital Marketing</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
-                <div class="feature-item bg-light rounded text-center p-4 mx-2">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h5 class="mb-3">Digital Marketing</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
-                <div class="feature-item bg-light rounded text-center p-4 mx-2">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h5 class="mb-3">Digital Marketing</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
+                @foreach ($services as $service)
+                    <div class="feature-item bg-light rounded text-center p-4 mx-2">
+                        <i class="{{ $service->icon }}"></i>
+                        <h5 class="mb-3">{{ $service->name }}</h5>
+                        <p class="m-0">{{ $service->desc }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -72,11 +48,12 @@
     </div>
     <div class="row justify-content-center g-4">
         @foreach ($genres as $genre)
-            <div class="col-lg-3 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item bg-light rounded text-center p-4">
+            <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="feature-item bg-light rounded text-center p-4" style="height: 150px;">
                     <a href="{{ route('genreShow', $genre->genre_slug) }}">
-                        <i class="fa fa-3x fa-bookmark text-primary mb-4"></i>
-                        <h5 class="mb-3"><a href="{{ route('genreShow', $genre->genre_slug) }}" class="text-dark">
+                        <i class="fa fa-2x fa-bookmark text-primary mb-4"></i>
+                        <h5 style="font-size: 16px;" class="mb-3"><a
+                                href="{{ route('genreShow', $genre->genre_slug) }}" class="text-dark">
                                 {{ $genre->genre_name }}
                             </a></h5>
                     </a>
@@ -92,7 +69,7 @@
         <div class="d-flex justify-content-between align-cotent-center">
             <div class="latest-title">
                 {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
-                <h3 class="text-center mb-5">Komik Paling Terbaru Dari Kami</h3>
+                <h3 class="text-center mb-5">Terbaru Dari Kami</h3>
                 {{-- </div> --}}
             </div>
             <div class="latest-action__details">
@@ -116,33 +93,6 @@
                 </div>
             @endforeach
 
-        </div>
-    </div>
-    <div class="populer-comic-wrapper">
-        <div class="d-flex justify-content-between align-cotent-center">
-            <div class="latest-title">
-                {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
-                <h3 class="text-center mb-5">Komik Paling Banyak Di Cari </h3>
-                {{-- </div> --}}
-            </div>
-            <div class="latest-action__details">
-                <a href="{{ route('komikPopuler') }}" class="ls-base text-dark">Lihat Semua</a> <span
-                    class="fas fa-arrow-right"></span>
-            </div>
-        </div>
-        <div class="row justify-content-arround g-4 portfolio-container">
-            @foreach ($comics as $comic)
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="rounded overflow-hidden ">
-                        <div class="position-relative overflow-hidden">
-                            <a href="{{ route('komikShow', $comic->comic_slug) }}">
-                                <img class="img-fluid w-100" src="{{ asset('images/' . $comic->comic_cover) }}"
-                                    style="height: 450px;">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
         </div>
     </div>
 </div>
