@@ -41,7 +41,7 @@ Route::get('/komik/id-ID/{comic:comic_slug}', KomikShow::class)->name('komikShow
 Route::get('/komik/latest', KomikLatest::class)->name('komikLatest');
 Route::get('/komik/populer', KomikPopuler::class)->name('komikPopuler');
 
-Route::get('/genre/id-ID/{comicGenre:genre_slug}', GenreShow::class)->name('genreShow');
+// Route::get('/genre/id-ID/{comicGenre:genre_slug}', GenreShow::class)->name('genreShow');
 
 Route::get('/blog', BlogIndex::class)->name('blogIndex');
 
