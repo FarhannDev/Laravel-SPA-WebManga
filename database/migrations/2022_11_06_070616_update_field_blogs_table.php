@@ -14,8 +14,8 @@ class UpdateFieldBlogsTable extends Migration
     public function up()
     {
         Schema::table('blogs', function (Blueprint $table) {
-            $table->string("blog_cover", 255)->after('blog_desc');
-            $table->enum('status', ['Publish', 'Draft'])->after('blog_desc');
+            $table->string("blog_cover", 255)->after('blog_desc')->nullable();
+            $table->enum('status', ['Publish', 'Draft'])->after('blog_desc')->nullable();
         });
     }
 
