@@ -20,7 +20,9 @@
     <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="shortcut icon" href="{{ asset('images/logo/zaotaku-icon.png') }}" type="image/x-icon">
+
+    <title>Zaotaku - Situs download volume manga</title>
     @livewireStyles
 
     @stack('css')
