@@ -10,109 +10,126 @@
                     adalah tempat terbaik untuk kalian yang biasa membaca satu volume lengkap.</h5>
             </div>
             <div class="col-lg-6">
-                <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="{{ asset('assets/img/about.png') }}">
+                <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="{{ asset('images/logo/zaotaku-logo.png') }}">
             </div>
         </div>
     </div>
     <div class="container py-5 px-lg-5">
         <div class="wow fadeInUp" data-wow-delay="0.1s">
 
-            <h1 class="text-center mb-5">Pelayanan yang kami berikan</h1>
+            <h3 class="text-center mb-5">Pelayanan yang kami berikan</h3>
         </div>
         <div class="row justify-content-center g-4">
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
-                    <h5 class="mb-3">Digital Marketing</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
+            @foreach ($services as $service)
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="feature-item bg-light rounded text-center p-4">
+                        <i class="{{ $service->icon }}"></i>
+                        <h5 class="mb-3">{{ $service->name }}</h5>
+                        <p class="m-0"> {!! \Illuminate\Support\Str::limit($service->desc ?? '', 200, '') !!}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="container py-5 px-lg-5">
+        <div class="d-flex justify-content-center mb-3">
+            <div class="kategori">
+                <div class="kategori-title">
+                    <h3>Kumpulan Genre Lengkap & Terupdate</h3>
                 </div>
             </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-search text-primary mb-4"></i>
-                    <h5 class="mb-3">SEO & Backlinks</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
+        </div>
+        <div class="row justify-content-center g-4">
+            @foreach ($genres as $genre)
+                <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="feature-item bg-light rounded text-center p-4" style="height: 150px;">
+                        {{-- <a href="{{ route('genreShow', $genre->genre_slug) }}"> --}}
+                        <i class="fa fa-2x fa-bookmark text-primary mb-4"></i>
+                        <h5 style="font-size: 16px;" class="mb-3">
+                            {{ $genre->genre_name }}
+                        </h5>
+                        {{-- </a> --}}
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-laptop-code text-primary mb-4"></i>
-                    <h5 class="mb-3">Design & Development</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-laptop-code text-primary mb-4"></i>
-                    <h5 class="mb-3">Design & Development</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="fa fa-3x fa-laptop-code text-primary mb-4"></i>
-                    <h5 class="mb-3">Design & Development</h5>
-                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                        stet diam sed stet lorem.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <div class="container py-5 px-lg-5">
         <div class="wow fadeInUp" data-wow-delay="0.1s">
 
-            <h1 class="text-center mb-5">Bersama Dengan Tim Kami</h1>
+            <h3 class="text-center mb-5">Bersama Dengan Tim Kami</h3>
         </div>
-        <div class="row justify-content-center g-4">
+        <div class="row justify-content-arround g-4">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item bg-light rounded">
-                    <div class="text-center border-bottom p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{{ asset('assets/img/team-1.jpg') }}"
-                            alt="">
-                        <h5>John Doe</h5>
-                        <span>CEO & Founder</span>
+                <div class="team-item bg-white shadow rounded">
+                    <div class="team-item__image">
+                        <img class="img-fluid mb-4" src="{{ asset('images/teams/teams1.jpg') }}">
                     </div>
-                    <div class="d-flex justify-content-center p-4">
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item bg-light rounded">
-                    <div class="text-center border-bottom p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{{ asset('assets/img/team-2.jpg') }}"
-                            alt="">
-                        <h5>Jessica Brown</h5>
-                        <span>Web Designer</span>
-                    </div>
-                    <div class="d-flex justify-content-center p-4">
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-item__info">
+                        <div class="text-center border-bottom p-4">
+                            <h5>Farhan</h5>
+                            <span>Mahasiswa di universitas bina sarana informatika</span>
+                        </div>
+                        <div class="d-flex justify-content-center p-4">
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank"
+                                href="https://www.linkedin.com/in/farhan-20241221a/"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="team-item bg-light rounded">
-                    <div class="text-center border-bottom p-4">
-                        <img class="img-fluid rounded-circle mb-4" src="{{ asset('assets/img/team-3.jpg') }}"
-                            alt="">
-                        <h5>Tony Johnson</h5>
-                        <span>SEO Expert</span>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item bg-white shadow rounded">
+                    <div class="team-item__image">
+                        <img class="img-fluid mb-4" src="{{ asset('images/teams/teams1.jpg') }}">
                     </div>
-                    <div class="d-flex justify-content-center p-4">
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-item__info">
+                        <div class="text-center border-bottom p-4">
+                            <h5>Farhan</h5>
+                            <span>Mahasiswa di universitas bina sarana informatika</span>
+                        </div>
+                        <div class="d-flex justify-content-center p-4">
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank"
+                                href="https://www.linkedin.com/in/farhan-20241221a/"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item bg-white shadow rounded">
+                    <div class="team-item__image">
+                        <img class="img-fluid mb-4" src="{{ asset('images/teams/teams1.jpg') }}">
+                    </div>
+                    <div class="team-item__info">
+                        <div class="text-center border-bottom p-4">
+                            <h5>Farhan</h5>
+                            <span>Mahasiswa di universitas bina sarana informatika</span>
+                        </div>
+                        <div class="d-flex justify-content-center p-4">
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank" href=""><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square mx-1" target="__blank"
+                                href="https://www.linkedin.com/in/farhan-20241221a/"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
