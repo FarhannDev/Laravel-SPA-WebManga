@@ -20,7 +20,9 @@
     <link href="{{ secure_asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('/assets/css/style.css') }}" rel="stylesheet">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="shortcut icon" href="{{ asset('images/logo/zaotaku-icon.png') }}" type="image/x-icon">
+
+    <title>Zaotaku - Situs download volume manga</title>
     @livewireStyles
 
     @stack('css')
@@ -29,9 +31,14 @@
 <body>
     <div class="container-xxl bg-white p-0">
         <x-loader />
-        @yield('content')
+
+        @include('layouts.homepage.navbar')
+        @yield('header')
+        <main class="main-content" id="main-content">
+            @yield('content')
+        </main>
         @include('layouts.homepage.btn-scrool')
-        {{-- @include('layouts.homepage.footer') --}}
+        @include('layouts.homepage.footer')
     </div>
 
     @livewireScripts
@@ -48,7 +55,12 @@
     <script src="{{ secure_asset('/assets/lib/lightbox/js/lightbox.min.js') }}"></script>
     <script src="{{ secure_asset('/assets/js/main.js') }}"></script>
 
-
+    <script>
+        window.onload = function() {
+            //hide the preloader
+            document.querySelector("#spinner").style.display = "none";
+        }
+    </script>
     @stack('javascript')
 
 </body>

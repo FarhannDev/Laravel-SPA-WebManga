@@ -4,9 +4,13 @@ namespace App\Http\Livewire\Page\Homepage\Komik;
 
 use App\Models\Comic;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class KomikIndex extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
         $comics = Comic::orderBy('comic_title', 'DESC')->latest()->paginate(9);

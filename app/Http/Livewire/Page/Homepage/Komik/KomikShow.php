@@ -4,10 +4,14 @@ namespace App\Http\Livewire\Page\Homepage\Komik;
 
 use App\Models\Comic;
 use App\Models\ComicVolume;
+use Illuminate\Http\Request;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class KomikShow extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $comic_id;
     public $comic_genre;
@@ -20,7 +24,7 @@ class KomikShow extends Component
     public $comic_alternative;
     public $comic_sinopsis;
 
-    public $volumes = null;
+
 
     public function mount(Comic $comic)
     {
@@ -38,15 +42,13 @@ class KomikShow extends Component
             $this->comic_alternative     = $data->comic_alternative;
             $this->comic_sinopsis        = $data->comic_sinopsis;
         }
-
-        $this->volumes = ComicVolume::where('comic_id', $this->comic_id)->orderBy('volume_name', 'DESC')->get();
-
-        if (!is_null($this->volumes)) return $this->volumes;
     }
 
     public function render()
     {
-        return view('livewire.page.homepage.komik.komik-show')
+        $volumes =  ComicVolume::where('comic_id', $this->comic_id)->paginate(5);
+
+        return view('livewire.page.homepage.komik.komik-show', ['volumes' => $volumes])
             ->extends('layouts.homepage.index')
             ->section('content');
     }
