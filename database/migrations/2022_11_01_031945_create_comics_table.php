@@ -27,7 +27,7 @@ class CreateComicsTable extends Migration
             $table->string('comic_artist', 100);
             $table->string('comic_rating', 100);
             $table->year('comic_released');
-            $table->string('comic_cover', 255);
+            $table->string('comic_cover', 255)->nullable()->default('default.jpg');
             $table->string('comic_alternative');
             $table->longText('comic_sinopsis');
 
