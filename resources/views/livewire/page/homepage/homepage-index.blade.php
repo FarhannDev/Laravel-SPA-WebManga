@@ -191,7 +191,6 @@
                                                 </div>
                                             </div>
 
-<<<<<<< HEAD
                                             <div class="comic-inner mb-3">
                                                 <div class="comic-inner__text px-2 pt-2 mb-3">
                                                     <a href="{{ route('komikShow', $data->comic_slug) }}"
@@ -211,154 +210,19 @@
                                 </div>
                             @endforeach
                         </div>
-=======
-                                        </div>
-                                    </div>
-                                    <div class="container-xxl newsletter py-5 wow fadeInUp" data-wow-delay="0.1s"
-                                        style="background: #f1f1f1 !important;">
-                                        <div class="container py-5 px-lg-5">
-                                            <div class="row justify-content-center">
-                                                <div class="col-lg-7 text-center">
-                                                    <h1 class="text-center text-dark  mb-4">Tetap Selalu Terhubung</h1>
-                                                    <p class="text-dark  mb-4">Mohon masukan alamat email dengan benar,
-                                                        agar bisa terhubung dengan
-                                                        kami
-                                                    </p>
-                                                    <div class="position-relative w-100 mt-3">
-                                                        <input
-                                                            class="form-control border-0 rounded-pill w-100 ps-4 pe-5"
-                                                            type="text" placeholder="Enter Your Email"
-                                                            style="height: 48px;">
-                                                        <button type="button"
-                                                            class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i
-                                                                class="fa fa-paper-plane text-primary fs-4"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container py-5 px-lg-5">
-                                            <h1 class="text-center mb-5">Apa Kata Mereka</h1>
-                                            <div class="owl-carousel testimonial-carousel">
-                                                <div class="testimonial-item bg-light rounded my-4">
-                                                    <p class="fs-5"><i
-                                                            class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam
-                                                        dolor diam
-                                                        ipsum
-                                                        sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
-                                                        sit sed stet lorem sit clita duo
-                                                        justo.</p>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                                                            src="{{ secure_asset('assets/img/testimonial-1.jpg') }}"
-                                                            style="width: 65px; height: 65px;">
-                                                        <div class="ps-4">
-                                                            <h5 class="mb-1">Client Name</h5>
-                                                            <span>Profession</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="testimonial-item bg-light rounded my-4">
-                                                    <p class="fs-5"><i
-                                                            class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam
-                                                        dolor diam
-                                                        ipsum
-                                                        sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
-                                                        sit sed stet lorem sit clita duo
-                                                        justo.</p>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                                                            src="{{ secure_asset('assets/img/testimonial-2.jpg') }}"
-                                                            style="width: 65px; height: 65px;">
-                                                        <div class="ps-4">
-                                                            <h5 class="mb-1">Client Name</h5>
-                                                            <span>Profession</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="testimonial-item bg-light rounded my-4">
-                                                    <p class="fs-5"><i
-                                                            class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam
-                                                        dolor diam
-                                                        ipsum
-                                                        sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
-                                                        sit sed stet lorem sit clita duo
-                                                        justo.</p>
-                                                    <div class="d-flex align-items-center">
-                                                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                                                            src="{{ secure_asset('assets/img/testimonial-3.jpg') }}"
-                                                            style="width: 65px; height: 65px;">
-                                                        <div class="ps-4">
-                                                            <h5 class="mb-1">Client Name</h5>
-                                                            <span>Profession</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- <div class="container-xxl newsletter py-5 wow fadeInUp" data-wow-delay="0.1s" style="background: #f1f1f1 !important;">
-    <div class="container py-5 px-lg-5">
-        <h1 class="text-center mb-5">Apa Kata Mereka</h1>
-        <div class="owl-carousel testimonial-carousel">
-            <div class="testimonial-item bg-light rounded my-4">
-                <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam
-                    ipsum
-                    sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo
-                    justo.</p>
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded-circle"
-                        src="{{ asset('assets/img/testimonial-1.jpg') }}" style="width: 65px; height: 65px;">
-                    <div class="ps-4">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item bg-light rounded my-4">
-                <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam
-                    ipsum
-                    sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo
-                    justo.</p>
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded-circle"
-                        src="{{ asset('assets/img/testimonial-2.jpg') }}" style="width: 65px; height: 65px;">
-                    <div class="ps-4">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item bg-light rounded my-4">
-                <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam
-                    ipsum
-                    sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo
-                    justo.</p>
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded-circle"
-                        src="{{ asset('assets/img/testimonial-3.jpg') }}" style="width: 65px; height: 65px;">
-                    <div class="ps-4">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
->>>>>>> 7d62a52dd05649d0d8c46880ba00e06e9dd19a72
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
-=======
-</div> --}}
->>>>>>> 7d62a52dd05649d0d8c46880ba00e06e9dd19a72
 
 
 
-                                @push('javascript')
-                                    <script>
-                                        $(document).ready(function() {
-                                            $(".owl-carousel").owlCarousel();
-                                        });
-                                    </script>
-                                @endpush
+@push('javascript')
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel();
+        });
+    </script>
+@endpush
