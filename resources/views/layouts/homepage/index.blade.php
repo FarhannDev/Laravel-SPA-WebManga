@@ -29,9 +29,14 @@
 <body>
     <div class="container-xxl bg-white p-0">
         <x-loader />
-        @yield('content')
+
+        @include('layouts.homepage.navbar')
+        @yield('header')
+        <main class="main-content" id="main-content">
+            @yield('content')
+        </main>
         @include('layouts.homepage.btn-scrool')
-        {{-- @include('layouts.homepage.footer') --}}
+        @include('layouts.homepage.footer')
     </div>
 
     @livewireScripts
@@ -48,7 +53,12 @@
     <script src="{{ secure_asset('/assets/lib/lightbox/js/lightbox.min.js') }}"></script>
     <script src="{{ secure_asset('/assets/js/main.js') }}"></script>
 
-
+    <script>
+        window.onload = function() {
+            //hide the preloader
+            document.querySelector("#spinner").style.display = "none";
+        }
+    </script>
     @stack('javascript')
 
 </body>

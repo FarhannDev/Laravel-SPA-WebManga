@@ -14,6 +14,8 @@
                      <a href="{{ route('komikIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('komikIndex') ? 'active' : '' }} ">Daftar
                          Komik</a>
+                     <a href="{{ route('blogIndex') }}"
+                         class="nav-item mx-md-3 nav-link {{ Route::is('blogIndex') ? 'active' : '' }} ">Blog</a>
                      <a href="{{ route('aboutIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('aboutIndex') ? 'active' : '' }}">Tentang
                          Kami</a>

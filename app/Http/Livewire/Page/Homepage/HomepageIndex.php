@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Page\Homepage;
 
 use App\Models\Comic;
 use App\Models\ComicGenre;
+use App\Models\Service;
 use Livewire\Component;
 
 class HomepageIndex extends Component
@@ -12,11 +13,12 @@ class HomepageIndex extends Component
     {
         $genres = ComicGenre::all();
         $comics = Comic::latest()->paginate(3);
-
+        $services = Service::all();
 
         return view('livewire.page.homepage.homepage-index', [
             'genres' => $genres,
-            'comics' => $comics
+            'comics' => $comics,
+            'services' => $services,
         ])
             ->extends('layouts.homepage.index')
             ->section('content');
