@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Page\HomePage\Genre;
 
 use App\Models\Comic;
 use App\Models\ComicGenre;
+
 use Livewire\Component;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,8 @@ class GenreShow extends Component
 {
     public $genre_id;
     public $genre_name;
+
+
 
     public function mount(ComicGenre $comicGenre)
     {
