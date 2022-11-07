@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Page\HomePage\Genre;
+namespace App\Http\Livewire\Page\Homepage\Genre;
 
 use App\Models\Comic;
 use App\Models\ComicGenre;
