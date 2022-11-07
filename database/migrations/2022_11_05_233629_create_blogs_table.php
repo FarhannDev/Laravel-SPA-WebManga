@@ -22,7 +22,7 @@ class CreateBlogsTable extends Migration
 
             $table->string('blog_name');
             $table->string('blog_slug');
-            $table->string('blog_desc');
+            $table->longText('blog_desc');
             $table->timestamps();
         });
     }

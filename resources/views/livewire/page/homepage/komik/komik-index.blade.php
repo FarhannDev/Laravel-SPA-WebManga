@@ -16,8 +16,9 @@
             </div>
             <div class="col-lg-4">
                 <div class="input-group mb-3">
-                    <input type="search" class="form-control" placeholder="Cari komik populer..."
-                        aria-label="Cari komik populer..." aria-describedby="button-addon2">
+                    <input wire:model.debounce.500ms="search" type="search" class="form-control"
+                        placeholder="Cari komik populer..." aria-label="Cari komik populer..."
+                        aria-describedby="button-addon2">
 
                     <button class="btn btn-outline-primary" type="button" id="button-addon2"><i
                             class="fas fa-search"></i></button>
@@ -35,16 +36,16 @@
         </div>
 
         <div class="row justify-content-arround g-4 portfolio-container pt-5">
-            @if (!is_null($comics))
-                @foreach ($comics as $comic)
+            @if (!is_null($data))
+                @forelse ($data as $value)
                     <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="comic-inner">
                                 <div class="comic-inner__image">
                                     <div class="position-relative overflow-hidden ">
-                                        <a href="{{ route('komikShow', $comic->comic_slug) }}">
+                                        <a href="{{ route('komikShow', $value->comic_slug) }}">
                                             <img class="img-fluid w-100 rounded"
-                                                src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
+                                                src="{{ asset($value->comic_cover ? 'images/komik/' . $value->comic_cover : 'images/default-komik.jpg') }}"
                                                 style="height: 450px;">
                                         </a>
                                     </div>
@@ -52,9 +53,9 @@
 
                                 <div class="comic-inner mb-3">
                                     <div class="comic-inner__text px-2 pt-2 mb-3">
-                                        <a href="{{ route('komikShow', $comic->comic_slug) }}" class="text-dark">
+                                        <a href="{{ route('komikShow', $value->comic_slug) }}" class="text-dark">
                                             <h4 class="text-dark text-capitalize col-lg-auto">
-                                                {!! \Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...') !!}
+                                                {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 50, ' ...') !!}
                                             </h4>
                                         </a>
                                     </div>
@@ -66,13 +67,17 @@
 
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="d-flex justify-content-center">
+                        <p class="text-dark">Komik <strong> {{ $search }} </strong> tidak di ditemukan.</p>
+                    </div>
+                @endforelse
             @endif
 
         </div>
 
         <div class="d-flex  pagination-start pt-5">
-            {{ $comics->links() }}
+            {{-- {{ $data->links() }} --}}
         </div>
     </div>
 </div>
