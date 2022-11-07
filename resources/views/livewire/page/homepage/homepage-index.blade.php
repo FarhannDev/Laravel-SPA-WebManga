@@ -23,100 +23,108 @@
 
 <div class="container-xxl  position-relative p-0 py-5" id="main-content">
     <div class="container py-5 px-lg-5">
-        <div class="latest-comic-wrapper mb-5">
-            <div class="d-flex justify-content-between align-cotent-center">
-                <div class="latest-title">
-                    {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
-                    <h3 class="text-center mb-5">Komik Sedang Populer</h3>
-                    {{-- </div> --}}
+        @if ($comics->count())
+            <div class="latest-comic-wrapper mb-5">
+                <div class="d-flex justify-content-between align-cotent-center">
+                    <div class="latest-title">
+                        {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
+                        <h3 class="text-center mb-5">Komik Sedang Populer</h3>
+                        {{-- </div> --}}
+                    </div>
+                    <div class="latest-action__details">
+                        <a href="{{ route('komikLatest') }}" class="ls-base text-dark">Lihat Semua</a> <span
+                            class="fas fa-arrow-right"></span>
+                    </div>
                 </div>
-                <div class="latest-action__details">
-                    <a href="{{ route('komikLatest') }}" class="ls-base text-dark">Lihat Semua</a> <span
-                        class="fas fa-arrow-right"></span>
-                </div>
-            </div>
-            <div class="row justify-content-arround g-4 portfolio-container">
-                @foreach ($comics as $comic)
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="rounded overflow-hidden">
-                            <div class="comic-inner">
-                                <div class="comic-inner__image">
-                                    <div class="position-relative overflow-hidden ">
-                                        <a href="{{ route('komikShow', $comic->comic_slug) }}">
-                                            <img class="img-fluid w-100 rounded"
-                                                src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
-                                                style="height: 450px;">
-                                        </a>
+                <div class="row justify-content-arround g-4 portfolio-container">
+                    @foreach ($comics as $comic)
+                        <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="rounded overflow-hidden">
+                                <div class="comic-inner">
+                                    <div class="comic-inner__image">
+                                        <div class="position-relative overflow-hidden ">
+                                            <a href="{{ route('komikShow', $comic->comic_slug) }}">
+                                                <img class="img-fluid w-100 rounded"
+                                                    src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
+                                                    style="height: 450px;">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="comic-inner mb-3">
-                                    <div class="comic-inner__text px-2 pt-2 mb-3">
-                                        <a href="{{ route('komikShow', $comic->comic_slug) }}" class="text-dark">
-                                            <h4 class="text-dark text-capitalize col-lg-auto">
-                                                {!! \Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...') !!}
-                                            </h4>
-                                        </a>
-                                    </div>
-                                    {{-- <div class="comic-inner__desc px-3 mb-3">
+                                    <div class="comic-inner mb-3">
+                                        <div class="comic-inner__text px-2 pt-2 mb-3">
+                                            <a href="{{ route('komikShow', $comic->comic_slug) }}" class="text-dark">
+                                                <h4 class="text-dark text-capitalize col-lg-auto">
+                                                    {!! \Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...') !!}
+                                                </h4>
+                                            </a>
+                                        </div>
+                                        {{-- <div class="comic-inner__desc px-3 mb-3">
                                         {!! \Illuminate\Support\Str::limit($comic->comic_sinopsis ?? '', 100, ' ...') !!}
                                     </div> --}}
+                                    </div>
                                 </div>
+
                             </div>
-
                         </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <div class="latest-comic-wrapper mb-5">
-            <div class="d-flex justify-content-between align-content-center">
-                <div class="latest-title">
-                    {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
-                    <h3 class="text-center mb-5">Komik Paling Terbaru</h3>
-                    {{-- </div> --}}
-                </div>
-                <div class="latest-action__details">
-                    <a href="{{ route('komikLatest') }}" class="ls-base text-dark">Lihat Semua</a> <span
-                        class="fas fa-arrow-right"></span>
+                    @endforeach
                 </div>
             </div>
-            <div class="row justify-content-arround g-4 portfolio-container">
-                @foreach ($comics as $comic)
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="rounded overflow-hidden">
-                            <div class="comic-inner">
-                                <div class="comic-inner__image">
-                                    <div class="position-relative overflow-hidden ">
-                                        <a href="{{ route('komikShow', $comic->comic_slug) }}">
-                                            <img class="img-fluid w-100 rounded"
-                                                src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
-                                                style="height: 450px;">
-                                        </a>
-                                    </div>
-                                </div>
+        @endif
 
-                                <div class="comic-inner mb-3">
-                                    <div class="comic-inner__text px-2 pt-2 mb-3">
-                                        <a href="{{ route('komikShow', $comic->comic_slug) }}" class="text-dark">
-                                            <h4 class="text-dark text-capitalize col-lg-auto">
-                                                {!! \Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...') !!}
-                                            </h4>
-                                        </a>
+        @if ($comics->count())
+            <div class="latest-comic-wrapper mb-5">
+                <div class="d-flex justify-content-between align-content-center">
+                    <div class="latest-title">
+                        {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
+                        <h3 class="text-center mb-5">Komik Paling Terbaru</h3>
+                        {{-- </div> --}}
+                    </div>
+                    <div class="latest-action__details">
+                        <a href="{{ route('komikLatest') }}" class="ls-base text-dark">Lihat Semua</a> <span
+                            class="fas fa-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="row justify-content-arround g-4 portfolio-container">
+                    @foreach ($comics as $comic)
+                        <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="rounded overflow-hidden">
+                                <div class="comic-inner">
+                                    <div class="comic-inner__image">
+                                        <div class="position-relative overflow-hidden ">
+                                            <a href="{{ route('komikShow', $comic->comic_slug) }}">
+                                                <img class="img-fluid w-100 rounded"
+                                                    src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
+                                                    style="height: 450px;">
+                                            </a>
+                                        </div>
                                     </div>
-                                    {{-- <div class="comic-inner__desc px-3 mb-3">
+
+                                    <div class="comic-inner mb-3">
+                                        <div class="comic-inner__text px-2 pt-2 mb-3">
+                                            <a href="{{ route('komikShow', $comic->comic_slug) }}" class="text-dark">
+                                                <h4 class="text-dark text-capitalize col-lg-auto">
+                                                    {!! \Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...') !!}
+                                                </h4>
+                                            </a>
+                                        </div>
+                                        {{-- <div class="comic-inner__desc px-3 mb-3">
                                         {!! \Illuminate\Support\Str::limit($comic->comic_sinopsis ?? '', 100, ' ...') !!}
                                     </div> --}}
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
+
     </div>
+
     <div class="container py-5 px-lg-5">
+
         <div class="d-flex justify-content-between align-content-center">
             <div class="latest-title">
                 {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
@@ -131,9 +139,13 @@
             </div>
         </div>
 
+
+
         <div class="row">
             <div class="col-12">
                 <div class="tabs">
+
+
                     <div class="tab-2">
                         <label for="tab2-1" class="text-dark">Komik Romantis</label>
                         <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
@@ -172,6 +184,7 @@
                             @endforeach
                         </div>
                     </div>
+
                     <div class="tab-2">
                         <label for="tab2-2" class="text-dark">Komik Fantasi</label>
                         <input id="tab2-2" name="tabs-two" type="radio">
@@ -205,7 +218,6 @@
                                     </div> --}}
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             @endforeach
@@ -216,8 +228,6 @@
         </div>
     </div>
 </div>
-
-
 
 @push('javascript')
     <script>

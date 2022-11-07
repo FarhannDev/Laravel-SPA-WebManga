@@ -22,9 +22,7 @@ class CreateBlogsTable extends Migration
 
             $table->string('blog_name');
             $table->string('blog_slug');
-            $table->string('blog_desc');
-            $table->string("blog_cover", 255)->nullable()->default('default.jpg');
-            $table->enum('status', ['Publish', 'Draft'])->after('blog_cover')->nullable();
+            $table->longText('blog_desc');
             $table->timestamps();
         });
     }

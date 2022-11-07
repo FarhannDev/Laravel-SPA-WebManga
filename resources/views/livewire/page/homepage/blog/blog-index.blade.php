@@ -8,8 +8,8 @@
         </div>
         <div class="search-blog col-lg-4 col-md-6">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search All Berita" aria-label="Search All Berita"
-                    aria-describedby="button-addon2">
+                <input wire:model.debounce.500ms="search" type="search" class="form-control"
+                    placeholder="Search All Berita" aria-label="Search All Berita" aria-describedby="button-addon2">
 
                 <button class="btn btn-outline-primary" type="button" id="button-addon2"><i
                         class="fas fa-search"></i></button>
@@ -26,7 +26,8 @@
         </nav>
     </div>
     <div class="row justify-content-arround align-content-center">
-        @foreach ($blogs as $blog)
+
+        @forelse ($blogs as $blog)
             <div class="col-lg-4 col-md-6">
                 <div class="card mb-3">
                     <a href="#">
@@ -52,6 +53,12 @@
                     </a>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="d-flex justify-content-center">
+                <p class="text-dark">
+                    Berita <strong> {{ $search }}</strong> tidak ditemukan.
+                </p>
+            </div>
+        @endforelse
     </div>
 </div>
