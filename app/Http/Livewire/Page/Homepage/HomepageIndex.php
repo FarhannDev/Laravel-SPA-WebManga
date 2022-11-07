@@ -21,12 +21,16 @@ class HomepageIndex extends Component
         $services = Service::all();
         $blog = Blog::latest()->paginate(3);
 
+        $comic_latest = Comic::latest()->paginate(3);
+        $comic_populer = Comic::where('comic_author', 'Hiroyuki')->latest()->paginate(3);
         $comic_romantis  =  Comic::where('comic_genre_id', 2)->latest()->paginate(6);
         $comic_fantasi  =  Comic::where('comic_genre_id', 7)->latest()->paginate(6);
 
         return view('livewire.page.homepage.homepage-index', [
             'genres' => $genres,
             'comics' => $comics,
+            'comic_latest' => $comic_latest,
+            'comic_populer' => $comic_populer,
             'comic_romantis' => $comic_romantis,
             'comic_fantasi' => $comic_fantasi,
             'services' => $services,

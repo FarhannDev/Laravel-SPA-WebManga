@@ -155,7 +155,7 @@ h6,
     }
 
     .navbar-light .navbar-brand h1 {
-        color: var(--primary);
+        color: var(--dark);
     }
 
     .navbar-light .navbar-brand img {

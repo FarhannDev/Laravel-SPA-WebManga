@@ -21,8 +21,8 @@
                          Kami</a>
                      <a href="{{ route('contactIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Bantuan</a>
-                     <a href="{{ route('contactIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Testimonial</a>
+                     <a href="{{ route('testimonialIndex') }}"
+                         class="nav-item mx-md-3 nav-link {{ Route::is('testimonialIndex') ? 'active' : '' }}">Testimonial</a>
                  </div>
 
              </div>
