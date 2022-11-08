@@ -6,23 +6,40 @@
     </header>
 @endsection
 
-<div class="container-xxl position-relative p-0 py-5">
-    <div class="container py-5 px-lg-5">
-        <div class="row justify-content-between align-items-center border-bottom mb-3">
+<div class="container-xxl position-relative p-0 py-3">
+    <div class="container py-3 px-lg-5">
+        <div class="row justify-content-center align-items-center mb-3">
             <div class="col-lg-6">
                 <h3 class="text-dark text-capitalize">
-                    Cari & Temukan komik favorite kamu
+                    Cari & Temukan komik Pilihan
                 </h3>
             </div>
-            <div class="col-lg-4">
+        </div>
+        <div class="row filtering-data pt-3 mb-3">
+            <div class="col-lg-4 col-md-6">
                 <div class="input-group mb-3">
                     <input wire:model.debounce.500ms="search" type="search" class="form-control"
-                        placeholder="Cari komik populer..." aria-label="Cari komik populer..."
+                        placeholder="Cari daftar komik..." aria-label="Cari daftar komik..."
                         aria-describedby="button-addon2">
-
-                    <button class="btn btn-outline-primary" type="button" id="button-addon2"><i
-                            class="fas fa-search"></i></button>
+                    {{-- <button class="btn btn-outline-primary" type="button" id="button-addon2"><i
+                            class="fas fa-search"></i></button> --}}
                 </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <select wire:model.debounce.500ms="selectedGenre" class="form-select" aria-label="Selected Genre">
+                    <option selected value="">Selected Genre</option>
+                    @foreach ($genres as $genre)
+                        <option value="{{ $genre->genre_name }}">{{ $genre->genre_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
             </div>
         </div>
 
@@ -34,11 +51,12 @@
                 </ol>
             </nav>
         </div>
+        <hr />
 
         <div class="row justify-content-arround g-4 portfolio-container pt-5">
             @if (!is_null($data))
                 @forelse ($data as $value)
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-lg-3 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="comic-inner">
                                 <div class="comic-inner__image">
@@ -46,7 +64,7 @@
                                         <a href="{{ route('komikShow', $value->comic_slug) }}">
                                             <img class="img-fluid w-100 rounded"
                                                 src="{{ asset($value->comic_cover ? 'images/komik/' . $value->comic_cover : 'images/default-komik.jpg') }}"
-                                                style="height: 450px;">
+                                                style="height: 300px;">
                                         </a>
                                     </div>
                                 </div>
@@ -54,9 +72,9 @@
                                 <div class="comic-inner mb-3">
                                     <div class="comic-inner__text px-2 pt-2 mb-3">
                                         <a href="{{ route('komikShow', $value->comic_slug) }}" class="text-dark">
-                                            <h4 class="text-dark text-capitalize col-lg-auto">
-                                                {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 50, ' ...') !!}
-                                            </h4>
+                                            <h5 class="text-dark text-capitalize col-lg-auto">
+                                                {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 38, ' ...') !!}
+                                            </h5>
                                         </a>
                                     </div>
                                     {{-- <div class="comic-inner__desc px-3 mb-3">
