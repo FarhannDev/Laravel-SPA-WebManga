@@ -4,10 +4,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 @endpush
 
-
 @section('container')
     <!-- Begin Page Content -->
-    <div class="card" style="border-radius: 8px; background-color: #fff;">
+    <div class="d-flex justify-content-end mx-3">
+        {{ Breadcrumbs::render('data-komik') }}
+    </div>
+
+    <div class="card mx-2" style="border-radius: 12px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;">
         <div class="row">
             <div class="col">
                 <div class="dashboard">
@@ -24,31 +27,30 @@
                         </div>
                     @endif
 
-                    <div class="dashboard-inner">
+                    <div class="dashboard-inner border-bottom mb-3">
                         <div class="dashboard-inner__text px-3 mx-2 pt-2">
-                            <h4 class="text-dark text-capitalize">Kelola Semua Data Komik</h4>
-                        </div>
-                        <div class="dashboard-inner__addbutton  px-3  mx-2  mb-3">
-                            <a href="{{ route('manageKomikCreate') }}" class="btn btn-primary">
-                                {{ __('Buat Komik Terbaru') }} <span class="fas fa-plus"></span>
-                            </a>
+                            <h4 class="text-dark text-capitalize">Manage Data Komik</h4>
                         </div>
                     </div>
                     <div class="dashboard-inner__item px-3 mb-3">
-                        <div class="dashboard-item__list">
+                        <div class="dashboard-inner__addbutton mb-3 ">
+                            <a style="background-color: #c22dba;" href="{{ route('manageKomikCreate') }}"
+                                class="btn text-white">
+                                {{ __('Buat Komik Terbaru') }} <span class="fas fa-plus"></span>
+                            </a>
+                        </div>
+                        <div class="dashboard-item__list mb-3">
                             <div class="row justify-content-arround align-items-center">
                                 <div class="col">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive mb-3">
                                         <table class="table table-striped table-bordered" id="example" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col-lg-6">Title</th>
-                                                    <th scope="col-*">Author</th>
-                                                    <th scope="col-*">Artist</th>
                                                     <th scope="col-*">Created At</th>
-                                                    <th scope="col-*">Status</th>
-                                                    <th scope="col-*">Action</th>
+                                                    <th scope="col-*">Updated At</th>
+                                                    <th scope="col-*" class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -62,27 +64,20 @@
                                                                 class="text-dark text-decoration-none">{{ $comic->comic_title }}
                                                             </a>
                                                         </td>
-                                                        <td class="align-middle font-weight-dark-500">
-                                                            {{ $comic->comic_author }}
-                                                        </td>
-                                                        <td class="align-middle font-weight-dark-500">
-                                                            {{ $comic->comic_artist }}
-                                                        </td>
                                                         <td class="align-middle">
                                                             {{ date('m/d/Y H:i:s', strtotime($comic->created_at)) }}</td>
-                                                        <td class="align-middle font-weight-dark-500">
-                                                            {{ $comic->is_active }}
-                                                        </td>
-                                                        <td>
+                                                        <td class="align-middle">
+                                                            {{ date('m/d/Y H:i:s', strtotime($comic->created_at)) }}</td>
+                                                        <td class="text-center">
                                                             <form
                                                                 action="{{ route('manageKomikDestroy', $comic->comic_slug) }}"
-                                                                method="post" class="d-inline">
+                                                                method="post">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger mb-2"><i
+                                                                <button type="submit" class="btn btn-danger"><i
                                                                         class="fas fa-trash-alt"></i></button>
-                                                                <a href="{{ route('manageKomikEdit', $comic->comic_slug) }}"
-                                                                    class="btn btn-danger"><i class="fas fa-edit"></i></a>
+                                                                {{-- <a href="{{ route('manageKomikEdit', $comic->comic_slug) }}"
+                                                                    class="btn btn-danger"><i class="fas fa-edit"></i></a> --}}
                                                             </form>
                                                         </td>
                                                     </tr>

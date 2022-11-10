@@ -130,8 +130,10 @@ class ManageBlogController extends Controller
             'blog_cover' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $setRulesBlogName = $request->validate(['blog_name' => 'required|min:6|unique:blogs,blog_name']);
-        ($request->blog_name != $blog->blog_name ? $setRulesBlogName : '');
+        if ($request->blog_name != $blog->blog_name) {
+            $setRulesBlogName = $request->validate(['blog_name' => 'required|min:6|unique:blogs,blog_name']);
+            return $setRulesBlogName;
+        };
 
         if ($request->blog_cover) {
             // Cek file cover lama

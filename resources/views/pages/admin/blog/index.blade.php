@@ -6,8 +6,11 @@
 
 
 @section('container')
+    <div class="d-flex justify-content-end mx-3">
+        {{ Breadcrumbs::render('data-blog') }}
+    </div>
     <!-- Begin Page Content -->
-    <div class="card" style="border-radius: 8px; background-color: #fff;">
+    <div class="card mx-3" style="border-radius: 8px; background-color: #fff;">
         <div class="row">
             <div class="col">
                 <div class="dashboard">
@@ -24,17 +27,18 @@
                         </div>
                     @endif
 
-                    <div class="dashboard-inner">
+                    <div class="dashboard-inner border-bottom">
                         <div class="dashboard-inner__text px-3 mx-2 pt-2">
-                            <h4 class="text-dark text-capitalize">Kelola semua blog</h4>
-                        </div>
-                        <div class="dashboard-inner__addbutton  px-3  mx-2  mb-3">
-                            <a href="{{ route('manageBlogCreate') }}" class="btn btn-primary">
-                                {{ __('Buat Blog Terbaru') }} <span class="fas fa-plus"></span>
-                            </a>
+                            <h4 class="text-dark text-capitalize">Manage Data Blog</h4>
                         </div>
                     </div>
                     <div class="dashboard-inner__item px-3 mb-3">
+                        <div class="dashboard-inner__addbutton mt-3  mb-3">
+                            <a style="background-color: #c22dba;" href="{{ route('manageBlogCreate') }}"
+                                class="btn  text-white">
+                                {{ __('Buat Blog Terbaru') }} <span class="fas fa-plus "></span>
+                            </a>
+                        </div>
                         <div class="dashboard-item__list">
                             <div class="row justify-content-arround align-items-center">
                                 <div class="col">
@@ -60,7 +64,12 @@
                                                         <td class="align-middle text-center">{{ $data->user['name'] }}</td>
                                                         <td class="align-middle">
                                                             {{ date('d/m/y H:i:s', strtotime($data->created_at)) }}</td>
-                                                        <td class="align-middle text-dark text-center">{{ $data->status }}
+                                                        <td class="align-middle text-dark text-center">
+                                                            @if ($data->status == 'Publish')
+                                                                <span class="text-success">Publish</span>
+                                                            @else
+                                                                <span class="text-danger">Draft</span>
+                                                            @endif
                                                         </td>
                                                         <td class="align-middle">
                                                             <form
