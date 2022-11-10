@@ -1,12 +1,12 @@
 <div class="container py-5 px-lg-5" style="padding-top: 10em !important;">
 
     <div class="d-flex justify-content-between align-items-center ">
-        <div class="search-blog__title col-lg-8 col-md-6">
+        <div class="search-blog__title col-lg-8 ">
             <h3 class="text-dark">
                 Baca Semua berita Terkini
             </h3>
         </div>
-        <div class="search-blog col-lg-4 col-md-6">
+        <div class="search-blog col-lg-4">
             <div class="input-group mb-3">
                 <input wire:model.debounce.500ms="search" type="search" class="form-control"
                     placeholder="Search All Berita" aria-label="Search All Berita" aria-describedby="button-addon2">
@@ -46,7 +46,8 @@
                         <div class="d-flex">
                             <small class="text-muted">
                                 <i class="far fa-user "> {{ $blog->user['name'] }} </i> <br />
-                                <i class="fas fa-calendar-alt"> {{ $blog->created_at->diffForHumans() }}</i>
+                                <i class="fas fa-clock">
+                                    {{ date('d M Y', strtotime($blog->created_at)) }}</i>
                             </small>
                         </div>
 

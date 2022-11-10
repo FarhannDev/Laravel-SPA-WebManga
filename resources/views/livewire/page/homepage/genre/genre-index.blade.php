@@ -1,11 +1,3 @@
-@section('header')
-    <header class="header-content-main">
-        <div class="container-xxl hero-header"
-            style="background-image: url('https://wallpaperaccess.com/full/2010880.jpg'); background-size: cover; min-height: 100vh; background-position: center;">
-        </div>
-    </header>
-@endsection
-
 <div class="container-xxl position-relative p-0 py-5" style="background-color: #fafafa !important;">
     <div class="container py-5 px-lg-5">
         <div class="d-flex justify-content-between align-items-center ">
