@@ -24,6 +24,7 @@ class KomikShow extends Component
     public $comic_alternative;
     public $comic_sinopsis;
 
+    public $volumes;
 
 
     public function mount(Comic $comic)
@@ -42,13 +43,22 @@ class KomikShow extends Component
             $this->comic_alternative     = $data->comic_alternative;
             $this->comic_sinopsis        = $data->comic_sinopsis;
         }
+
+        $this->volumes = ComicVolume::where('comic_id', $this->comic_id)->orderBy('volume_name', 'ASC')->get();
     }
+
+    public function donwload_volume()
+    {
+        $data = ComicVolume::where('comic_id', $this->comic_id)->first();
+        $data->volume_link;
+
+        return $data;
+    }
+
 
     public function render()
     {
-        $volumes =  ComicVolume::where('comic_id', $this->comic_id)->paginate(5);
-
-        return view('livewire.page.homepage.komik.komik-show', ['volumes' => $volumes])
+        return view('livewire.page.homepage.komik.komik-show')
             ->extends('layouts.homepage.index')
             ->section('content');
     }
