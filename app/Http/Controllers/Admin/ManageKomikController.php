@@ -105,7 +105,6 @@ class ManageKomikController extends Controller
                 'comic_sinopsis'         => $request->comic_sinopsis,
                 'comic_slug'             => $generate_slug,
                 'comic_cover'            => (is_null($cover_name) ? 'default-komik.jpg' : $cover_name),
-                'is_active'              => 'Publish',
                 'created_at'             => new \DateTime(),
                 'updated_at'             => new \DateTime(),
             ]);
@@ -187,7 +186,6 @@ class ManageKomikController extends Controller
                 'comic_sinopsis'         => $request->comic_sinopsis,
                 'comic_slug'             => $generate_slug,
                 'comic_cover'            => 'default-komik.jpg',
-                'is_active'              => 'Publish',
                 'updated_at'             => new \DateTime(),
             ]);
 
@@ -222,7 +220,6 @@ class ManageKomikController extends Controller
                 'comic_sinopsis'         => $request->comic_sinopsis,
                 'comic_slug'             => $generate_slug,
                 'comic_cover'            => (is_null($cover_name) ? 'default-komik.jpg' : $cover_name),
-                'is_active'              => 'Publish',
                 'updated_at'             => new \DateTime(),
             ]);
 
@@ -254,19 +251,29 @@ class ManageKomikController extends Controller
             ->with('message_success', 'Berhasil menghapus komik' . ' ' . $comic->comic_title);
     }
 
-
-    public function insert_volumes(Request $request)
+    public function insert_volumes(Request $request, Comic $comic)
     {
+        $request->validate([
+            'volume_name' => 'required|unique:comic_volumes,volume_name',
+            'volume_link' => 'required|url'
+        ]);
 
-        return $request;
+        ComicVolume::create([
+            'comic_id'    => $comic->id,
+            'volume_name' => $request->volume_name,
+            'volume_link' => $request->volume_link,
+            'created_at'  => new \DateTime(),
+            'updated_at'  => new \DateTime(),
+        ]);
+
+        return redirect()->route('manageKomikShow', $comic->comic_slug);
     }
 
-
-    public function delete_volumes($id)
+    public function delete_volumes($id, Comic $comic)
     {
         $volumes = ComicVolume::where('id', $id)->first();
         $volumes->delete();
 
-        return redirect()->route('manageKomik');
+        return redirect()->route('manageKomikShow', $comic->comic_slug);
     }
 }

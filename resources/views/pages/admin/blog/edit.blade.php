@@ -2,8 +2,11 @@
 
 @section('container')
     <!-- Begin Page Content -->
-    <div class="container-fluid mb-5">
-        <div class="card" style="border-radius: 8px; background-color: #fff;">
+    <div class="container-fluid p-0 mb-5">
+        <div class="d-flex justify-content-end mx-3">
+            {{ Breadcrumbs::render('blog-edit', $blog) }}
+        </div>
+        <div class="card mx-3" style="border-radius: 8px; background-color: #fff;">
             <div class="row">
                 <div class="col">
                     <div class="dashoard">
@@ -67,8 +70,10 @@
 
                                     <div class="form-group ">
                                         <div class="d-flex justify-content-end px-2">
-                                            <button type="submit" class="btn btn-primary mx-1">Perbarui</button>
-                                            <a href="{{ route('manageBlogIndex') }}" class="btn btn-danger">Batalkan</a>
+                                            <a href="{{ route('manageBlogIndex') }}"
+                                                class="btn btn-dark text-white">Batalkan</a>
+                                            <button style="background-color: #c22dba;" type="submit"
+                                                class="btn text-white mx-1">Simpan Perubahan</button>
                                         </div>
                                     </div>
                                 </form>
