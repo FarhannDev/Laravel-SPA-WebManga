@@ -8,7 +8,7 @@
                  <small>Menu</small>
              </button>
              <div class="collapse navbar-collapse" id="navbarCollapse">
-                 <div class="navbar-nav  py-0">
+                 <div class="navbar-nav mx-auto py-0">
                      <a href="{{ route('homePageIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('homePageIndex') ? 'active' : '' }}">Beranda</a>
                      <a href="{{ route('komikIndex') }}"
@@ -16,13 +16,9 @@
                          Komik</a>
                      <a href="{{ route('blogIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('blogIndex') ? 'active' : '' }} ">Blog</a>
-                     <a href="{{ route('aboutIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('aboutIndex') ? 'active' : '' }}">Tentang
-                         Kami</a>
                      <a href="{{ route('contactIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Bantuan</a>
-                     <a href="{{ route('testimonialIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('testimonialIndex') ? 'active' : '' }}">Testimonial</a>
+                         class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Pusat
+                         Bantuan</a>
                  </div>
 
              </div>

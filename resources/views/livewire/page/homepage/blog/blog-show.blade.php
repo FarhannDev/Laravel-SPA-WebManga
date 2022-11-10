@@ -1,5 +1,5 @@
 <div class="container-xxl position-relative p-0">
-    <div class="container py-5 px-lg-5">
+    <div class="container py-3 px-lg-5">
         <div class="d-flex justify-content-end mb-3 pt-5">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -15,19 +15,21 @@
                     <div class="d-flex justify-content-arround">
                         <div class="action-detail__back  pt-3 mb-3">
                             <a href="{{ route('blogIndex') }}" class="ls-base text-dark">
-                                <span class="fas fa-arrow-left"> Kembali ke halaman sebelumnya</span>
+                                <span class="fas fa-arrow-left"> Kembali</span>
                             </a>
                         </div>
                     </div>
                     <div class="blog-details__image">
-                        <img src="https://4.bp.blogspot.com/-cLaYNBfwlHk/XGCrtANnA_I/AAAAAAAABsg/M1QserS5vm0abZ5OaKR7TuaTO3Bw9xehQCLcBGAs/s1600/landscape%2Bphotography.jpg"
+                        <img src="{{ asset($blog_cover ? 'images/blog/' . $blog_cover : 'images/blog/default.jpg') }}"
                             width="100%" style="max-width: 100%;" class="img-fluid">
                     </div>
-                    <div class="card mb-3  pt-3 p-3" style="border-radius: 0px 0px 8px 8px;">
+                    <div class="card mb-3  pt-3 p-3" style="border-radius: 0px 0px 8px 8px; overflow: auto;">
                         <div class="blog-details__title mb-5">
                             <div class="blog-details__title-name">
                                 <h3 class="text-dark">
-                                    {{ $blog_name }}
+                                    <div>
+                                        {{ $blog_name }}
+                                    </div>
                                 </h3>
                             </div>
                             <div class="blog-details__title-author">
@@ -42,11 +44,43 @@
                             {!! $blog_desc !!}
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
+    </div>
+
+    <div class="container px-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card p-3"
+                    style="background-color: #fff; border-radius: 12px; height: 500px; overflow: hidden;">
+                    <div class="d-flex justify-content-center">
+                        <div class="text-center mb-3">
+                            <div class="author-image ">
+                                <figure class="figure">
+                                    <img src="{{ asset('assets/img/profile/undraw_profile_2.svg') }}"
+                                        class="rounded mx-auto d-block" width="250">
+                                    <figcaption class="figure-caption pt-2">{{ $blog_by_user }}</figcaption>
+                                </figure>
+                            </div>
+                            <div class="author-desc mt-3 mb-3">
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum pariatur quaerat ullam
+                                    cumque eveniet ratione ea? Eaque ea culpa optio!</p>
+                            </div>
+                            <div class="author-sociallinks">
+                                <div class="d-flex justify-content-center flex-wrap">
+                                    <i class="fab fa-facebook mx-2"><a href=""></a></i>
+                                    <i class="fab fa-instagram mx-2"><a href=""></a></i>
+                                    <i class="fab fa-linkedin mx-2"><a href=""></a></i>
+                                    <i class="fab fa-twitter mx-2"><a href=""></a></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 

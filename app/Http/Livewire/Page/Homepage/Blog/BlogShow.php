@@ -12,6 +12,7 @@ class BlogShow extends Component
     public $blog_desc;
     public $blog_created;
     public $blog_status;
+    public $blog_cover;
 
     public function mount(Blog $blog)
     {
@@ -23,6 +24,7 @@ class BlogShow extends Component
             $this->blog_desc            = $data->blog_desc;
             $this->blog_created         = $data->created_at;
             $this->blog_status          = $data->status;
+            $this->blog_cover           = $data->blog_cover;
         }
     }
 

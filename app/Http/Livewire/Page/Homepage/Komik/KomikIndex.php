@@ -39,7 +39,7 @@ class KomikIndex extends Component
                         $q->where('genre_name', 'like', '%' . $this->selectedGenre . '%');
                     });
                 })
-                ->with('genre')->orderBy('comic_title', 'DESC')->latest()->paginate(9);
+                ->with('genre')->orderBy('comic_title', 'DESC')->latest()->paginate(16);
         }
 
         return view('livewire.page.homepage.komik.komik-index', [
