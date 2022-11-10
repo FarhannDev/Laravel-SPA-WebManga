@@ -2,8 +2,11 @@
 
 @section('container')
     <!-- Begin Page Content -->
-    <div class="container-fluid mb-5">
-        <div class="card" style="border-radius: 8px; background-color: #fff;">
+    <div class="container-fluid p-0  mb-5">
+        <div class="d-flex justify-content-end mx-3">
+            {{ Breadcrumbs::render('komik-add') }}
+        </div>
+        <div class="card mx-3" style="border-radius: 8px; background-color: #fff;">
             <div class="row">
                 <div class="col">
                     <div class="dashoard">
@@ -17,7 +20,7 @@
                         </div>
                         <div class="dashboard-inner__item">
                             <div class="dashboard-item__list px-3">
-                                <form action="{{ route('manageKomikStore') }}" autocomplete="off" method="POST"
+                                <form action="{{ route('manageKomikStore') }}" autocomplete="on" method="POST"
                                     enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="form-row">
@@ -26,7 +29,8 @@
                                                 <span class="text-danger">*</span></label>
                                             <input name="comic_title" type="text"
                                                 class="form-control @error('comic_title') is-invalid @enderror"
-                                                id="title" value="{{ old('comic_title') }}">
+                                                id="title" value="{{ old('comic_title') }}" required
+                                                autocomplete="name">
 
                                             @error('comic_title')
                                                 <span class="invalid-feedback">
@@ -39,7 +43,7 @@
                                                     class="text-danger">*</span></label>
                                             <input name="comic_artist" type="text"
                                                 class="form-control @error('comic_artist') is-invalid @enderror"
-                                                id="artist" value="{{ old('comic_artist') }}">
+                                                id="artist" value="{{ old('comic_artist') }}" required>
                                             @error('comic_artist')
                                                 <span class="invalid-feedback">
                                                     {{ $message }}
@@ -51,7 +55,7 @@
                                                     class="text-danger">*</span></label>
                                             <input name="comic_author" type="text"
                                                 class="form-control @error('comic_author') is-invalid @enderror"
-                                                id="author" value="{{ old('comic_author') }}">
+                                                id="author" value="{{ old('comic_author') }}" required>
                                             @error('comic_author')
                                                 <span class="invalid-feedback">
                                                     {{ $message }}
@@ -64,7 +68,8 @@
                                             <label for="comic_genre_id">{{ __('Select Category:') }} <span
                                                     class="text-danger">*</span></label>
                                             <select name="comic_genre_id" id="comic_genre_id"
-                                                class="form-control  @error('comic_genre_id') is-invalid @enderror">
+                                                class="form-control  @error('comic_genre_id') is-invalid @enderror"
+                                                required>
                                                 <option selected value="">{{ __('Selected Genre') }}</option>
                                                 @foreach ($genre as $data)
                                                     <?php $dash = ''; ?>
@@ -88,13 +93,13 @@
                                             <label for="comic_rating">Rating: <span class="text-danger">*</span></label>
                                             <input name="comic_rating" type="text"
                                                 class="form-control  @error('comic_rating') is-invalid @enderror"
-                                                id="comic_rating" value="{{ old('comic_rating') }}">
+                                                id="comic_rating" value="{{ old('comic_rating') }}" required>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="comic_released">Released: <span class="text-danger">*</span></label>
                                             <input name="comic_released" type="date"
                                                 class="form-control  @error('comic_released') is-invalid @enderror"
-                                                id="comic_released" value="{{ old('comic_released') }}">
+                                                id="comic_released" value="{{ old('comic_released') }}" required>
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="inputZip">Upload Cover:</label>
@@ -125,9 +130,10 @@
                                     </div>
 
                                     <div class="form-group ">
-                                        <div class="d-flex justify-content-end px-2">
-                                            <button type="submit" class="btn btn-primary mx-1">Simpan</button>
-                                            <a href="{{ route('manageKomik') }}" class="btn btn-danger">Batalkan</a>
+                                        <div class="d-flex justify-content-end">
+                                            <a href="{{ route('manageKomik') }}" class="btn btn-dark">Batalkan</a>
+                                            <button style="background-color: #c22dba;" type="submit"
+                                                class="btn text-white  mx-1">Simpan</button>
                                         </div>
                                     </div>
                                 </form>

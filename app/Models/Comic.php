@@ -14,7 +14,7 @@ class Comic extends Model
     protected $fillable = [
         'comic_genre_id', 'comic_title', 'comic_slug', 'comic_author',
         'comic_artist', 'comic_rating', 'comic_released', 'comic_cover',
-        'comic_alternative', 'comic_sinopsis', 'is_active'
+        'comic_alternative', 'comic_sinopsis'
     ];
 
     public function genre()

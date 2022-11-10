@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ManageBlogController;
+use App\Http\Controllers\Admin\ManageDashboardController;
 use App\Http\Controllers\Admin\ManageKomikController;
 use App\Http\Controllers\Admin\ManageKomikGenre;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,8 @@ Auth::routes([
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     // Komik
+    Route::get('/dashboard', [ManageDashboardController::class, 'index'])->name('manageDashboard');
+
     Route::get('/dashboard/komik', [ManageKomikController::class, 'index'])->name('manageKomik');
     Route::get('/dashboard/komik/add', [ManageKomikController::class, 'create'])->name('manageKomikCreate');
     Route::post('/dashboard/komik/add', [ManageKomikController::class, 'store'])->name('manageKomikStore');
@@ -62,7 +65,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('/dashboard/komik/edit/{comic:comic_slug}', [ManageKomikController::class, 'update'])->name('manageKomikUpdate');
     Route::delete('/dashboard/komik/{comic:comic_slug}', [ManageKomikController::class, 'destroy'])->name('manageKomikDestroy');
 
-    Route::post('/dashboard/komik/volumes/add', [ManageKomikController::class, 'insert_volumes'])->name('manageVolumeAdd');
+    Route::post('/dashboard/komik/volumes/add/{comic:id}', [ManageKomikController::class, 'insert_volumes'])->name('manageVolumeAdd');
     Route::delete('/dashboard/komik/volumes/{id}', [ManageKomikController::class, 'delete_volumes'])->name('manageVolumeDelete');
     // Genre
     Route::get('/dashboard/komik/genre', [ManageKomikGenre::class, 'index'])->name('manageGenre');
