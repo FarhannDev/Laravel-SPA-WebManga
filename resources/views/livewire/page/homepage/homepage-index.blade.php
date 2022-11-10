@@ -215,7 +215,7 @@
                             <div class="d-flex">
                                 <small class="text-muted">
                                     <i class="far fa-user "> {{ $blog->user['name'] }} </i> <br />
-                                    <i class="fas fa-calendar-alt"> {{ $blog->created_at->diffForHumans() }}</i>
+                                    <i class="fas fa-clock"> {{ $blog->created_at->diffForHumans() }}</i>
                                 </small>
                             </div>
 

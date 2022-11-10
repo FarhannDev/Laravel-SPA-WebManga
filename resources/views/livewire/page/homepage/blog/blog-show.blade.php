@@ -64,15 +64,21 @@
                                 </figure>
                             </div>
                             <div class="author-desc mt-3 mb-3">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum pariatur quaerat ullam
-                                    cumque eveniet ratione ea? Eaque ea culpa optio!</p>
+                                <p>Halo, saya adalah admin zaotaku saya suka menulis sesuatu dan menceritakan langsung
+                                    disini...</p>
                             </div>
                             <div class="author-sociallinks">
                                 <div class="d-flex justify-content-center flex-wrap">
-                                    <i class="fab fa-facebook mx-2"><a href=""></a></i>
-                                    <i class="fab fa-instagram mx-2"><a href=""></a></i>
-                                    <i class="fab fa-linkedin mx-2"><a href=""></a></i>
-                                    <i class="fab fa-twitter mx-2"><a href=""></a></i>
+                                    <a href="https://www.linkedin.com/in/farhan-20241221a/">
+                                        <i class="fab fa-facebook mx-2"></i></a>
+                                    <a href="https://www.linkedin.com/in/farhan-20241221a/"> <i
+                                            class="fab fa-instagram mx-2"></i></a>
+                                    <a href="https://www.linkedin.com/in/farhan-20241221a/">
+                                        <i class="fab fa-linkedin mx-2"></i></a>
+                                    <a href="https://www.linkedin.com/in/farhan-20241221a/">
+                                        <i class="fab fa-twitter mx-2"></i>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
