@@ -112,99 +112,44 @@
                         <hr />
                         <div class="row justify-content-center mb-3">
                             <div class="col">
-                                {{-- @if (!$volumes->count())
+                                @if (!$volumes->count())
                                     <div class="d-flex justify-content-center pt-5">
                                         <p class="text-dark px-3">
                                             Volume belum tersedia.
                                         </p>
                                     </div>
-                                @else --}}
-                                <div class="detail-volumes__list p-3">
-                                    <table class="table table-striped" style="width:100%" id="example">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Volume Name</th>
-                                                <th scope="col" class="text-center">Download
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="align-middle">
-                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                                    Maiores, nesciunt.
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <a href="" class="ls-base text-dark">
-                                                        <span class="fas fa-download"></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">
-                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                                    Maiores, nesciunt.
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <a href="" class="ls-base text-dark">
-                                                        <span class="fas fa-download"></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">
-                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                                    Maiores, nesciunt.
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <a href="" class="ls-base text-dark">
-                                                        <span class="fas fa-download"></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">
-                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                                    Maiores, nesciunt.
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <a href="" class="ls-base text-dark">
-                                                        <span class="fas fa-download"></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">
-                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                                    Maiores, nesciunt.
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <a href="" class="ls-base text-dark">
-                                                        <span class="fas fa-download"></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            {{-- @foreach ($volumes as $volume)
+                                @else
+                                    <div class="detail-volumes__list p-3">
+                                        <table class="table table-striped" style="width:100%" id="example">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Volume Name</th>
+                                                    <th scope="col" class="text-center">Download
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($volumes as $volume)
                                                     <tr>
                                                         <td class="align-middle">
                                                             {{ $volume->volume_name }}
                                                         </td>
                                                         <td class="align-middle text-center">
-                                                            <a href="" class="ls-base text-dark">
+                                                            <a wire:click="donwload_volume"
+                                                                download="{{ $volume->volume_link }}" href="#"
+                                                                style="border: none;" wire:click="donwload_volume"
+                                                                class="ls-base text-dark">
                                                                 <span class="fas fa-download"></span>
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                @endforeach --}}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                {{-- @endif --}}
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="detail-volume__pagination">
-                        {{ $volumes->links() }}
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="row filtering-data pt-3 mb-3">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
                 <div class="input-group mb-3">
                     <input wire:model.debounce.500ms="search" type="search" class="form-control"
                         placeholder="Cari daftar komik..." aria-label="Cari daftar komik..."
@@ -17,20 +17,12 @@
                             class="fas fa-search"></i></button> --}}
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-3">
+            <div class="col-lg-6 col-md-6 mb-3">
                 <select wire:model.debounce.500ms="selectedGenre" class="form-select" aria-label="Selected Genre">
                     <option selected value="">Pilih Genre</option>
                     @foreach ($genres as $genre)
                         <option value="{{ $genre->genre_name }}">{{ $genre->genre_name }}</option>
                     @endforeach
-                </select>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Pilih status</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
                 </select>
             </div>
         </div>
