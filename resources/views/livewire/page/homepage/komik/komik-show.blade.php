@@ -135,9 +135,8 @@
                                                             {{ $volume->volume_name }}
                                                         </td>
                                                         <td class="align-middle text-center">
-                                                            <a wire:click="donwload_volume"
-                                                                download="{{ $volume->volume_link }}" href="#"
-                                                                style="border: none;" wire:click="donwload_volume"
+                                                            <a download target="_blank"
+                                                                href="{{ $volume->volume_link }}" style="border: none;"
                                                                 class="ls-base text-dark">
                                                                 <span class="fas fa-download"></span>
                                                             </a>
