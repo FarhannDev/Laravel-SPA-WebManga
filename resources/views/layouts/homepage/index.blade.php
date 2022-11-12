@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="Dowload komik, cari komik pilihan, manga terupdate" name="keywords">
+    <meta content="Zaotaku - Situs download volume manga" name="description">
 
     <link href="img/favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
 
     <link rel="shortcut icon" href="{{ asset('images/logo/zaotaku-icon.png') }}" type="image/x-icon">
 
-    <title>Zaotaku - Situs download volume manga</title>
+    <title>Zaotaku</title>
     @livewireStyles
 
     @stack('css')

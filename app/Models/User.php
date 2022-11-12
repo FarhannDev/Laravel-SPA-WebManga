@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blog::class, 'user_id');
     }
+
+    public function community()
+    {
+        return $this->belongsTo(Community::class, 'user_id');
+    }
 }

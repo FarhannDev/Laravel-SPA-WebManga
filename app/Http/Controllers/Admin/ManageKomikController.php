@@ -77,7 +77,6 @@ class ManageKomikController extends Controller
                 'comic_sinopsis'         => $request->comic_sinopsis,
                 'comic_slug'             => $generate_slug,
                 'comic_cover'            => 'default-komik.jpg',
-                'is_active'              => 'Publish',
                 'created_at'             => new \DateTime(),
                 'updated_at'             => new \DateTime(),
             ]);
@@ -105,7 +104,6 @@ class ManageKomikController extends Controller
                 'comic_sinopsis'         => $request->comic_sinopsis,
                 'comic_slug'             => $generate_slug,
                 'comic_cover'            => (is_null($cover_name) ? 'default-komik.jpg' : $cover_name),
-                'is_active'              => 'Publish',
                 'created_at'             => new \DateTime(),
                 'updated_at'             => new \DateTime(),
             ]);

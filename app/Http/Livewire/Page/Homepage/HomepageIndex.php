@@ -21,7 +21,7 @@ class HomepageIndex extends Component
         $services = Service::all();
         $blog = Blog::latest()->paginate(3);
 
-        $comic_latest = Comic::latest()->paginate(8);
+        $comic_latest = Comic::latest()->paginate(4);
         $comic_populer = Comic::where('comic_author', 'Hiroyuki')->latest()->paginate(3);
         $comic_romantis  =  Comic::where('comic_genre_id', 2)->latest()->paginate(6);
         $comic_fantasi  =  Comic::where('comic_genre_id', 7)->latest()->paginate(6);
