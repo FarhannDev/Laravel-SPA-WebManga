@@ -20,24 +20,30 @@
     </header>
 @endsection
 
-<div class="container-xxl  position-relative p-0 py-5" id="main-content" style="background-color: #fafafa !important;">
-    <div class="container pt-3 px-lg-5">
-        <div class="card p-3"
+<div class="container-fluid  position-relative p-0 ">
+    <div class="container px-lg-5">
+        <div class="card p-3 mb-3"
             style="border-radius: 12px; box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;">
             <div class="latest-comic-wrapper">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col">
+                <div class="row justify-content-between ">
+                    <div class="col-lg-10 col-md-9">
                         <div class="latest-title">
                             {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
-                            <h3 class="text-center">Komik Terbaru Dari Kami</h3>
+                            <h3 class="">Komik Terbaru Dari Kami</h3>
                             {{-- </div> --}}
                         </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <a href="" class=" text-decoration-none text-dark">
+                            {{ __('Lihat semua') }} <span class="fas fa-arrow-right"></span>
+                        </a>
+
                     </div>
                 </div>
                 <hr />
                 <div class="row justify-content-arround g-4 portfolio-container">
                     @foreach ($comic_latest as $latest)
-                        <div class="col-lg-3 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
                             <div class="rounded overflow-hidden  ">
                                 <div class="comic-inner mb-2 ">
                                     <div class="comic-inner__image">
@@ -50,10 +56,10 @@
                                         </div>
                                     </div>
                                     <div class="comic-inner mb-3">
-                                        <div class="comic-inner__text px-2 pt-2 mb-3">
+                                        <div class="comic-inner__text pt-2 mb-3">
                                             <a href="{{ route('komikShow', $latest->comic_slug) }}" class="text-dark">
                                                 <h5 class="text-dark text-capitalize col-lg-auto">
-                                                    {!! \Illuminate\Support\Str::limit($latest->comic_title ?? '', 18, ' ...') !!}
+                                                    {!! \Illuminate\Support\Str::limit($latest->comic_title ?? '', 30, ' ...') !!}
                                                 </h5>
                                             </a>
                                         </div>
@@ -66,17 +72,11 @@
                         </div>
                     @endforeach
                 </div>
-                <hr />
-                <div class="d-flex justify-content-center">
-                    <a href="" class=" text-decoration-none text-dark">
-                        {{ __('Lihat semua komik terbaru') }} <span class="fas fa-arrow-right"></span>
-                    </a>
-                </div>
             </div>
-
         </div>
-
     </div>
+</div>
+<div class="container-fluid position-relative p-0">
     <div class="container pt-3 mb-3 px-lg-5">
         <div class="card p-3"
             style="border-radius: 12px; box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;">
@@ -98,7 +98,8 @@
                             <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
                             <div class="row justify-content-arround g-4 portfolio-container">
                                 @foreach ($comic_romantis as $data)
-                                    <div class="col-lg-3 col-md-6 portfolio-item  wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item  wow fadeInUp"
+                                        data-wow-delay="0.1s">
                                         <div class="rounded overflow-hidden">
                                             <div class="comic-inner">
                                                 <div class="comic-inner__image">
@@ -137,7 +138,7 @@
                             <input id="tab2-2" name="tabs-two" type="radio">
                             <div class="row justify-content-arround g-4 portfolio-container">
                                 @foreach ($comic_fantasi as $data)
-                                    <div class="col-lg-3 col-md-6 portfolio-item first wow fadeInUp"
+                                    <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item first wow fadeInUp"
                                         data-wow-delay="0.1s">
                                         <div class="rounded overflow-hidden">
                                             <div class="comic-inner">
@@ -183,7 +184,9 @@
             </div>
         </div>
     </div>
-    <hr />
+</div>
+
+<div class="container-fluid position-relative p-0" style="background-color: #fafafa;">
     <div class="container pt-5 px-lg-5">
         <div class="d-flex justify-content-center align-content-center mb-3">
             <div class="latest-title">
@@ -214,7 +217,11 @@
                             <p class="card-text">
                             <div class="d-flex">
                                 <small class="text-muted">
-                                    <i class="far fa-user "> {{ $blog->user['name'] }} </i> <br />
+                                    <a href="" class="text-dark">
+                                        <i class="far fa-user "> By <span
+                                                class="font-weight-bold">{{ $blog->user['name'] }}</span> </i>
+                                    </a>
+                                    <br />
                                     <i class="fas fa-clock"> {{ $blog->created_at->diffForHumans() }}</i>
                                 </small>
                             </div>
@@ -223,13 +230,9 @@
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 </div>
-
-
-
 
 @push('javascript')
     <script>

@@ -10,15 +10,27 @@
              <div class="collapse navbar-collapse" id="navbarCollapse">
                  <div class="navbar-nav mx-auto py-0">
                      <a href="{{ route('homePageIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('homePageIndex') ? 'active' : '' }}">Beranda</a>
-                     <a href="{{ route('komikIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('komikIndex') ? 'active' : '' }} ">Daftar
-                         Komik</a>
+                         class="nav-item mx-md-3 nav-link {{ Route::is('homePageIndex') ? 'active' : '' }}">Home</a>
+                     <a href="{{ route('aboutIndex') }}"
+                         class="nav-item mx-md-3 nav-link {{ Route::is('aboutIndex') ? 'active' : '' }}">About Us</a>
                      <a href="{{ route('blogIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('blogIndex') ? 'active' : '' }} ">Blog</a>
+                     <a href="" class="nav-item mx-md-3 nav-link ">Event</a>
                      <a href="{{ route('contactIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Pusat
-                         Bantuan</a>
+                         class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Contact
+                         Us</a>
+                     {{-- <a href="{{ route('communityIndex') }}"
+                         class="nav-item mx-md-3 nav-link {{ Route::is('communityIndex') ? 'active' : '' }}">Community
+                     </a> --}}
+                     <div class="nav-item dropdown">
+                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Daftar Manga</a>
+                         <div class="dropdown-menu m-0">
+                             <a href="{{ route('komikIndex') }}"
+                                 class="dropdown-item {{ Route::is('komikIndex') ? 'active' : '' }}">Manga komik</a>
+                             <a href="{{ route('komikVidio') }}"
+                                 class="dropdown-item {{ Route::is('komikVidio') ? 'active' : '' }}">Manga Vidio</a>
+                         </div>
+                     </div>
                  </div>
 
              </div>

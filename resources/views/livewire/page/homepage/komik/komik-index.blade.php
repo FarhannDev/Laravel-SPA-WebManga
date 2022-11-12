@@ -21,7 +21,7 @@
                 <select wire:model.debounce.500ms="selectedGenre" class="form-select" aria-label="Selected Genre">
                     <option selected value="">Pilih Genre</option>
                     @foreach ($genres as $genre)
-                        <option value="{{ $genre->genre_name }}">{{ $genre->genre_name }}</option>
+                        <option value="{{ strtolower($genre->genre_name) }}">{{ $genre->genre_name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -54,10 +54,10 @@
                                     </div>
 
                                     <div class="comic-inner mb-3">
-                                        <div class="comic-inner__text px-2 pt-2 mb-3">
+                                        <div class="comic-inner__text pt-2 mb-3">
                                             <a href="{{ route('komikShow', $value->comic_slug) }}" class="text-dark">
                                                 <h5 class="text-dark text-capitalize col-lg-auto">
-                                                    {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 38, ' ...') !!}
+                                                    {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 30, ' ...') !!}
                                                 </h5>
                                             </a>
                                         </div>

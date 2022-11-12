@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         $data = [
             'role_id' => 1,
-            'name'  => 'Administrator',
+            'name'  => 'Admin',
             'email' => 'admin.zaotaku@gmail.com',
             'password' => Hash::make('12345678'),
             'created_at' => new \DateTime(),

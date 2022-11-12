@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\comic;
+use App\Models\Comic;
 use App\Models\ComicGenre;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -62,7 +62,7 @@ class ManageKomikController extends Controller
             $generate_slug = Str::slug($request->comic_title, '-');
             $generate_slug .= '.html';
 
-            $data = comic::create([
+            $data = Comic::create([
                 'comic_genre_id'         => $request->comic_genre_id,
                 'comic_title'            => $request->comic_title,
                 'comic_author'           => $request->comic_author,
@@ -89,7 +89,7 @@ class ManageKomikController extends Controller
             $generate_slug = Str::slug($request->comic_title, '-');
             $generate_slug .= '.html';
 
-            $data = comic::create([
+            $data = Comic::create([
                 'comic_genre_id'         => $request->comic_genre_id,
                 'comic_title'            => $request->comic_title,
                 'comic_author'           => $request->comic_author,
@@ -117,7 +117,7 @@ class ManageKomikController extends Controller
      * @param  \App\Models\comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function show(comic $comic)
+    public function show(Comic $comic)
     {
         $comic->where('comic_slug', $comic->comic_slug)->first();
         $volumes = ComicVolume::where('comic_id', $comic->id)->paginate(5);
@@ -131,7 +131,7 @@ class ManageKomikController extends Controller
      * @param  \App\Models\comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function edit(comic $comic)
+    public function edit(Comic $comic)
     {
         $comic->where('comic_slug', $comic->comic_slug)->first();
         $genre = ComicGenre::all();
@@ -149,7 +149,7 @@ class ManageKomikController extends Controller
      * @param  \App\Models\comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, comic $comic)
+    public function update(Request $request, Comic $comic)
     {
         $request->validate([
             'comic_genre_id' => 'required',
@@ -166,7 +166,7 @@ class ManageKomikController extends Controller
             $generate_slug = Str::slug($request->comic_title, '-');
             $generate_slug .= '.html';
 
-            $data = comic::where('comic_slug', $comic->comic_slug)->update([
+            $data = Comic::where('comic_slug', $comic->comic_slug)->update([
                 'comic_genre_id'         => $request->comic_genre_id,
                 'comic_title'            => $request->comic_title,
                 'comic_author'           => $request->comic_author,
@@ -200,7 +200,7 @@ class ManageKomikController extends Controller
             $generate_slug = Str::slug($request->comic_title, '-');
             $generate_slug .= '.html';
 
-            $data = comic::where('comic_slug', $comic->comic_slug)->update([
+            $data = Comic::where('comic_slug', $comic->comic_slug)->update([
                 'comic_genre_id'         => $request->comic_genre_id,
                 'comic_title'            => $request->comic_title,
                 'comic_author'           => $request->comic_author,
@@ -227,7 +227,7 @@ class ManageKomikController extends Controller
      * @param  \App\Models\comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(comic $comic)
+    public function destroy(Comic $comic)
     {
         $comic->where('comic_slug', $comic->comic_slug)->first();
         $cover_old = public_path('assets/upload/komik/' . $comic->comic_cover);
