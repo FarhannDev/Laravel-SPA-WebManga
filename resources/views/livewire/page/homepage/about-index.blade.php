@@ -15,23 +15,6 @@
         </div>
     </div>
     <div class="container py-5 px-lg-5">
-        <div class="wow fadeInUp" data-wow-delay="0.1s">
-
-            <h3 class="text-center mb-5">Pelayanan yang kami berikan</h3>
-        </div>
-        <div class="row justify-content-center g-4">
-            @foreach ($services as $service)
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item bg-light rounded text-center p-4">
-                        <i class="{{ $service->icon }}"></i>
-                        <h5 class="mb-3">{{ $service->name }}</h5>
-                        <p class="m-0"> {!! \Illuminate\Support\Str::limit($service->desc ?? '', 200, '') !!}</p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="container py-5 px-lg-5">
         <div class="d-flex justify-content-center mb-3">
             <div class="kategori">
                 <div class="kategori-title">
