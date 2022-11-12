@@ -59,7 +59,10 @@
 @endpush
 
 @section('container')
-    <div class="card" style="border-radius: 8px; background-color: #fff;">
+    <div class="d-flex justify-content-end mx-3">
+        {{ Breadcrumbs::render('komik-detail', $comic) }}
+    </div>
+    <div class="card mx-3" style="border-radius: 8px; background-color: #fff;">
         <div class="row">
             <div class="col">
                 <div class="dashboard">
@@ -102,57 +105,72 @@
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                                     aria-labelledby="nav-home-tab">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped table-bordered "
-                                                            style="width:100%;">
-                                                            <tbody>
-                                                                <tr class="d-flex">
-                                                                    <th
-                                                                        class="col-6 d-flex justify-content-between align-items-center">
-                                                                        Cover:</th>
-                                                                    <td class="col-6 px-3"><img
-                                                                            src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
-                                                                            width="250" class="rounded img-fluid"
-                                                                            alt=""></td>
-                                                                </tr>
-                                                                <tr class="d-flex">
-                                                                    <th class="col-6"> Name:</th>
-                                                                    <td class="col-6">{{ $comic->comic_title }}</td>
-                                                                </tr>
-                                                                <tr class="d-flex">
-                                                                    <th class="col-6"> Author:</th>
-                                                                    <td class="col-6">{{ $comic->comic_author }}</td>
-                                                                </tr>
-                                                                <tr class="d-flex">
-                                                                    <th class="col-6"> Artist:</th>
-                                                                    <td class="col-6">{{ $comic->comic_artist }}</td>
-                                                                </tr>
-                                                                <tr class="d-flex">
-                                                                    <th class="col-6"> Rating:</th>
-                                                                    <td class="col-6">{{ $comic->comic_rating }}</td>
-                                                                </tr>
-                                                                <tr class="d-flex align-items-center">
-                                                                    <th class="col-6 d-flex align-items-center "> Released
-                                                                        Date:
-                                                                    </th>
-                                                                    <td class="col-6">
-                                                                        {{ date('m/d/y', strtotime($comic->comic_released)) }}
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="d-flex">
-                                                                    <th class="col-6"> Alternative Name:</th>
-                                                                    <td class="col-6">
-                                                                        {!! $comic->comic_alternative !!}
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="d-flex">
-                                                                    <th class="col-6"> Sinopsis :</th>
-                                                                    <td class="col-6">
-                                                                        {!! $comic->comic_sinopsis !!}
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                    <div class="d-flex justify-content-end mx-2 mb-3 mt-3">
+                                                        <a href="{{ route('manageKomikEdit', $comic->comic_slug) }}"
+                                                            class="btn btn-danger text-white"><i class="fas fa-edit"></i>
+                                                            Edit</a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped table-bordered "
+                                                                    style="width:100%;">
+                                                                    <tbody>
+                                                                        <tr class="d-flex">
+                                                                            <th
+                                                                                class="col-6 d-flex justify-content-between align-items-center">
+                                                                                Cover:</th>
+                                                                            <td class="col-6 px-3"><img
+                                                                                    src="{{ asset($comic->comic_cover ? 'images/komik/' . $comic->comic_cover : 'images/default-komik.jpg') }}"
+                                                                                    width="250" class="rounded img-fluid"
+                                                                                    alt=""></td>
+                                                                        </tr>
+                                                                        <tr class="d-flex">
+                                                                            <th class="col-6"> Name:</th>
+                                                                            <td class="col-6">{{ $comic->comic_title }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="d-flex">
+                                                                            <th class="col-6"> Author:</th>
+                                                                            <td class="col-6">{{ $comic->comic_author }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="d-flex">
+                                                                            <th class="col-6"> Artist:</th>
+                                                                            <td class="col-6">{{ $comic->comic_artist }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="d-flex">
+                                                                            <th class="col-6"> Rating:</th>
+                                                                            <td class="col-6">{{ $comic->comic_rating }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="d-flex align-items-center">
+                                                                            <th class="col-6 d-flex align-items-center ">
+                                                                                Released
+                                                                                Date:
+                                                                            </th>
+                                                                            <td class="col-6">
+                                                                                {{ date('m/d/y', strtotime($comic->comic_released)) }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="d-flex">
+                                                                            <th class="col-6"> Alternative Name:</th>
+                                                                            <td class="col-6">
+                                                                                {!! $comic->comic_alternative !!}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="d-flex">
+                                                                            <th class="col-6"> Sinopsis :</th>
+                                                                            <td class="col-6">
+                                                                                {!! $comic->comic_sinopsis !!}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -166,30 +184,21 @@
                                                     </div>
                                                     <div class="table-responsive">
                                                         <table class="table table-striped" style="width: 100%">
-                                                            <thead>
-                                                                <tr class="d-flex">
-                                                                    <th class="col-8">Volume Name</th>
-                                                                    <th class="col-4">Action </th>
-                                                                </tr>
-                                                            </thead>
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Volume Name</th>
+                                                                <th scope="col" class="text-center">Created</th>
+                                                            </tr>
                                                             <tbody>
                                                                 @forelse ($volumes as $volume)
-                                                                    <tr class="d-flex">
-                                                                        <td class="col-lg-8">
+                                                                    <tr>
+                                                                        <td class="align-middle">{{ $loop->iteration }}
+                                                                        </td>
+                                                                        <td class="align-middle">
                                                                             {{ $volume->volume_name }}
                                                                         </td>
-                                                                        <td class="col-lg-4 align-middle ">
-                                                                            <form
-                                                                                action="{{ route('manageVolumeDelete', $volume->id) }}"
-                                                                                method="post">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="submit"
-                                                                                    class="btn btn-danger btn-md text-white ">
-                                                                                    <i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                            </form>
-
+                                                                        <td class="align-middle text-center">
+                                                                            {{ date('d/m/y H:i:s', strtotime($volume->created_at)) }}
                                                                         </td>
                                                                     </tr>
                                                                 @empty
@@ -230,27 +239,41 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="exampleModalLabel">Tambah Volume Baru {{ $comic->comic_title }}
+                    <h5 class="modal-title text-dark" id="exampleModalLabel">Tambah Volume Baru
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('manageVolumeAdd') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('manageVolumeAdd', $comic->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="volume_name">Volume Name"</label>
-                            <input type="text" name="volume_name" class="form-control" id="volume_name">
+                            <label for="volume_name">Volume Name:</label>
+                            <input type="text" name="volume_name"
+                                class="form-control @error('volume_name') is-invalid @enderror"
+                                value="{{ old('volume_name') }}" id="volume_name" required autocomplete="name">
+
+                            @error('volume_name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Volume Upload:</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="volume_link">Volume Link:</label>
+                            <input type="url" name="volume_link"
+                                class="form-control  @error('volume_link') is-invalid @enderror"
+                                value="{{ old('volume_link') }}" id="volume_link" required autocomplete="url">
+
+                            @error('volume_link')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group pt-3 border-top">
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary mx-2">Add Volume</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-dark mr-2" data-dismiss="modal">Cancel</button>
+                                <button style="background-color: #c22dba;" type="submit" class="btn text-white">Add
+                                    Volume</button>
                             </div>
                         </div>
                     </form>

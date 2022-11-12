@@ -230,11 +230,9 @@
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 </div>
-
 
 @push('javascript')
     <script>
