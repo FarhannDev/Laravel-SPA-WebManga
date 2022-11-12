@@ -6,10 +6,6 @@ use App\Http\Controllers\Admin\ManageKomikController;
 use App\Http\Controllers\Admin\ManageKomikGenre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Livewire\Page\Admin\Komik\ManageKomikAdd;
-use App\Http\Livewire\Page\Admin\ManageAdmin;
-use App\Http\Livewire\Page\Admin\ManageKomik;
 use App\Http\Livewire\Page\Homepage\AboutIndex;
 use App\Http\Livewire\Page\Homepage\ContactIndex;
 use App\Http\Livewire\Page\Homepage\HomepageIndex;
@@ -74,6 +70,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     // Blog
     Route::get('/dashboard/blog', [ManageBlogController::class, 'index'])->name('manageBlogIndex');
     Route::get('/dashboard/blog/add', [ManageBlogController::class, 'create'])->name('manageBlogCreate');
+
+    Route::get('/dashboard/blog/publish', [ManageBlogController::class, 'publish'])->name('manageBlogPublish');
+    Route::get('/dashboard/blog/draft', [ManageBlogController::class, 'draft'])->name('manageBlogDraft');
+
     Route::post('/dashboard/blog/add', [ManageBlogController::class, 'store'])->name('manageBlogStore');
     Route::get('/dashboard/blog/edit/{blog:blog_slug}', [ManageBlogController::class, 'edit'])->name('manageBlogEdit');
     Route::put('/dashboard/blog/edit/{blog:blog_slug}', [ManageBlogController::class, 'update'])->name('manageBlogUpdate');

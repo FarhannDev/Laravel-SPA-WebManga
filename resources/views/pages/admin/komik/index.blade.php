@@ -4,12 +4,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 @endpush
 
-@section('container')
-    <!-- Begin Page Content -->
-    <div class="d-flex justify-content-end mx-3">
-        {{ Breadcrumbs::render('data-komik') }}
-    </div>
+@section('breadcrumb')
+    {{ Breadcrumbs::render('data-komik') }}
+@endsection
 
+@section('container')
     <div class="card mx-2" style="border-radius: 12px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;">
         <div class="row">
             <div class="col">
@@ -48,6 +47,7 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col-lg-6">Title</th>
+                                                    <th scope="col-lg-6">Category</th>
                                                     <th scope="col-*">Created At</th>
                                                     <th scope="col-*">Updated At</th>
                                                     <th scope="col-*" class="text-center">Action</th>
@@ -59,11 +59,14 @@
                                                         <th scope="row" class="align-middle">
                                                             {{ $loop->iteration }}
                                                         </th>
-                                                        <td class="align-middle font-weight-dark-500">
+                                                        <td class="align-middle ">
                                                             <a href="{{ route('manageKomikShow', $comic->comic_slug) }}"
                                                                 class="text-dark text-decoration-none">{{ $comic->comic_title }}
                                                             </a>
                                                         </td>
+                                                        <th class="align-middle font-weight-normal">
+                                                            {{ Str::ucfirst($comic->genre['genre_name']) }}
+                                                        </th>
                                                         <td class="align-middle">
                                                             {{ date('m/d/Y H:i:s', strtotime($comic->created_at)) }}</td>
                                                         <td class="align-middle">

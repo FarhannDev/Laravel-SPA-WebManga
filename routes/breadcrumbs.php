@@ -19,13 +19,13 @@ Breadcrumbs::for('komik-add', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('komik-edit', function (BreadcrumbTrail $trail, $comic) {
     $trail->parent('data-komik');
-    $trail->push('Edit / ' . \Illuminate\Support\Str::limit($comic->comic_title ?? '', 20, ' ...'), route('manageKomikEdit', $comic));
+    $trail->push('Edit / ' . \Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...'), route('manageKomikEdit', $comic));
 });
 
 
 Breadcrumbs::for('komik-detail', function (BreadcrumbTrail $trail, $comic) {
     $trail->parent('data-komik');
-    $trail->push(\Illuminate\Support\Str::limit($comic->comic_title ?? '', 20, ' ...'), route('manageKomikShow', $comic));
+    $trail->push(\Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...'), route('manageKomikShow', $comic));
 });
 
 

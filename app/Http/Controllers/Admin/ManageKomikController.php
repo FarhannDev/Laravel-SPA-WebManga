@@ -55,10 +55,6 @@ class ManageKomikController extends Controller
             'comic_title' => 'required|min:6|max:120|unique:comics,comic_title',
             'comic_artist' => 'required',
             'comic_author' => 'required',
-            'comic_rating' => 'required',
-            'comic_released' => 'required',
-            'comic_alternative' => 'required',
-            'comic_sinopsis' => 'required',
             'comic_cover' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -77,7 +73,6 @@ class ManageKomikController extends Controller
                 'comic_sinopsis'         => $request->comic_sinopsis,
                 'comic_slug'             => $generate_slug,
                 'comic_cover'            => 'default-komik.jpg',
-                'is_active'              => 'Publish',
                 'created_at'             => new \DateTime(),
                 'updated_at'             => new \DateTime(),
             ]);
@@ -89,7 +84,7 @@ class ManageKomikController extends Controller
         } else {
             $extension = $request->comic_cover->extension();
             $cover_name = md5(uniqid(rand(), true)) . '.' . $extension;
-            $path  = $request->comic_cover->move('images/komik/', $cover_name);
+            $path  = $request->comic_cover->move('assets/upload/komik/', $cover_name);
             // (is_null($path) ?  $path : $path = []);
             $generate_slug = Str::slug($request->comic_title, '-');
             $generate_slug .= '.html';
@@ -160,10 +155,6 @@ class ManageKomikController extends Controller
             'comic_genre_id' => 'required',
             'comic_artist' => 'required',
             'comic_author' => 'required',
-            'comic_rating' => 'required',
-            'comic_released' => 'required',
-            'comic_alternative' => 'required',
-            'comic_sinopsis' => 'required',
             'comic_cover' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -203,7 +194,7 @@ class ManageKomikController extends Controller
 
             $extension = $request->comic_cover->extension();
             $cover_name = md5(uniqid(rand(), true)) . '.' . $extension;
-            $path  = $request->comic_cover->move('images/komik/', $cover_name);
+            $path  = $request->comic_cover->move('assets/upload/komik/', $cover_name);
 
             // (is_null($path) ?  $path : $path = []);
             $generate_slug = Str::slug($request->comic_title, '-');
@@ -239,7 +230,7 @@ class ManageKomikController extends Controller
     public function destroy(comic $comic)
     {
         $comic->where('comic_slug', $comic->comic_slug)->first();
-        $cover_old = public_path('images/komik/' . $comic->comic_cover);
+        $cover_old = public_path('assets/upload/komik/' . $comic->comic_cover);
 
         if (File::exists($cover_old)) {
             File::delete($cover_old);

@@ -1,11 +1,12 @@
 @extends('layouts.dashboard.index')
 
+@section('breadcrumb')
+    {{ Breadcrumbs::render('blog-add') }}
+@endsection
+
 @section('container')
     <!-- Begin Page Content -->
     <div class="container-fluid p-0 mb-5">
-        <div class="d-flex justify-content-end mx-3">
-            {{ Breadcrumbs::render('blog-add') }}
-        </div>
         <div class="card mx-3" style="border-radius: 8px; background-color: #fff;">
             <div class="row">
                 <div class="col">
@@ -47,10 +48,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="status">Publish / Draft Blog:</label>
+                                        <label for="status">Publish / Unpublish Blog:</label>
                                         <select class="custom-select" name="status" id="status">
                                             <option value="Publish">Publish</option>
-                                            <option value="Draft">Draft</option>
+                                            <option value="Unpublish">Unpublish</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
