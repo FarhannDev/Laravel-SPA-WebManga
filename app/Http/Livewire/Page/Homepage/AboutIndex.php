@@ -10,9 +10,8 @@ class AboutIndex extends Component
 {
     public function render()
     {
-        $services = Service::all();
         $genres = ComicGenre::all();
-        return view('livewire.page.homepage.about-index', compact(['services', 'genres']))
+        return view('livewire.page.homepage.about-index', compact(['genres']))
             ->extends('layouts.homepage.index')
             ->section('content');;
     }

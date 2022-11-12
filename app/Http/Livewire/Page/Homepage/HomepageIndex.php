@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Page\Homepage;
 use App\Models\Blog;
 use App\Models\Comic;
 use App\Models\ComicGenre;
-use App\Models\Service;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -18,7 +17,6 @@ class HomepageIndex extends Component
     {
         $genres = ComicGenre::all();
         $comics = Comic::orderBy('comic_title')->latest()->paginate(3);
-        $services = Service::all();
         $blog = Blog::latest()->paginate(3);
 
         $comic_latest = Comic::latest()->paginate(4);
@@ -33,7 +31,6 @@ class HomepageIndex extends Component
             'comic_populer' => $comic_populer,
             'comic_romantis' => $comic_romantis,
             'comic_fantasi' => $comic_fantasi,
-            'services' => $services,
             'blogs'   => $blog,
         ])
             ->extends('layouts.homepage.index')
