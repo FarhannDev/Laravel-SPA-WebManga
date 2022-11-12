@@ -76,7 +76,7 @@ class ManageKomikController extends Controller
                 'comic_alternative'      => $request->comic_alternative,
                 'comic_sinopsis'         => $request->comic_sinopsis,
                 'comic_slug'             => $generate_slug,
-                'comic_cover'            => 'default-komik.jpg',
+                'comic_cover'            => 'default.jpg',
                 'created_at'             => new \DateTime(),
                 'updated_at'             => new \DateTime(),
             ]);
