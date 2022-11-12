@@ -53,7 +53,7 @@ class ManageBlogController extends Controller
             $extension = $request->blog_cover->extension();
             $generete_cover_name = md5(uniqid(rand(), true));
             $cover_name = $generete_cover_name . '.' . $extension;
-            $path  = $request->blog_cover->move('assets/upload/blog/', $cover_name);
+            $path  = $request->blog_cover->move('images/blog/', $cover_name);
 
             $generate_slug = Str::slug($request->blog_name, '-');
             $generate_slug .= '.html';
@@ -151,7 +151,7 @@ class ManageBlogController extends Controller
             $extension = $request->blog_cover->extension();
             $generete_cover_name = md5(uniqid(rand(), true));
             $cover_name = $generete_cover_name . '.' . $extension;
-            $path  = $request->blog_cover->move('assets/upload/blog/', $cover_name);
+            $path  = $request->blog_cover->move('images/blog/', $cover_name);
 
             // Generate URL
             $generate_slug = Str::slug($request->blog_name, '-');
@@ -204,7 +204,7 @@ class ManageBlogController extends Controller
     {
         $blog->where('blog_slug', $blog->blog_slug)->first();
 
-        $cover_old = public_path('assets/upload/blog/' . $blog->blog_cover);
+        $cover_old = public_path('images/blog/' . $blog->blog_cover);
         (File::exists($cover_old) ? File::delete($cover_old) : '');
 
         $blog->delete();

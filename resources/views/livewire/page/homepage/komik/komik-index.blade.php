@@ -3,7 +3,7 @@
         <div class="row justify-content-center align-items-center mb-3">
             <div class="col-lg-6 col-md-6">
                 <h3 class="text-dark text-capitalize">
-                    Cari & Temukan komik Pilihan
+                    Cari & Temukan semua daftar komik
                 </h3>
             </div>
         </div>
@@ -47,8 +47,8 @@
                                         <div class="position-relative overflow-hidden ">
                                             <a href="{{ route('komikShow', $value->comic_slug) }}">
                                                 <img class="img-fluid w-100 rounded"
-                                                    src="{{ asset($value->comic_cover ? 'images/komik/' . $value->comic_cover : 'images/default-komik.jpg') }}"
-                                                    style="height: 300px;">
+                                                    src="{{ asset($value->comic_cover ? 'images/komik/' . $value->comic_cover : 'images/komik/default.jpg') }}"
+                                                    style="height: 300px;" alt="{{ $value->comic_title }}">
                                             </a>
                                         </div>
                                     </div>

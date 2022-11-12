@@ -34,10 +34,9 @@
                             </div>
                             <div class="blog-details__title-author">
                                 <span class="fas fa-user font-weight-normal mr-2 ml-2"
-                                    style="font-weight: 300; font-size: 16px;"> Di
-                                    tulis oleh:
-                                    <em class="text-dark" style="font-style: normal"> {{ $blog_by_user }}</em> -
-                                    {{ date('d M Y', strtotime($blog_created)) }}</span>
+                                    style="font-weight: 300; font-size: 16px;"> By <em class="text-dark"
+                                        style="font-style: normal"> {{ $blog_by_user }}</em> -
+                                    {{ date('d M Y', strtotime($publish_date)) }}</span>
                             </div>
                         </div>
                         <div class="blog-details__desc mb-3">
