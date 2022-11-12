@@ -75,6 +75,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     // Blog
     Route::get('/dashboard/blog', [ManageBlogController::class, 'index'])->name('manageBlogIndex');
     Route::get('/dashboard/blog/add', [ManageBlogController::class, 'create'])->name('manageBlogCreate');
+
+    Route::get('/dashboard/blog/publish', [ManageBlogController::class, 'publish'])->name('manageBlogPublish');
+    Route::get('/dashboard/blog/draft', [ManageBlogController::class, 'draft'])->name('manageBlogDraft');
+
     Route::post('/dashboard/blog/add', [ManageBlogController::class, 'store'])->name('manageBlogStore');
     Route::get('/dashboard/blog/edit/{blog:blog_slug}', [ManageBlogController::class, 'edit'])->name('manageBlogEdit');
     Route::put('/dashboard/blog/edit/{blog:blog_slug}', [ManageBlogController::class, 'update'])->name('manageBlogUpdate');

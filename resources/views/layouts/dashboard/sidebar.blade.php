@@ -1,7 +1,7 @@
      <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #c22dba;">
          <!-- Sidebar - Brand -->
-         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-             <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Laravel') }}</div>
+         <a class="sidebar-brand d-flex align-items-center " href="{{ route('manageDashboard') }}">
+             <div class="sidebar-brand-text mx-3">Zaotaku Dashboard</div>
          </a>
 
          <!-- Divider -->
@@ -15,20 +15,53 @@
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider">
-
-         <!-- Heading -->
-         <div class="sidebar-heading">
-             Management All Data
-         </div>
-         <li class="nav-item {{ Route::is('manageKomik') ? 'active' : '' }}">
-             <a class="nav-link" href="{{ route('manageKomik') }}">
-                 <i class="fas fa-fw fa-book"></i>
-                 <span>Komik</span></a>
+         <li class="nav-item">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse"
+                 aria-expanded="true" aria-controls="collapse">
+                 <i class="fas fa-fw fa-users"></i>
+                 <span>Manage Data Users</span>
+             </a>
+             <div id="collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header">Manage Data Users:</h6>
+                     <a class="collapse-item" href="#">Author</a>
+                     <a class="collapse-item" href="#">Member community</a>
+                 </div>
+             </div>
          </li>
-         <li class="nav-item {{ Route::is('manageBlogIndex') ? 'active' : '' }}">
-             <a class="nav-link" href="{{ route('manageBlogIndex') }}">
+         <li class="nav-item">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                 aria-expanded="true" aria-controls="collapseTwo">
+                 <i class="fas fa-fw fa-book"></i>
+                 <span>Manage Data Komik</span>
+             </a>
+             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header">Manage Data Komik:</h6>
+                     {{-- <a class="collapse-item" href="">Genre</a> --}}
+                     <a class="collapse-item" href="{{ route('manageKomik') }}">Daftar Komik</a>
+                 </div>
+             </div>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                 aria-expanded="true" aria-controls="collapseThree">
                  <i class="fas fa-fw fa-blog"></i>
-                 <span>Blog</span></a>
+                 <span>Manage Data Blog</span>
+             </a>
+             <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header">Manage Data Blog:</h6>
+                     <a class="collapse-item" href="{{ route('manageBlogIndex') }}">Daftar Blog</a>
+                     {{-- <a class="collapse-item" href="{{ route('manageBlogPublish') }}">Publish</a>
+                     <a class="collapse-item" href="{{ route('manageBlogDraft') }}">Draft</a> --}}
+                 </div>
+             </div>
+         </li>
+         <li class="nav-item ">
+             <a class="nav-link" href="#">
+                 <i class="fas fa-fw fa-inbox"></i>
+                 <span>Manage Feedback</span></a>
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider d-none d-md-block m-0">

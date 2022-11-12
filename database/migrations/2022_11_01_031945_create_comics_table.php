@@ -21,18 +21,15 @@ class CreateComicsTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->string('comic_title', 100);
-            $table->string('comic_slug', 100);
+            $table->string('comic_title', 255);
+            $table->string('comic_slug', 255)->unique();
             $table->string('comic_author', 100);
             $table->string('comic_artist', 100);
-            $table->string('comic_rating', 100);
-            $table->date('comic_released');
-            $table->string('comic_cover', 255)->nullable()->default('default.jpg');
+            $table->string('comic_rating', 100)->nullable();
+            $table->dateTime('comic_released')->nullable();
+            $table->string('comic_cover', 255)->default('default.jpg');
             $table->longText('comic_alternative')->nullable();
             $table->longText('comic_sinopsis')->nullable();
-
-            $table->enum('is_active', ['Publish', 'Unpublish']);
-
             $table->timestamps();
         });
     }

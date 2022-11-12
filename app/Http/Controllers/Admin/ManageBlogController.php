@@ -6,6 +6,7 @@ use App\Models\Blog;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -50,9 +51,9 @@ class ManageBlogController extends Controller
 
         if ($request->blog_cover) {
             $extension = $request->blog_cover->extension();
-            $generete_cover_name = Str::slug($request->blog_name, '-');
+            $generete_cover_name = md5(uniqid(rand(), true));
             $cover_name = $generete_cover_name . '.' . $extension;
-            $path  = $request->blog_cover->move('images/blog/', $cover_name);
+            $path  = $request->blog_cover->move('assets/upload/blog/', $cover_name);
 
             $generate_slug = Str::slug($request->blog_name, '-');
             $generate_slug .= '.html';
@@ -63,8 +64,11 @@ class ManageBlogController extends Controller
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
-                'status'        => $request->status,
                 'blog_cover'    => $cover_name,
+                'status'        => $request->status,
+                'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
+                'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
+                'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
                 'created_at'    => new \DateTime(),
                 'updated_at'    => new \DateTime(),
             ]);
@@ -80,8 +84,11 @@ class ManageBlogController extends Controller
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
-                'status'        => $request->status,
                 'blog_cover'    => 'default.jpg',
+                'status'        => $request->status,
+                'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
+                'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
+                'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
                 'created_at'    => new \DateTime(),
                 'updated_at'    => new \DateTime(),
             ]);
@@ -142,9 +149,9 @@ class ManageBlogController extends Controller
 
             // Generate FILE COVER
             $extension = $request->blog_cover->extension();
-            $generete_cover_name = Str::slug($request->blog_name, '-');
+            $generete_cover_name = md5(uniqid(rand(), true));
             $cover_name = $generete_cover_name . '.' . $extension;
-            $path  = $request->blog_cover->move('images/blog/', $cover_name);
+            $path  = $request->blog_cover->move('assets/upload/blog/', $cover_name);
 
             // Generate URL
             $generate_slug = Str::slug($request->blog_name, '-');
@@ -155,8 +162,11 @@ class ManageBlogController extends Controller
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
-                'status'        => $request->status,
                 'blog_cover'    => $cover_name,
+                'status'        => $request->status,
+                'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
+                'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
+                'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
                 'updated_at'    => new \DateTime(),
             ]);
 
@@ -171,8 +181,11 @@ class ManageBlogController extends Controller
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
-                'status'        => $request->status,
                 'blog_cover'    => 'default.jpg',
+                'status'        => $request->status,
+                'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
+                'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
+                'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
                 'updated_at'    => new \DateTime(),
             ]);
 
@@ -191,11 +204,25 @@ class ManageBlogController extends Controller
     {
         $blog->where('blog_slug', $blog->blog_slug)->first();
 
-        $cover_old = public_path('images/blog/' . $blog->blog_cover);
+        $cover_old = public_path('assets/upload/blog/' . $blog->blog_cover);
         (File::exists($cover_old) ? File::delete($cover_old) : '');
 
         $blog->delete();
         return redirect()->route('manageBlogIndex')
             ->with('message_success', 'Berhasil menghapus postingan' . ' ' . $blog->blog_name);
+    }
+
+    public function publish()
+    {
+        $blog = Blog::where('status', 'Publish')->orderBy('blog_name', 'DESC')->latest()->get();
+
+        return view('pages.admin.blog.publish', compact(['blog']));
+    }
+
+    public function draft()
+    {
+        $blog = Blog::where('status', 'Draft')->orderBy('blog_name', 'DESC')->latest()->get();
+
+        return view('pages.admin.blog.publish', compact(['blog']));
     }
 }
