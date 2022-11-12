@@ -11,6 +11,9 @@
                  <div class="navbar-nav mx-auto py-0">
                      <a href="{{ route('homePageIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('homePageIndex') ? 'active' : '' }}">Home</a>
+                     <a href="{{ route('komikIndex') }}"
+                         class="nav-item mx-md-3 nav-link {{ Route::is('komikIndex') ? 'active' : '' }}">Daftar
+                         Komik</a>
                      <a href="{{ route('aboutIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('aboutIndex') ? 'active' : '' }}">About Us</a>
                      <a href="{{ route('blogIndex') }}"
@@ -22,7 +25,7 @@
                      {{-- <a href="{{ route('communityIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('communityIndex') ? 'active' : '' }}">Community
                      </a> --}}
-                     <div class="nav-item dropdown">
+                     {{-- <div class="nav-item dropdown">
                          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Daftar Manga</a>
                          <div class="dropdown-menu m-0">
                              <a href="{{ route('komikIndex') }}"
@@ -30,7 +33,7 @@
                              <a href="{{ route('komikVidio') }}"
                                  class="dropdown-item {{ Route::is('komikVidio') ? 'active' : '' }}">Manga Vidio</a>
                          </div>
-                     </div>
+                     </div> --}}
                  </div>
 
              </div>
