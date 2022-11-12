@@ -11,14 +11,9 @@ use App\Http\Livewire\Page\Homepage\ContactIndex;
 use App\Http\Livewire\Page\Homepage\HomepageIndex;
 use App\Http\Livewire\Page\Homepage\Blog\BlogIndex;
 use App\Http\Livewire\Page\Homepage\Blog\BlogShow;
-<<<<<<< HEAD
 use App\Http\Livewire\Page\Homepage\Community\CommunityIndex;
 use App\Http\Livewire\Page\HomePage\Genre\GenreIndex;
 use App\Http\Livewire\Page\HomePage\Genre\GenreShow;
-=======
-use App\Http\Livewire\Page\Homepage\Genre\GenreIndex;
-use App\Http\Livewire\Page\Homepage\Genre\GenreShow;
->>>>>>> 378e0dea72d805b6961fbd2737b972154cd52ce9
 use App\Http\Livewire\Page\Homepage\Komik\KomikShow;
 use App\Http\Livewire\Page\Homepage\Komik\KomikIndex;
 use App\Http\Livewire\Page\Homepage\Komik\KomikLatest;
@@ -38,26 +33,17 @@ use App\Http\Livewire\Page\Homepage\TestimonialIndex;
 */
 
 Route::get('/', HomepageIndex::class)->name('homePageIndex');
-// Route::get('/about', AboutIndex::class)->name('aboutIndex');
+Route::get('/about', AboutIndex::class)->name('aboutIndex');
 Route::get('/contact', ContactIndex::class)->name('contactIndex');
 Route::get('/komik', KomikIndex::class)->name('komikIndex');
 Route::get('/komik/id/{comic:comic_slug}', KomikShow::class)->name('komikShow');
-<<<<<<< HEAD
 Route::get('/komik/videos', KomikVidio::class)->name('komikVidio');
-=======
-// Route::get('/komik/latest', KomikLatest::class)->name('komikLatest');
-// Route::get('/komik/populer', KomikPopuler::class)->name('komikPopuler');
->>>>>>> 378e0dea72d805b6961fbd2737b972154cd52ce9
 Route::get('/genre', GenreIndex::class)->name('genreIndex');
 Route::get('/genre/id/{comicGenre:genre_slug}', GenreShow::class)->name('genreShow');
 Route::get('/blog', BlogIndex::class)->name('blogIndex');
 Route::get('/blog/{blog:blog_slug}', BlogShow::class)->name('blogShow');
-<<<<<<< HEAD
 
 // Route::get('/community', CommunityIndex::class)->name('communityIndex');
-=======
-// Route::get('/testimonial', TestimonialIndex::class)->name('testimonialIndex');
->>>>>>> 378e0dea72d805b6961fbd2737b972154cd52ce9
 
 Route::get('/success', function () {
     return view('messages.index');
