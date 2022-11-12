@@ -21,7 +21,7 @@ class RoleSeeder extends Seeder
                 'updated_at' => new \DateTime(),
             ],
             [
-                'role_name' => 'member',
+                'role_name' => 'author',
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ],

@@ -47,9 +47,8 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col-lg-6">Title</th>
-                                                    <th scope="col-*">Publish By</th>
-                                                    <th scope="col-*">Publish Date</th>
-                                                    <th scope="col-*">Unpublish Date</th>
+                                                    <th scope="col-*" class="text-center">Author</th>
+                                                    <th scope="col-*" class="text-center">Status</th>
                                                     <th scope="col-*">Action</th>
                                                 </tr>
                                             </thead>
@@ -60,28 +59,17 @@
                                                             {{ $loop->iteration }}
                                                         </td>
                                                         <td class="align-middle">{{ $data->blog_name }}</td>
-                                                        <td class="align-middle ">{{ $data->publish_by }}</td>
-                                                        <td class="align-middle">
-                                                            {{ $data->status == 'Publish' ? date('d/m/y H:i:s', strtotime($data->publish_date)) : $data->status }}
+                                                        <td class="align-middle text-center">{{ $data->user['name'] }}</td>
+                                                        <td class="align-middle text-dark text-center">
+                                                            @if ($data->status == 'Publish')
+                                                                <span class="text-success">Publish</span>
+                                                            @else
+                                                                <span class="text-danger">Draft</span>
+                                                            @endif
                                                         </td>
                                                         <td class="align-middle">
-                                                            {{ $data->status == 'Unpublish' ? date('d/m/y H:i:s', strtotime($data->unpublish_date)) : $data->status }}
-                                                        </td>
-
-                                                        <td class="align-middle">
-                                                            <form
-                                                                action="{{ route('manageBlogDestroy', $data->blog_slug) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-md">
-                                                                    <span class="fas fa-trash-alt"></span>
-                                                                </button>
-                                                                <a href="{{ route('manageBlogEdit', $data->blog_slug) }}"
-                                                                    class="btn btn-danger btn-md">
-                                                                    <span class="fas fa-edit"></span>
-                                                                </a>
-                                                            </form>
+                                                            <a href="{{ route('manageBlogEdit', $data->blog_slug) }}"
+                                                                class="btn btn-danger btn-md">Draft To Post </span>
                                                         </td>
                                                     </tr>
                                                 @endforeach
