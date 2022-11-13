@@ -20,7 +20,8 @@ class HomepageIndex extends Component
         $blog = Blog::latest()->paginate(3);
 
         $comic_latest = Comic::latest()->paginate(4);
-        $comic_populer = Comic::where('comic_author', 'Hiroyuki')->latest()->paginate(3);
+        $comic_populer = Comic::inRandomOrder()->limit(4)->get();
+        $comic_trending = Comic::inRandomOrder()->limit(4)->get();
         $comic_romantis  =  Comic::where('comic_genre_id', 2)->latest()->paginate(6);
         $comic_fantasi  =  Comic::where('comic_genre_id', 7)->latest()->paginate(6);
 
@@ -29,6 +30,7 @@ class HomepageIndex extends Component
             'comics' => $comics,
             'comic_latest' => $comic_latest,
             'comic_populer' => $comic_populer,
+            'comic_trending' => $comic_trending,
             'comic_romantis' => $comic_romantis,
             'comic_fantasi' => $comic_fantasi,
             'blogs'   => $blog,

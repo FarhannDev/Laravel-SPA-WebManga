@@ -37,6 +37,7 @@
                 </nav>
             </div>
             <hr />
+
             <div class="row justify-content-arround g-4 portfolio-container pt-5">
                 @if (!is_null($data))
                     @forelse ($data as $value)
@@ -48,7 +49,7 @@
                                             <a href="{{ route('komikShow', $value->comic_slug) }}">
                                                 <img class="img-fluid w-100 rounded"
                                                     src="{{ asset($value->comic_cover ? 'images/komik/' . $value->comic_cover : 'images/komik/default.jpg') }}"
-                                                    style="height: 300px;" alt="{{ $value->comic_title }}">
+                                                    style="height: 250px;" alt="{{ $value->comic_title }}">
                                             </a>
                                         </div>
                                     </div>
@@ -57,7 +58,7 @@
                                         <div class="comic-inner__text pt-2 mb-3">
                                             <a href="{{ route('komikShow', $value->comic_slug) }}" class="text-dark">
                                                 <h5 class="text-dark text-capitalize col-lg-auto">
-                                                    {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 30, ' ...') !!}
+                                                    {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 50, ' ...') !!}
                                                 </h5>
                                             </a>
                                         </div>

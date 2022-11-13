@@ -35,9 +35,7 @@ class CommunityIndex extends Component
 
     public function render()
     {
-        $community = Community::latest()->paginate(9);
-
-        return view('livewire.page.homepage.community.community-index', compact(['community']))
+        return view('livewire.page.homepage.community.community-index')
             ->extends('layouts.homepage.index')
             ->section('content');
     }

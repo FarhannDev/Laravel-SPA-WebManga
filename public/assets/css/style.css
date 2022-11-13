@@ -27,7 +27,7 @@
     right: 45px;
     bottom: 45px;
     z-index: 99;
-    background-color: #04000B !important;
+    background-color: var(--secondary);
     color: var(--light);
 }
 
@@ -215,12 +215,12 @@ h6,
 .hero-header {
     margin-bottom: 6rem;
     padding: 14rem 0;
-    background-color: var(--light) !important;
-    background-image: url('https://wallpapercrafter.com/desktop/125334-Hyouka-Chitanda-Eru-white-background-anime-anime-girls-Oreki-Houtarou.png') !important;
-    background-position: center;
-    min-height: 100vh;
+    background-color: var(--dark) !important;
+    /* background-image: url('https://wallpapercrafter.com/desktop/125334-Hyouka-Chitanda-Eru-white-background-anime-anime-girls-Oreki-Houtarou.png') !important;
+    background-position: center; */
+    /* min-height: 100vh;
     background-size: cover;
-    object-fit: cover;
+    object-fit: cover; */
 }
 
 @media (max-width: 991.98px) {
@@ -503,7 +503,7 @@ h6,
 /*** Footer ***/
 .footer {
     margin-top: 6rem;
-    padding-top: 9rem;
+    /* padding-top: 9rem; */
     background-color: #04000B !important;
 }
 

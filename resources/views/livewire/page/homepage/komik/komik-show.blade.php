@@ -1,5 +1,5 @@
-<div class="container-xxl position-relative p-0">
-    <div class="container pt-3 mb-3 px-lg-5">
+<div class="container-xxl py-md-5 position-relative p-0">
+    <div class="container pt-5 mb-3 px-lg-5">
         <div class="card p-3" style="border-radius: 8px;">
             <div class="d-flex justify-content-arround ">
                 <div class="action-detail__back pt-3">
@@ -9,7 +9,7 @@
                 </div>
             </div>
             <hr />
-            <div class="d-flex justify-content-end mb-3">
+            <div class="d-flex justify-content-end mb-3 border-bottom">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('homePageIndex') }}">Beranda</a></li>
@@ -18,46 +18,32 @@
                     </ol>
                 </nav>
             </div>
-            <div class="row justify-content-arround  align-content-center">
+            <div class="row justify-content-between  align-content-center">
                 <div class="col-lg-4 col-md-6 mb-3">
-                    <img src="{{ asset($comic_cover ? 'images/komik/' . $comic_cover : 'images/blog/default.jpg') }}"
+                    <img src="{{ asset($comic_cover ? 'images/komik/' . $comic_cover : 'images/komik/default.jpg') }}"
                         class="img-fluid rounded" width="350" alt="{{ $comic_title }}">
                 </div>
                 <div class="col-lg-8 col-md-6">
                     <div class="detail-info">
-                        <div class="detail-info__title">
-                            <h5 class="text-dark text-capitalize px-3">
-                                Komik: {{ $comic_title }}
-                            </h5>
-                        </div>
-                        <hr />
+
                         <div class="detail-info__list">
-                            <div class="row justify-content-between align-content-center">
-                                <div class="col-lg-8 col-md-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Title : {{ $comic_title }}</li>
-                                        <li class="list-group-item">Genre : {{ $comic_genre }}</li>
-                                        <li class="list-group-item">Author : {{ $comic_author }}</li>
-                                        <li class="list-group-item">Artist : {{ $comic_artist }}</li>
-                                        <li class="list-group-item">Release : {{ $comic_released }}</li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-lg-4 col-md-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Rating : {{ $comic_rating }}</li>
-                                        <li class="list-group-item">Total Volume:
-                                            {{ $volumes->count() ? $volumes->count() : '-' }}</li>
-                                        <li class="list-group-item">Total Chapter: -</li>
-                                        <li class="list-group-item">Status: Oungoing</li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Title : {{ !is_null($comic_title) ? $comic_title : '-' }}
+                                </li>
+                                <li class="list-group-item">Genre : {{ !is_null($comic_genre) ? $comic_genre : '-' }}
+                                </li>
+                                <li class="list-group-item">Author : {{ !is_null($comic_author) ? $comic_author : '-' }}
+                                </li>
+                                <li class="list-group-item">Artist : {{ !is_null($comic_artist) ? $comic_artist : '-' }}
+                                </li>
+                                <li class="list-group-item">Release :
+                                    {{ !is_null($comic_released) ? $comic_released : '-' }}</li>
+                                <li class="list-group-item">Rating :
+                                    {{ !is_null($comic_rating) ? $comic_rating : '-' }}</li>
+                                <li class="list-group-item">Status: Oungoing</li>
+                            </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -75,7 +61,7 @@
                         </div>
                         <hr />
                         <div class="detail-sinopsis__text text-justify">
-                            {!! $comic_sinopsis !!}
+                            {!! !is_null($comic_sinopsis) ? $comic_sinopsis : '-' !!}
                         </div>
                     </div>
                 </div>
@@ -91,7 +77,7 @@
                         </div>
                         <hr />
                         <div class="detail-sinopsis__text text-justify">
-                            {!! $comic_alternative !!}
+                            {!! !is_null($comic_alternative) ? $comic_alternative : '-' !!}
                         </div>
                     </div>
                 </div>
