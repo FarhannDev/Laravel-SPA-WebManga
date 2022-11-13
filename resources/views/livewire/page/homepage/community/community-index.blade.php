@@ -8,7 +8,7 @@
 
         <div class="row justify-content-arround">
 
-            @forelse ($community as $data)
+            {{-- @forelse ($community as $data)
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="card p-3 mb-3" style="height: 200px;">
                         <div class="table">
@@ -43,7 +43,7 @@
                 <div class="d-flex justify-content-center pt-3">
                     <p class="text-dark">Belum Ada Aktivitas Terbaru.</p>
                 </div>
-            @endforelse
+            @endforelse --}}
 
         </div>
     </div>

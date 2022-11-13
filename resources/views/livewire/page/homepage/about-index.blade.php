@@ -1,8 +1,8 @@
-<div class="container-xxl position-relative p-0 py-5">
+<div class="container-xxl position-relative  py-md-5">
     <div class="container py-5 px-lg-5">
-        <div class="row g-5 align-items-center">
+        <div class="row g-5 justify-content-between align-items-center">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5 text-dark ">Zaotaku - Situs Volume Download Manga</h1>
+                <h1 class="mb-5 text-dark ">Zaotaku - Situs Download Volume Manga</h1>
                 <h5 class="mb-4 text-dark ">ZaOtaku merupakan situs download volume manga. Kamu bisa membaca beberapa
                     komik
                     yang kami update setiap hari secara gratis. Memiliki desain yang responsif dan modern, website
@@ -13,29 +13,67 @@
                 <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="{{ asset('images/logo/zaotaku-logo.png') }}">
             </div>
         </div>
-    </div>
-    <div class="container py-5 px-lg-5">
-        <div class="d-flex justify-content-center mb-3">
-            <div class="kategori">
-                <div class="kategori-title">
-                    <h3>Kumpulan Genre Lengkap & Terupdate</h3>
+
+        <div class="row justify-content-center pt-5 mt-3">
+            <div class="col">
+                <div class="d-flex justify-content-center mb-3">
+                    <h3>Apa yang kami berikan</h3>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-sm-6 col-12">
+                        <div class="card mb-3" style="height: 150px; max-height: 100%;">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class=" d-flex justify-content-center flex-column">
+                                        <div class="mx-auto text-center">
+                                            <span class="mb-3">
+                                                <i class="fas fa-book fa-3x"></i>
+                                            </span>
+                                            <h4>Komik Lengkap & Terupdate</h4>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-sm-6 col-12">
+                        <div class="card mb-3" style="height: 150px;">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class=" d-flex justify-content-center flex-column">
+                                        <div class="mx-auto text-center">
+                                            <span class="mb-3">
+                                                <i class="fas fa-download fa-3x"></i>
+                                            </span>
+                                            <h4>Unduhan Cepat</h4>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-sm-6 col-12">
+                        <div class="card mb-3" style="height: 150px;">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class=" d-flex justify-content-center flex-column">
+                                        <div class="mx-auto text-center">
+                                            <span class="mb-3">
+                                                <i class="fas fa-bookmark fa-3x"></i>
+                                            </span>
+                                            <h4>Genre lengkap</h4>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center g-4">
-            @foreach ($genres as $genre)
-                <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item bg-light rounded text-center p-4" style="height: 150px;">
-                        {{-- <a href="{{ route('genreShow', $genre->genre_slug) }}"> --}}
-                        <i class="fa fa-2x fa-bookmark text-primary mb-4"></i>
-                        <h5 style="font-size: 16px;" class="mb-3">
-                            {{ $genre->genre_name }}
-                        </h5>
-                        {{-- </a> --}}
-                    </div>
 
-                </div>
-            @endforeach
         </div>
     </div>
 </div>
