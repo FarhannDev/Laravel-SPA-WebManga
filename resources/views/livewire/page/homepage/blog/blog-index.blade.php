@@ -56,9 +56,11 @@
             @if ($blog->status == 'Publish')
                 <div class="col-lg-4 col-md-6">
                     <div class="card mb-3">
-                        <img class="card-img-top"
+                        <img class="card-img-top" src="{{ $blog->blog_cover_link }}" alt="{{ $blog->blog_name }}"
+                            height="300px;">
+                        {{-- <img class="card-img-top"
                             src="{{ asset($blog->blog_cover ? 'images/blog/' . $blog->blog_cover : 'images/blog/default.jpg') }}"
-                            alt="Card image cap" height="300px;">
+                            alt="{{ $blog->blog_name }}" height="300px;"> --}}
                         <div class="card-body">
                             <h4 class="card-title"><a href="{{ route('blogShow', $blog->blog_slug) }}"
                                     class="text-dark">

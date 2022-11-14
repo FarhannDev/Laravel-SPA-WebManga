@@ -21,8 +21,10 @@ class KomikShow extends Component
     public $comic_rating;
     public $comic_released;
     public $comic_cover;
+    public $comic_cover_link;
     public $comic_alternative;
     public $comic_sinopsis;
+    public $comic_status;
 
     public $volumes;
 
@@ -33,15 +35,17 @@ class KomikShow extends Component
 
         if (!is_null($data)) {
             $this->comic_id              = $data->id;
-            $this->comic_genre           = $data->genre['genre_name'];
+            $this->comic_genre           = json_decode($data->comic_genre);
             $this->comic_title           = $data->comic_title;
             $this->comic_author          = $data->comic_author;
             $this->comic_artist          = $data->comic_artist;
             $this->comic_rating          = $data->comic_rating;
             $this->comic_released        = $data->comic_released;
             $this->comic_cover           = $data->comic_cover;
+            $this->comic_cover_link      = $data->comic_link_cover;
             $this->comic_alternative     = $data->comic_alternative;
             $this->comic_sinopsis        = $data->comic_sinopsis;
+            $this->comic_status          = $data->comic_status;
         }
 
         $this->volumes = ComicVolume::where('comic_id', $this->comic_id)->orderBy('volume_name', 'ASC')->get();
