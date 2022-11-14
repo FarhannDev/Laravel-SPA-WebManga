@@ -20,8 +20,10 @@
             </div>
             <div class="row justify-content-between  align-content-center">
                 <div class="col-lg-4 col-md-6 mb-3">
-                    <img src="{{ asset($comic_cover ? 'images/komik/' . $comic_cover : 'images/komik/default.jpg') }}"
-                        class="img-fluid rounded" width="350" alt="{{ $comic_title }}">
+                    <img src="{{ $comic_cover_link }}" class="img-fluid rounded" width="350"
+                        alt="{{ $comic_title }}">
+                    {{-- <img src="{{ asset($comic_cover ? 'images/komik/' . $comic_cover : 'images/komik/default.jpg') }}"
+                        class="img-fluid rounded" width="350" alt="{{ $comic_title }}"> --}}
                 </div>
                 <div class="col-lg-8 col-md-6">
                     <div class="detail-info">
@@ -30,17 +32,23 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Title : {{ !is_null($comic_title) ? $comic_title : '-' }}
                                 </li>
-                                <li class="list-group-item">Genre : {{ !is_null($comic_genre) ? $comic_genre : '-' }}
+                                <li class="list-group-item">
+                                    Genre:
+                                    @foreach ($comic_genre as $genre)
+                                        {{ $genre }},
+                                    @endforeach
                                 </li>
                                 <li class="list-group-item">Author : {{ !is_null($comic_author) ? $comic_author : '-' }}
                                 </li>
                                 <li class="list-group-item">Artist : {{ !is_null($comic_artist) ? $comic_artist : '-' }}
                                 </li>
                                 <li class="list-group-item">Release :
-                                    {{ !is_null($comic_released) ? $comic_released : '-' }}</li>
+                                    {{ !is_null($comic_released) ? date('m/d/Y', strtotime($comic_released)) : '-' }}
+                                </li>
                                 <li class="list-group-item">Rating :
                                     {{ !is_null($comic_rating) ? $comic_rating : '-' }}</li>
-                                <li class="list-group-item">Status: Oungoing</li>
+                                <li class="list-group-item">Status: {{ !is_null($comic_status) ? $comic_status : '-' }}
+                                </li>
                             </ul>
                         </div>
                     </div>
