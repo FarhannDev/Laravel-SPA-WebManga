@@ -44,9 +44,10 @@ class ManageBlogController extends Controller
     {
 
         $request->validate([
-            'blog_name' => 'required|min:6|unique:blogs,blog_name',
+            'blog_name' => 'required|unique:blogs,blog_name',
             'blog_desc' => 'required',
             'blog_cover' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'blog_cover_link' => 'required|url',
         ]);
 
         if ($request->blog_cover) {
@@ -65,6 +66,7 @@ class ManageBlogController extends Controller
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
                 'blog_cover'    => $cover_name,
+                'blog_cover_link' => $request->blog_cover_link,
                 'status'        => $request->status,
                 'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
                 'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
@@ -85,6 +87,7 @@ class ManageBlogController extends Controller
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
                 'blog_cover'    => 'default.jpg',
+                'blog_cover_link' => $request->blog_cover_link,
                 'status'        => $request->status,
                 'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
                 'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
@@ -106,7 +109,9 @@ class ManageBlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        $blogs = $blog->where('blog_slug', $blog->blog_slug)->first();
+
+        return view('pages.admin.blog.show', compact(['blogs']));
     }
 
     /**
@@ -163,6 +168,7 @@ class ManageBlogController extends Controller
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
                 'blog_cover'    => $cover_name,
+                'blog_cover_link' => $request->blog_cover_link,
                 'status'        => $request->status,
                 'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
                 'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
@@ -182,6 +188,7 @@ class ManageBlogController extends Controller
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
                 'blog_cover'    => 'default.jpg',
+                'blog_cover_link' => $request->blog_cover_link,
                 'status'        => $request->status,
                 'publish_date'  => ($request->status == 'Publish' ? date('Y-m-d H:i:s') : null),
                 'unpublish_date'  => ($request->status == 'Unpublish' ? date('Y-m-d H:i:s') : null),
@@ -214,15 +221,38 @@ class ManageBlogController extends Controller
 
     public function publish()
     {
-        $blog = Blog::where('status', 'Publish')->orderBy('blog_name', 'DESC')->latest()->get();
+        $blog = Blog::where('status', 'Publish')->orderBy('publish_date', 'DESC')->get();
 
         return view('pages.admin.blog.publish', compact(['blog']));
     }
 
+    public function publish_update($id)
+    {
+        Blog::where('id', $id)->update([
+            'user_id'       => (!Auth::user()->role_id ? '1' : Auth::user()->role_id),
+            'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
+            'status'         => 'Unpublish',
+            'unpublish_date' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()->route('manageBlogDraft');
+    }
+
     public function draft()
     {
-        $blog = Blog::where('status', 'Draft')->orderBy('blog_name', 'DESC')->latest()->get();
+        $blog = Blog::where('status', 'Unpublish')->orderBy('unpublish_date', 'DESC')->get();
 
-        return view('pages.admin.blog.publish', compact(['blog']));
+        return view('pages.admin.blog.draft', compact(['blog']));
+    }
+    public function draft_update($id)
+    {
+        Blog::where('id', $id)->update([
+            'user_id'       => (!Auth::user()->role_id ? '1' : Auth::user()->role_id),
+            'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
+            'status'        => 'Publish',
+            'publish_date' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()->route('manageBlogPublish');
     }
 }

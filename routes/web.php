@@ -71,6 +71,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('/dashboard/komik/edit/{comic:comic_slug}', [ManageKomikController::class, 'update'])->name('manageKomikUpdate');
     Route::delete('/dashboard/komik/{comic:comic_slug}', [ManageKomikController::class, 'destroy'])->name('manageKomikDestroy');
 
+    Route::get('/dashboard/komik/volumes', [ManageKomikController::class, 'volume'])->name('manageVolumeIndex');
+    Route::get('/dashboard/komik/volumes/{comic:comic_slug}', [ManageKomikController::class, 'show_volume'])->name('manageVolumeShow');
     Route::post('/dashboard/komik/volumes/add/{comic:id}', [ManageKomikController::class, 'insert_volumes'])->name('manageVolumeAdd');
     Route::delete('/dashboard/komik/volumes/{id}', [ManageKomikController::class, 'delete_volumes'])->name('manageVolumeDelete');
     // Genre
@@ -81,8 +83,12 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/dashboard/blog', [ManageBlogController::class, 'index'])->name('manageBlogIndex');
     Route::get('/dashboard/blog/add', [ManageBlogController::class, 'create'])->name('manageBlogCreate');
 
+    Route::get('/dashboard/blog/preview/{blog:blog_slug}', [ManageBlogController::class, 'show'])->name('manageBlogShow');
     Route::get('/dashboard/blog/publish', [ManageBlogController::class, 'publish'])->name('manageBlogPublish');
+    Route::put('/dashboard/blog/publish/{id}', [ManageBlogController::class, 'publish_update'])->name('manageBlogPublishUpdate');
+
     Route::get('/dashboard/blog/draft', [ManageBlogController::class, 'draft'])->name('manageBlogDraft');
+    Route::put('/dashboard/blog/draft/{id}', [ManageBlogController::class, 'draft_update'])->name('manageBlogDraftUpdate');
 
     Route::post('/dashboard/blog/add', [ManageBlogController::class, 'store'])->name('manageBlogStore');
     Route::get('/dashboard/blog/edit/{blog:blog_slug}', [ManageBlogController::class, 'edit'])->name('manageBlogEdit');

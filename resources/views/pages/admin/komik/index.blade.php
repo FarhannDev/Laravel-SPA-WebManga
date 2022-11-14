@@ -27,15 +27,19 @@
                     @endif
 
                     <div class="dashboard-inner border-bottom mb-3">
-                        <div class="dashboard-inner__text px-3 mx-2 pt-2">
-                            <h4 class="text-dark text-capitalize">Manage Data Komik</h4>
+                        <div class="dashboard-inner__text px-3 mx-2 pt-2 mb-2">
+                            <div class="d-flex justify-content-arroud align-items-center">
+                                <span class="fas fa-2x fa-folder mr-2"></span>
+                                <h4 class="text-dark text-capitalize pt-2">Manage All Data Komik</h4>
+                            </div>
+
                         </div>
                     </div>
                     <div class="dashboard-inner__item px-3 mb-3">
                         <div class="dashboard-inner__addbutton mb-3 ">
                             <a style="background-color: #c22dba;" href="{{ route('manageKomikCreate') }}"
                                 class="btn text-white">
-                                {{ __('Buat Komik Terbaru') }} <span class="fas fa-plus"></span>
+                                {{ __('Add New Komik') }} <span class="fas fa-edit"></span>
                             </a>
                         </div>
                         <div class="dashboard-item__list mb-3">
@@ -47,50 +51,43 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col-lg-6">Title</th>
-                                                    <th scope="col-lg-6">Category</th>
-                                                    <th scope="col-*">Created At</th>
-                                                    <th scope="col-*">Updated At</th>
-                                                    <th scope="col-*" class="text-center">Action</th>
+                                                    <th scope="col-lg-6">Genre</th>
+                                                    <th scope="col-lg-6">Author</th>
+                                                    <th scope="col">Artist</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Details</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($comics as $comic)
+                                                @foreach ($comics as $comic)
                                                     <tr>
                                                         <th scope="row" class="align-middle">
                                                             {{ $loop->iteration }}
                                                         </th>
-                                                        <td class="align-middle ">
+                                                        <td class="align-middle text-dark ">
+                                                            {{ $comic->comic_title }}
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            @if (!is_null($comic->comic_genre))
+                                                                @foreach (json_decode($comic->comic_genre) as $data)
+                                                                    <span class="text-dark">
+                                                                        {{ $data }},
+                                                                    </span>
+                                                                @endforeach
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                        <td class="align-middle">{{ $comic->comic_author }}</td>
+                                                        <td class="align-middle">{{ $comic->comic_artist }}</td>
+                                                        <td class="align-middle">Ongoing</td>
+                                                        <td class="align-middle">
                                                             <a href="{{ route('manageKomikShow', $comic->comic_slug) }}"
-                                                                class="text-dark text-decoration-none">{{ $comic->comic_title }}
-                                                            </a>
-                                                        </td>
-                                                        <th class="align-middle font-weight-normal">
-                                                            {{ Str::ucfirst($comic->genre['genre_name']) }}
-                                                        </th>
-                                                        <td class="align-middle">
-                                                            {{ date('m/d/Y H:i:s', strtotime($comic->created_at)) }}</td>
-                                                        <td class="align-middle">
-                                                            {{ date('m/d/Y H:i:s', strtotime($comic->created_at)) }}</td>
-                                                        <td class="text-center">
-                                                            <form
-                                                                action="{{ route('manageKomikDestroy', $comic->comic_slug) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger"><i
-                                                                        class="fas fa-trash-alt"></i></button>
-                                                                {{-- <a href="{{ route('manageKomikEdit', $comic->comic_slug) }}"
-                                                                    class="btn btn-danger"><i class="fas fa-edit"></i></a> --}}
-                                                            </form>
+                                                                class="btn btn-md text-white"
+                                                                style="background-color: #c22dba;">Details</a>
                                                         </td>
                                                     </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td class="align-middle">
-                                                            Data Not Found.
-                                                        </td>
-                                                    </tr>
-                                                @endforelse
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

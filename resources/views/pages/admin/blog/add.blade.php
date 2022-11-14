@@ -48,6 +48,18 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="blog_cover_link">Upload Cover Link:</label>
+                                        <input name="blog_cover_link" type="url"
+                                            class="form-control @error('blog_cover_link') is-invalid @enderror"
+                                            id="blog_cover_link" value="{{ old('blog_cover_link') }}">
+
+                                        @error('blog_cover_link')
+                                            <span class="invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
                                         <label for="status">Publish / Unpublish Blog:</label>
                                         <select class="custom-select" name="status" id="status">
                                             <option value="Publish">Publish</option>
@@ -55,19 +67,25 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="blog_desc">Description:</label>
+                                        <label for="blog_desc">Description: <span class="text-danger">*</span></label>
                                         <textarea style="align-content:left; overflow:auto; resize:none; text-align: left; font-weight: 400;" name="blog_desc"
-                                            value="{{ old('blog_desc') }}"class="form-control ckeditor" id="blog_desc" rows="10" cols="50" onKeyPress
-                                            placeholder="Tuliskan sinopsis disini...">
+                                            value="{{ old('blog_desc') }}"class="form-control  @error('blog_desc') is-invalid @enderror ckeditor"
+                                            id="blog_desc" rows="10" cols="50" onKeyPress placeholder="Tuliskan sinopsis disini...">
                                             {{ old('blog_desc') }}
                                         </textarea>
+                                        @error('blog_desc')
+                                            <span class="invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group ">
                                         <div class="d-flex justify-content-end px-2">
                                             <a href="{{ route('manageBlogIndex') }}"
                                                 class="btn btn-dark text-white">Batalkan</a>
-                                            <button style="background-color: #c22dba;" type="submit"
+                                            <button onclick="return confirm('Are you sure you want to submit?')"
+                                                style="background-color: #c22dba;" type="submit"
                                                 class="btn text-white mx-1">Simpan</button>
                                         </div>
                                     </div>
