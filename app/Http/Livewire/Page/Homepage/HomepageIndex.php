@@ -22,8 +22,8 @@ class HomepageIndex extends Component
         $comic_latest = Comic::latest()->paginate(4);
         $comic_populer = Comic::inRandomOrder()->limit(4)->get();
         $comic_trending = Comic::inRandomOrder()->limit(4)->get();
-        $comic_romantis  =  Comic::where('comic_genre_id', 2)->latest()->paginate(6);
-        $comic_fantasi  =  Comic::where('comic_genre_id', 7)->latest()->paginate(6);
+        // $comic_romantis  =  Comic::where('comic_genre_id', 2)->latest()->paginate(6);
+        // $comic_fantasi  =  Comic::where('comic_genre_id', 7)->latest()->paginate(6);
 
         return view('livewire.page.homepage.homepage-index', [
             'genres' => $genres,
@@ -31,8 +31,8 @@ class HomepageIndex extends Component
             'comic_latest' => $comic_latest,
             'comic_populer' => $comic_populer,
             'comic_trending' => $comic_trending,
-            'comic_romantis' => $comic_romantis,
-            'comic_fantasi' => $comic_fantasi,
+            // 'comic_romantis' => $comic_romantis,
+            // 'comic_fantasi' => $comic_fantasi,
             'blogs'   => $blog,
         ])
             ->extends('layouts.homepage.index')

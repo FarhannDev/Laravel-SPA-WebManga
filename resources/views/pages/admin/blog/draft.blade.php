@@ -26,18 +26,16 @@
                         </div>
                     @endif
 
-                    <div class="dashboard-inner border-bottom">
-                        <div class="dashboard-inner__text px-3 mx-2 pt-2">
-                            <h4 class="text-dark text-capitalize">Manage Data Blog</h4>
+                    <div class="dashboard-inner border-bottom mb-3">
+                        <div class="dashboard-inner__text px-3 mx-2 pt-2 mb-2">
+                            <div class="d-flex justify-content-arroud align-items-center">
+                                <span class="fas fa-2x fa-bookmark mr-2"></span>
+                                <h4 class="text-dark text-capitalize pt-2">Manage All unpublish Blog</h4>
+                            </div>
+
                         </div>
                     </div>
                     <div class="dashboard-inner__item px-3 mb-3">
-                        <div class="dashboard-inner__addbutton mt-3  mb-3">
-                            <a style="background-color: #c22dba;" href="{{ route('manageBlogCreate') }}"
-                                class="btn  text-white">
-                                {{ __('Buat Blog Terbaru') }} <span class="fas fa-plus "></span>
-                            </a>
-                        </div>
                         <div class="dashboard-item__list">
                             <div class="row justify-content-arround align-items-center">
                                 <div class="col">
@@ -47,9 +45,10 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col-lg-6">Title</th>
-                                                    <th scope="col-*" class="text-center">Author</th>
-                                                    <th scope="col-*" class="text-center">Status</th>
-                                                    <th scope="col-*">Action</th>
+                                                    <th scope="col">Publish By</th>
+                                                    <th scope="col">Unpublish Date</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -58,18 +57,25 @@
                                                         <td class="align-middle">
                                                             {{ $loop->iteration }}
                                                         </td>
-                                                        <td class="align-middle">{{ $data->blog_name }}</td>
-                                                        <td class="align-middle text-center">{{ $data->user['name'] }}</td>
-                                                        <td class="align-middle text-dark text-center">
-                                                            @if ($data->status == 'Publish')
-                                                                <span class="text-success">Publish</span>
-                                                            @else
-                                                                <span class="text-danger">Draft</span>
-                                                            @endif
+                                                        <td class="align-middle"><a
+                                                                href="{{ route('manageBlogShow', $data->blog_slug) }}"
+                                                                class="btn btn-link text-dark">{{ $data->blog_name }}</a>
                                                         </td>
+                                                        <td class="align-middle ">{{ $data->publish_by }}</td>
                                                         <td class="align-middle">
-                                                            <a href="{{ route('manageBlogEdit', $data->blog_slug) }}"
-                                                                class="btn btn-danger btn-md">Draft To Post </span>
+                                                            {{ date('d/m/y H:i:s', strtotime($data->unpublish_date)) }}
+                                                        </td>
+                                                        <td class="align-middle "><span
+                                                                class="text-danger">{{ $data->status }}</span></td>
+                                                        <td class="align-middle">
+                                                            <form action="{{ route('manageBlogDraftUpdate', $data->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit"
+                                                                    class="btn btn-success btn-sm">Publish
+                                                                    To Post </span>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

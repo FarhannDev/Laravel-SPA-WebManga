@@ -40,6 +40,8 @@
                      <h6 class="collapse-header">Manage Data Komik:</h6>
                      {{-- <a class="collapse-item" href="">Genre</a> --}}
                      <a class="collapse-item" href="{{ route('manageKomik') }}">Daftar Komik</a>
+                     <a class="collapse-item" href="#">Genre </a>
+                     <a class="collapse-item" href="{{ route('manageVolumeIndex') }}">Volumes </a>
                  </div>
              </div>
          </li>
@@ -53,8 +55,8 @@
                  <div class="bg-white py-2 collapse-inner rounded">
                      <h6 class="collapse-header">Manage Data Blog:</h6>
                      <a class="collapse-item" href="{{ route('manageBlogIndex') }}">Daftar Blog</a>
-                     {{-- <a class="collapse-item" href="{{ route('manageBlogPublish') }}">Publish</a>
-                     <a class="collapse-item" href="{{ route('manageBlogDraft') }}">Draft</a> --}}
+                     <a class="collapse-item" href="{{ route('manageBlogPublish') }}">Publish</a>
+                     <a class="collapse-item" href="{{ route('manageBlogDraft') }}">Unpublish</a>
                  </div>
              </div>
          </li>

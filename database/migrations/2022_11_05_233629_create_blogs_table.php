@@ -24,6 +24,7 @@ class CreateBlogsTable extends Migration
             $table->string('blog_slug');
             $table->longText('blog_desc');
             $table->string('blog_cover', 255)->default('default.jpg');
+            $table->string('blog_cover_link', 255)->nullable();
             $table->enum('status', ['Publish', 'Unpublish'])->default('Publish');
             $table->dateTime('publish_date')->nullable();
             $table->dateTime('unpublish_date')->nullable();

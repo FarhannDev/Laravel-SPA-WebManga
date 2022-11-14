@@ -68,24 +68,16 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div wire:ignore class="form-group col-md-4">
-                                            <label for="comic_genre_id">{{ __('Select Category:') }} <span
+                                        <div class="form-group col-md-4">
+                                            <label for="comic_genre">{{ __('Select Category:') }} <span
                                                     class="text-danger">*</span></label>
-                                            <select name="comic_genre_id" id="comic_genre_id"
-                                                class="form-control  @error('comic_genre_id') is-invalid @enderror">
-                                                <option selected value="">{{ __('Selected Genre') }}</option>
+                                            <select name="comic_genre[]" id="comic_genre"
+                                                class="form-control  @error('comic_genre') is-invalid @enderror" required
+                                                multiple>
                                                 @foreach ($genre as $data)
-                                                    <?php $dash = ''; ?>
-                                                    @if (old('comic_genre_id') == $data->id)
-                                                        <option value="{{ $data->id }}">
-                                                            {{ $data->genre_name }}
-                                                        </option>
-                                                    @else
-                                                        <option value="{{ $data->id }}"
-                                                            {{ $comic->comic_genre_id == $data->id ? 'selected' : '' }}>
-                                                            {{ $data->genre_name }}
-                                                        </option>
-                                                    @endif
+                                                    <option value="{{ $data->genre_name }}">
+                                                        {{ $data->genre_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('comic_genre_id')
@@ -106,8 +98,31 @@
                                             <input name="comic_released" type="date"
                                                 class="form-control  @error('comic_released') is-invalid @enderror"
                                                 id="comic_released"
-                                                value="{{ $comic->comic_released ? $comic->comic_released : old('comic_released') }}">
+                                                value="{{ $comic->comic_released ? Carbon\Carbon::parse($comic->comic_released)->format('Y-m-d') : old('comic_released') }}">
                                         </div>
+                                        <div class="form-group col-md">
+                                            <label for="comic_status">Status: <span class="text-danger">*</span></label>
+                                            <select name="comic_status"
+                                                class="custom-select  @error('comic_status') is-invalid @enderror"
+                                                id="comic_status" required>
+                                                <option selected value="">Selected Status</option>
+                                                <option value="Completed"
+                                                    {{ $comic->comic_status == 'Completed' ? 'selected' : '' }}>Completed
+                                                </option>
+                                                <option value="Ongoing"
+                                                    {{ $comic->comic_status == 'Ongoing' ? 'selected' : '' }}>Ongoing
+                                                </option>
+                                            </select>
+                                            @error('comic_status')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-row">
                                         <div class="form-group col-md">
                                             <label for="inputZip">Upload Cover:</label>
                                             <div class="custom-file">
@@ -119,29 +134,49 @@
                                                     for="customFile">{{ $comic->comic_cover ? $comic->comic_cover : old('comic_alternative') }}</label>
                                             </div>
                                         </div>
-
+                                        <div class="form-group col-md-6">
+                                            <label for="comic_link_cover">Upload link cover: <span
+                                                    class="text-danger">*</span></label>
+                                            <input name="comic_link_cover" type="url"
+                                                class="form-control  @error('comic_link_cover') is-invalid @enderror"
+                                                id="comic_link_cover"
+                                                value="{{ $comic->comic_link_cover ? $comic->comic_link_cover : old('comic_link_cover') }}"
+                                                required>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="comic_alternative">Alternative Name:</label>
                                         <textarea style="resize:none; text-align: justify; font-weight: 400;" name="comic_alternative"
-                                            value="{{ old('comic_alternative') }}" class="form-control" id="comic_alternative" rows="5" cols="50"
-                                            onKeyPress placeholder="Tuliskan alternative name disini...">
+                                            value="{{ old('comic_alternative') }}" class="form-control" id="comic_alternative" rows="5"
+                                            cols="50" onKeyPress placeholder="Tuliskan alternative name disini...">
                                           {{ $comic->comic_alternative ? $comic->comic_alternative : old('comic_alternative') }}
                                         </textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="comic_sinopsis">Sinopsis:</label>
                                         <textarea style="align-content:left; overflow:auto; resize:none; text-align: left; font-weight: 400;"
-                                            name="comic_sinopsis" value="{{ old('comic_sinopsis') }}"class="form-control" id="comic_sinopsis" rows="10"
-                                            cols="50" onKeyPress placeholder="Tuliskan sinopsis disini...">
+                                            name="comic_sinopsis" value="{{ old('comic_sinopsis') }}"class="form-control" id="comic_sinopsis"
+                                            rows="10" cols="50" onKeyPress placeholder="Tuliskan sinopsis disini...">
                                             {{ $comic->comic_sinopsis ? $comic->comic_sinopsis : old('comic_sinopsis') }}
                                         </textarea>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" name="status"
+                                                id="customSwitch1" value="Publish"
+                                                {{ $comic->status == 'Publish' ? 'checked' : '' }}>
+                                            <label class="custom-control-label" for="customSwitch1">Unpublish /
+                                                Publish</label>
+                                        </div>
                                     </div>
 
                                     <div class="form-group ">
                                         <div class="d-flex justify-content-end ">
                                             <a href="{{ route('manageKomik') }}" class="btn btn-dark">Batalkan</a>
-                                            <button style="background-color: #c22dba;" type="submit"
+                                            <button onclick="return confirm('Are you sure you want to submit?')"
+                                                style="background-color: #c22dba;" type="submit"
                                                 class="btn text-white  mx-1">Simpan perubahan</button>
                                         </div>
                                     </div>

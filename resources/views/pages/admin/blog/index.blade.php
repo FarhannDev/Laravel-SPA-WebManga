@@ -26,16 +26,20 @@
                         </div>
                     @endif
 
-                    <div class="dashboard-inner border-bottom">
-                        <div class="dashboard-inner__text px-3 mx-2 pt-2">
-                            <h4 class="text-dark text-capitalize">Manage Data Blog</h4>
+                    <div class="dashboard-inner border-bottom mb-3">
+                        <div class="dashboard-inner__text px-3 mx-2 pt-2 mb-2">
+                            <div class="d-flex justify-content-arroud align-items-center">
+                                <span class="fas fa-2x fa-blog mr-2"></span>
+                                <h4 class="text-dark text-capitalize pt-2">Manage All Data Blog</h4>
+                            </div>
+
                         </div>
                     </div>
                     <div class="dashboard-inner__item px-3 mb-3">
                         <div class="dashboard-inner__addbutton mt-3  mb-3">
                             <a style="background-color: #c22dba;" href="{{ route('manageBlogCreate') }}"
                                 class="btn  text-white">
-                                {{ __('Buat Blog Terbaru') }} <span class="fas fa-plus "></span>
+                                {{ __('Add New Blog') }} <span class="fas fa-edit "></span>
                             </a>
                         </div>
                         <div class="dashboard-item__list">
@@ -59,7 +63,10 @@
                                                         <td class="align-middle">
                                                             {{ $loop->iteration }}
                                                         </td>
-                                                        <td class="align-middle">{{ $data->blog_name }}</td>
+                                                        <td class="align-middle"><a
+                                                                href="{{ route('manageBlogShow', $data->blog_slug) }}"
+                                                                class="btn btn-link text-dark">
+                                                                {{ $data->blog_name }} </a></td>
                                                         <td class="align-middle ">{{ $data->publish_by }}</td>
                                                         <td class="align-middle">
                                                             {{ $data->status == 'Publish' ? date('d/m/y H:i:s', strtotime($data->publish_date)) : $data->status }}
@@ -70,6 +77,7 @@
 
                                                         <td class="align-middle">
                                                             <form
+                                                                onsubmit="return confirm('Are you sure you want to delete?')"
                                                                 action="{{ route('manageBlogDestroy', $data->blog_slug) }}"
                                                                 method="post">
                                                                 @csrf

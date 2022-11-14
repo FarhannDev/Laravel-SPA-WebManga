@@ -20,8 +20,9 @@
                         </div>
                     </div>
                     <div class="blog-details__image">
-                        <img src="{{ asset($blog_cover ? 'images/blog/' . $blog_cover : 'images/blog/default.jpg') }}"
-                            width="100%" style="max-width: 100%;" class="img-fluid">
+                        <img src="{{ $blog_cover_link }}" width="100%" style="max-width: 100%;" class="img-fluid">
+                        {{-- <img src="{{ asset($blog_cover ? 'images/blog/' . $blog_cover : 'images/blog/default.jpg') }}"
+                            width="100%" style="max-width: 100%;" class="img-fluid"> --}}
                     </div>
                     <div class="card mb-3  pt-3 p-3" style="border-radius: 0px 0px 8px 8px; overflow: auto;">
                         <div class="blog-details__title mb-5">
@@ -51,8 +52,7 @@
     <div class="container px-lg-5">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="card p-3"
-                    style="background-color: #fff; border-radius: 12px; height: 500px; overflow: hidden;">
+                <div class="card p-3" style="background-color: #fff; border-radius: 12px; ">
                     <div class="d-flex justify-content-center">
                         <div class="text-center mb-3">
                             <div class="author-image ">
@@ -66,7 +66,7 @@
                                 <p>Halo, saya adalah admin zaotaku saya suka menulis sesuatu dan menceritakan langsung
                                     disini...</p>
                             </div>
-                            <div class="author-sociallinks">
+                            {{-- <div class="author-sociallinks">
                                 <div class="d-flex justify-content-center flex-wrap">
                                     <a href="https://www.linkedin.com/in/farhan-20241221a/">
                                         <i class="fab fa-facebook mx-2"></i></a>
@@ -79,7 +79,7 @@
                                     </a>
 
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

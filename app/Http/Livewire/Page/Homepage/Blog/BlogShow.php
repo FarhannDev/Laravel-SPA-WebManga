@@ -13,6 +13,7 @@ class BlogShow extends Component
     public $blog_created;
     public $blog_status;
     public $blog_cover;
+    public $blog_cover_link;
     public $status;
     public $publish_date;
 
@@ -27,6 +28,7 @@ class BlogShow extends Component
             $this->blog_created         = $data->created_at;
             $this->blog_status          = $data->status;
             $this->blog_cover           = $data->blog_cover;
+            $this->blog_cover_link      = $data->blog_cover_link;
             $this->status               = $data->status;
             $this->publish_date         = $data->publish_date;
         }

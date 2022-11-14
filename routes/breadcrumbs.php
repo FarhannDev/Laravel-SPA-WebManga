@@ -29,6 +29,17 @@ Breadcrumbs::for('komik-detail', function (BreadcrumbTrail $trail, $comic) {
 });
 
 
+// Volumes
+Breadcrumbs::for('data-volume', function (BreadcrumbTrail $trail) {
+    $trail->parent('data-komik');
+    $trail->push('Data Komik Volume', route('manageVolumeIndex'));
+});
+
+Breadcrumbs::for('data-volume-detail', function (BreadcrumbTrail $trail, $comic) {
+    $trail->parent('data-volume');
+    $trail->push(\Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...'), route('manageVolumeShow', $comic));
+});
+
 Breadcrumbs::for('data-blog', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Data Blog', route('manageBlogIndex'));
@@ -41,5 +52,10 @@ Breadcrumbs::for('blog-add', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('blog-edit', function (BreadcrumbTrail $trail, $blog) {
     $trail->parent('data-blog');
-    $trail->push('Edit / ' . \Illuminate\Support\Str::limit($blog->blog_name ?? '', 20, ' ...'), route('manageBlogEdit', $blog));
+    $trail->push('Edit / ' . \Illuminate\Support\Str::limit($blog->blog_name ?? '', 50, ' ...'), route('manageBlogEdit', $blog));
+});
+
+Breadcrumbs::for('blog-detail', function (BreadcrumbTrail $trail, $blog) {
+    $trail->parent('data-blog');
+    $trail->push(\Illuminate\Support\Str::limit($blog->blog_name ?? '', 50, ' ...'), route('manageBlogEdit', $blog));
 });

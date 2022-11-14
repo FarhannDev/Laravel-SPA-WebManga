@@ -18,13 +18,16 @@
     @stack('css')
 
     <style>
+        .breadcrumb-wrapper {
+            position: relative;
+        }
+
         .breadcrumb {
             position: absolute;
             top: -23px;
             left: 0;
             right: 0;
             width: 100%;
-            z-index: 10000;
             background-color: #fff;
             border-radius: 0;
             box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
@@ -44,10 +47,10 @@
             <div id="content">
                 @include('layouts.dashboard.navbar')
                 <!-- Begin Page Content -->
-                <div class="breadcrumb-wrapper position-relative py-4">
+                <div class="breadcrumb-wrapper position-relative">
                     @yield('breadcrumb')
                 </div>
-                <div class="container-fluid p-0 mb-5 position-relative">
+                <div class="container-fluid p-0 mb-5 position-relative py-5">
                     <!-- Page Heading -->
                     @yield('container')
                 </div>
