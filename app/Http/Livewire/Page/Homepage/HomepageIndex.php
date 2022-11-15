@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Page\Homepage;
 use App\Models\Blog;
 use App\Models\Comic;
 use App\Models\ComicGenre;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,25 +16,26 @@ class HomepageIndex extends Component
 
     public function render()
     {
-        $genres = ComicGenre::all();
         $comics = Comic::orderBy('comic_title')->latest()->paginate(3);
-        $blog = Blog::latest()->paginate(3);
-
         $comic_latest = Comic::latest()->paginate(4);
-        $comic_populer = Comic::inRandomOrder()->limit(4)->get();
-        $comic_trending = Comic::inRandomOrder()->limit(4)->get();
-        // $comic_romantis  =  Comic::where('comic_genre_id', 2)->latest()->paginate(6);
-        // $comic_fantasi  =  Comic::where('comic_genre_id', 7)->latest()->paginate(6);
+        $count_comic = Comic::count();
+        $count_genre = ComicGenre::count();
+        $count_users = User::all()->count();
+        $count_blog = Blog::where('status', 'Publish')->count();
+        $blogs = Blog::latest()->paginate(3);
+        $trending  = Comic::where('status', 'Publish')->inRandomOrder()->limit(4)->get();
+        $populer  = Comic::where('comic_rating', '>', '8.0')->inRandomOrder()->limit(4)->get();
 
         return view('livewire.page.homepage.homepage-index', [
-            'genres' => $genres,
             'comics' => $comics,
             'comic_latest' => $comic_latest,
-            'comic_populer' => $comic_populer,
-            'comic_trending' => $comic_trending,
-            // 'comic_romantis' => $comic_romantis,
-            // 'comic_fantasi' => $comic_fantasi,
-            'blogs'   => $blog,
+            'count_comic'  => $count_comic,
+            'count_genre'  => $count_genre,
+            'count_users'  => $count_users,
+            'count_blog'  => $count_blog,
+            'blogs'       => $blogs,
+            'trending'    => $trending,
+            'populer'    => $populer,
         ])
             ->extends('layouts.homepage.index')
             ->section('content');
