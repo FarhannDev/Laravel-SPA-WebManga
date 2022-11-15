@@ -12,16 +12,23 @@
                  <div class="navbar-nav mx-auto py-0">
                      <a href="{{ route('homePageIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('homePageIndex') ? 'active' : '' }}">Beranda</a>
-                     <a href="{{ route('komikIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('komikIndex') ? 'active' : '' }}">Daftar
-                         Komik</a>
+                     <a href="{{ route('aboutIndex') }}"
+                         class="nav-item mx-md-3 nav-link {{ Route::is('aboutIndex') ? 'active' : '' }}">Tentang
+                         Kami</a>
+                     <div class="nav-item dropdown">
+                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Daftar Komik</a>
+                         <div class="dropdown-menu m-0">
+                             <a href="{{ route('komikIndex') }}" class="dropdown-item">Semua Komik</a>
+                             <a href="{{ route('komikPopuler') }}" class="dropdown-item">Komik Populer</a>
+                             <a href="{{ route('komikTrending') }}" class="dropdown-item">Komik Trending</a>
+                             <a href="{{ route('komikLatest') }}" class="dropdown-item">Komik Terbaru</a>
+                         </div>
+                     </div>
                      <a href="{{ route('blogIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('blogIndex') ? 'active' : '' }} ">Blog</a>
                      {{-- <a href="{{ route('communityIndex') }}"
                          class="nav-item mx-md-3 nav-link  {{ Route::is('communityIndex') ? 'active' : '' }}">Komunitas</a> --}}
-                     <a href="{{ route('aboutIndex') }}"
-                         class="nav-item mx-md-3 nav-link {{ Route::is('aboutIndex') ? 'active' : '' }}">Tentang
-                         Kami</a>
+
                      <a href="{{ route('contactIndex') }}"
                          class="nav-item mx-md-3 nav-link {{ Route::is('contactIndex') ? 'active' : '' }}">Pusat
                          Bantuan</a>
