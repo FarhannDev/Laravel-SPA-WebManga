@@ -25,7 +25,7 @@ class BlogIndex extends Component
                 $query->where('blog_name', 'like', '%' . $this->search . '%');
             })
                 ->when($this->publish, function (Builder $query) {
-                    $query->where('publish_date', 'like', '%' .  $this->publish . '%');
+                    $query->where('created_at', 'like', '%' .  $this->publish . '%');
                 })
                 ->when($this->status, function (Builder $query) {
                     $query->where('status', $this->status);

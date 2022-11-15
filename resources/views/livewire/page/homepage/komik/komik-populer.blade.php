@@ -4,8 +4,8 @@
             <div class="container px-lg-6">
                 <div class="row g-5 justify-content-end align-items-center">
                     <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="text-dark mb-4 animated slideInDown text-capitalize"> Cari & Temukan semua daftar komik
-                            terbaru
+                        <h1 class="text-dark mb-4 animated slideInDown text-capitalize"> Cari & Temukan semua komik populer
+                            saat ini
                         </h1>
                         <div class="d-flex justify-content-start">
                             <nav aria-label="breadcrumb"
@@ -14,7 +14,7 @@
                                     <li class="breadcrumb-item"><a href="{{ route('homePageIndex') }}">Beranda</a></li>
                                     <li class="breadcrumb-item active"> <a href="{{ route('komikIndex') }}">Daftar Komik</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Komik Terbaru</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Komik Populer</li>
                                 </ol>
                             </nav>
                         </div>
@@ -31,11 +31,11 @@
         <div class="row filtering-data pt-3 mb-3">
             <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Cari Daftar Komik:</label>
+                    <label for="exampleInputEmail1" class="form-label">Cari Berdasarkan Judul & Penulis /
+                        Pemeran :</label>
                     <div class="input-group mb-3">
                         <input wire:model.debounce.500ms="search" type="search" class="form-control"
-                            placeholder="Cari daftar komik..." aria-label="Cari daftar komik..."
-                            aria-describedby="button-addon2">
+                            placeholder="Cari komik ..." aria-label="Cari komik..." aria-describedby="button-addon2">
                         {{-- <button class="btn btn-outline-primary" type="button" id="button-addon2"><i
                             class="fas fa-search"></i></button> --}}
                     </div>
@@ -47,7 +47,7 @@
                     <select wire:model.debounce.500ms="selected_genre" class="form-select" aria-label="Selected Genre">
                         <option selected value="">Pilih Semua Genre</option>
                         @foreach ($genres as $genre)
-                            <option value="{{ strtolower($genre->genre_name) }}">{{ $genre->genre_name }}</option>
+                            <option value="{{ $genre->genre_name }}">{{ $genre->genre_name }}</option>
                         @endforeach
                     </select>
                 </div>

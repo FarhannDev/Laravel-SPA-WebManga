@@ -49,9 +49,9 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Cari berdasarkan status:</label>
                     <select wire:model.debounce.500ms="status" class="form-select" aria-label="Default select example">
-                        <option selected value="">Pilih status</option>
+                        <option selected hidden value="">Pilih status</option>
                         <option value="Publish">Publish</option>
-                        <option value="Unpublish">Unpublish</option>
+                        {{-- <option value="Unpublish">Unpublish</option> --}}
                     </select>
                 </div>
             </div>
