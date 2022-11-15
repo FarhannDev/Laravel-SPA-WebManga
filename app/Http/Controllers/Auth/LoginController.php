@@ -47,7 +47,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             if (Auth::user()->role['role_name'] == 'admin') {
-                return redirect()->route('manageKomik');
+                return redirect()->route('manageDashboard');
             } else {
                 return redirect()->route('homePageIndex');
             }

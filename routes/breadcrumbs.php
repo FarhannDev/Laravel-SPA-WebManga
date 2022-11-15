@@ -40,6 +40,14 @@ Breadcrumbs::for('data-volume-detail', function (BreadcrumbTrail $trail, $comic)
     $trail->push(\Illuminate\Support\Str::limit($comic->comic_title ?? '', 50, ' ...'), route('manageVolumeShow', $comic));
 });
 
+// Genre
+Breadcrumbs::for('data-genre', function (BreadcrumbTrail $trail) {
+    $trail->parent('data-komik');
+    $trail->push('Data Komik Genre', route('manageGenreIndex'));
+});
+
+
+// Blog
 Breadcrumbs::for('data-blog', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Data Blog', route('manageBlogIndex'));
@@ -58,4 +66,24 @@ Breadcrumbs::for('blog-edit', function (BreadcrumbTrail $trail, $blog) {
 Breadcrumbs::for('blog-detail', function (BreadcrumbTrail $trail, $blog) {
     $trail->parent('data-blog');
     $trail->push(\Illuminate\Support\Str::limit($blog->blog_name ?? '', 50, ' ...'), route('manageBlogEdit', $blog));
+});
+Breadcrumbs::for('blog-publish', function (BreadcrumbTrail $trail) {
+    $trail->parent('data-blog');
+    $trail->push(' Blog Publish', route('manageBlogPublish'));
+});
+Breadcrumbs::for('blog-unpublish', function (BreadcrumbTrail $trail) {
+    $trail->parent('data-blog');
+    $trail->push('Blog Unpublish', route('manageBlogDraft'));
+});
+
+
+// User
+Breadcrumbs::for('data-user', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Data User', route('manageUserIndex'));
+});
+
+Breadcrumbs::for('data-author', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Data Author', route('manageAuthorIndex'));
 });

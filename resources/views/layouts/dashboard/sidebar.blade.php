@@ -5,7 +5,7 @@
          </a>
 
          <!-- Divider -->
-         <hr class="sidebar-divider my-0">
+         <hr class="sidebar-divider ">
 
          <!-- Nav Item - Dashboard -->
          <li class="nav-item {{ Route::is('manageDashboard') ? 'active' : '' }}">
@@ -15,7 +15,7 @@
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider">
-         <li class="nav-item">
+         {{-- <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse"
                  aria-expanded="true" aria-controls="collapse">
                  <i class="fas fa-fw fa-users"></i>
@@ -24,11 +24,11 @@
              <div id="collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
                      <h6 class="collapse-header">Manage Data Users:</h6>
-                     <a class="collapse-item" href="#">Author</a>
-                     <a class="collapse-item" href="#">Member community</a>
+                     <a class="collapse-item" href="{{ route('manageUserIndex') }}">Daftar User</a>
+                     <a class="collapse-item" href="{{ route('manageAuthorIndex') }}">Author</a>
                  </div>
              </div>
-         </li>
+         </li> --}}
          <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                  aria-expanded="true" aria-controls="collapseTwo">
@@ -40,7 +40,7 @@
                      <h6 class="collapse-header">Manage Data Komik:</h6>
                      {{-- <a class="collapse-item" href="">Genre</a> --}}
                      <a class="collapse-item" href="{{ route('manageKomik') }}">Daftar Komik</a>
-                     <a class="collapse-item" href="#">Genre </a>
+                     <a class="collapse-item" href="{{ route('manageGenreIndex') }}">Genre </a>
                      <a class="collapse-item" href="{{ route('manageVolumeIndex') }}">Volumes </a>
                  </div>
              </div>
@@ -59,11 +59,6 @@
                      <a class="collapse-item" href="{{ route('manageBlogDraft') }}">Unpublish</a>
                  </div>
              </div>
-         </li>
-         <li class="nav-item ">
-             <a class="nav-link" href="#">
-                 <i class="fas fa-fw fa-inbox"></i>
-                 <span>Manage Feedback</span></a>
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider d-none d-md-block m-0">

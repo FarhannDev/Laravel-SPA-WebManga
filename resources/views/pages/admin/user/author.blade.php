@@ -3,13 +3,13 @@
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 @endpush
+
 @section('breadcrumb')
-    {{ Breadcrumbs::render('blog-publish') }}
+    {{ Breadcrumbs::render('data-author') }}
 @endsection
 
 @section('container')
-    <!-- Begin Page Content -->
-    <div class="card mx-3" style="border-radius: 8px; background-color: #fff;">
+    <div class="card mx-2" style="border-radius: 12px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;">
         <div class="row">
             <div class="col">
                 <div class="dashboard">
@@ -29,52 +29,63 @@
                     <div class="dashboard-inner border-bottom mb-3">
                         <div class="dashboard-inner__text px-3 mx-2 pt-2 mb-2">
                             <div class="d-flex justify-content-arroud align-items-center">
-                                <span class="fas fa-2x fa-globe mr-2"></span>
-                                <h4 class="text-dark text-capitalize pt-2">Manage All Publish Blog</h4>
+                                <span class="fas fa-2x fa-users mr-2"></span>
+                                <h4 class="text-dark text-capitalize pt-2">Manage All Data Author</h4>
                             </div>
 
                         </div>
                     </div>
                     <div class="dashboard-inner__item px-3 mb-3">
-                        <div class="dashboard-item__list">
+                        <div class="dashboard-item__list mb-3">
                             <div class="row justify-content-arround align-items-center">
                                 <div class="col">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive mb-3">
                                         <table class="table table-striped table-bordered" id="example" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col-lg-6">Title</th>
-                                                    <th scope="col">Publish By</th>
-                                                    <th scope="col">Publish Date</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Action</th>
+                                                    <th scope="col-lg-6">Name</th>
+                                                    <th scope="col-lg-6">Email</th>
+                                                    <th scope="col-lg-6">Role</th>
+                                                    <th scope="col-lg-6">Join Date</th>
+                                                    <th scope="col-lg-6">Updated</th>
+                                                    <th scope="col-lg-6">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($blog as $data)
+
+                                                @foreach ($users as $user)
                                                     <tr>
                                                         <td class="align-middle">
                                                             {{ $loop->iteration }}
                                                         </td>
-                                                        <td class="align-middle"><a
-                                                                href="{{ route('manageBlogShow', $data->blog_slug) }}"
-                                                                class="btn btn-link text-dark">{{ $data->blog_name }}</a>
-                                                        </td>
-                                                        <td class="align-middle ">{{ $data->publish_by }}</td>
                                                         <td class="align-middle">
-                                                            {{ date('d/m/y H:i:s', strtotime($data->publish_date)) }}
+                                                            {{ $user->name }}
                                                         </td>
-                                                        <td class="align-middle "><span
-                                                                class="text-success">{{ $data->status }}</span></td>
                                                         <td class="align-middle">
-                                                            <form action="{{ route('manageBlogPublishUpdate', $data->id) }}"
+                                                            {{ $user->email }}
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <span class="text-capitalize">
+                                                                {{ $user->role['role_name'] }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            {{ date('m/d/Y', strtotime($user->created_at)) }}
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            {{ date('m/d/Y', strtotime($user->updated_at)) }}
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <form action="{{ route('manageUserDestroy', $user->id) }}"
                                                                 method="post"
-                                                                onclick="return confirm('Are you sure you want to unpublish post?')">
+                                                                onclick="return confirm('Are you sure you want to delete user?')">
                                                                 @csrf
-                                                                @method('PUT')
-                                                                <button type="submit" class="btn btn-danger btn-sm">Draft
-                                                                    To Post </span>
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn text-white btn-danger"
+                                                                    style="background-color: #c22dba;">
+                                                                    <i class="fas fa-trash"></i>
+                                                                    </span>
                                                             </form>
                                                         </td>
                                                     </tr>
