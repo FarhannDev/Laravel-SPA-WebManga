@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 @endpush
 @section('breadcrumb')
-    {{ Breadcrumbs::render('data-blog') }}
+    {{ Breadcrumbs::render('blog-unpublish') }}
 @endsection
 
 @section('container')
@@ -69,7 +69,8 @@
                                                                 class="text-danger">{{ $data->status }}</span></td>
                                                         <td class="align-middle">
                                                             <form action="{{ route('manageBlogDraftUpdate', $data->id) }}"
-                                                                method="post">
+                                                                method="post"
+                                                                onclick="return confirm('Are you sure you want to publish post?')">
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <button type="submit"

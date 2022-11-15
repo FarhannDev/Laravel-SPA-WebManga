@@ -228,31 +228,47 @@ class ManageBlogController extends Controller
 
     public function publish_update($id)
     {
-        Blog::where('id', $id)->update([
-            'user_id'       => (!Auth::user()->role_id ? '1' : Auth::user()->role_id),
-            'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
-            'status'         => 'Unpublish',
-            'unpublish_date' => date('Y-m-d H:i:s'),
+        $blogs = Blog::find($id);
+        $blogs->update([
+            'user_id'              => $blogs->user_id,
+            'blog_name'            => $blogs->blog_name,
+            'blog_slug'            => $blogs->blog_slug,
+            'blog_desc'            => $blogs->blog_desc,
+            'blog_cover'           => $blogs->blog_cover,
+            'blog_cover_link'      => $blogs->blog_cover_link,
+            'status'               => 'Unpublish',
+            'publish_date'         => null,
+            'unpublish_date'       => new \DateTime(),
+            'publish_by'           => $blogs->publish_by,
+            'updated_at'           => new \DateTime(),
         ]);
 
-        return redirect()->route('manageBlogDraft');
+        return redirect()->route('manageBlogPublish')
+            ->with('message_success', 'Postingan ' . $blogs->blog_name . '' . ' di unpublish');
     }
-
     public function draft()
     {
         $blog = Blog::where('status', 'Unpublish')->orderBy('unpublish_date', 'DESC')->get();
-
         return view('pages.admin.blog.draft', compact(['blog']));
     }
     public function draft_update($id)
     {
-        Blog::where('id', $id)->update([
-            'user_id'       => (!Auth::user()->role_id ? '1' : Auth::user()->role_id),
-            'publish_by'    => (Auth::user()->role_id ? Auth::user()->name : null),
-            'status'        => 'Publish',
-            'publish_date' => date('Y-m-d H:i:s'),
+        $blogs = Blog::find($id);
+        $blogs->update([
+            'user_id'              => $blogs->user_id,
+            'blog_name'            => $blogs->blog_name,
+            'blog_slug'            => $blogs->blog_slug,
+            'blog_desc'            => $blogs->blog_desc,
+            'blog_cover'           => $blogs->blog_cover,
+            'blog_cover_link'      => $blogs->blog_cover_link,
+            'status'               => 'Publish',
+            'publish_date'         => new \DateTime(),
+            'unpublish_date'       => null,
+            'publish_by'           => $blogs->publish_by,
+            'updated_at'           => new \DateTime(),
         ]);
 
-        return redirect()->route('manageBlogPublish');
+        return redirect()->route('manageBlogDraft')
+            ->with('message_success', 'Postingan ' . $blogs->blog_name . '' . ' di publish');
     }
 }

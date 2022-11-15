@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ManageBlogController;
 use App\Http\Controllers\Admin\ManageDashboardController;
 use App\Http\Controllers\Admin\ManageKomikController;
 use App\Http\Controllers\Admin\ManageKomikGenre;
+use App\Http\Controllers\Admin\ManageUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Page\Homepage\AboutIndex;
@@ -75,10 +76,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/dashboard/komik/volumes/{comic:comic_slug}', [ManageKomikController::class, 'show_volume'])->name('manageVolumeShow');
     Route::post('/dashboard/komik/volumes/add/{comic:id}', [ManageKomikController::class, 'insert_volumes'])->name('manageVolumeAdd');
     Route::delete('/dashboard/komik/volumes/{id}', [ManageKomikController::class, 'delete_volumes'])->name('manageVolumeDelete');
-    // Genre
-    Route::get('/dashboard/komik/genre', [ManageKomikGenre::class, 'index'])->name('manageGenre');
-
-    // Route::get('/dashboard/manage/komik/add', ManageKomikAdd::class)->name('manageKomikAdd');
+    // GENRE
+    Route::get('/dashboard/komik/genre', [ManageKomikController::class, 'genres'])->name('manageGenreIndex');
+    Route::post('/dashboard/komik/genre/add', [ManageKomikController::class, 'genres_add'])->name('manageGenreAdd');
+    Route::delete('/dashboard/komik/genre/{id}', [ManageKomikController::class, 'genres_deleted'])->name('manageGenreDeleted');
     // Blog
     Route::get('/dashboard/blog', [ManageBlogController::class, 'index'])->name('manageBlogIndex');
     Route::get('/dashboard/blog/add', [ManageBlogController::class, 'create'])->name('manageBlogCreate');
@@ -96,6 +97,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::delete('/dashboard/blog/{blog:blog_slug}', [ManageBlogController::class, 'destroy'])->name('manageBlogDestroy');
 
+    Route::get('/dashboard/user', [ManageUserController::class, 'index'])->name('manageUserIndex');
+    Route::get('/dashboard/user/author', [ManageUserController::class, 'author'])->name('manageAuthorIndex');
+    Route::post('/dashboard/user/add', [ManageUserController::class, 'store'])->name('manageUserStore');
+    Route::delete('/dashboard/user/{id}', [ManageUserController::class, 'destroy'])->name('manageUserDestroy');
 
     Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 });

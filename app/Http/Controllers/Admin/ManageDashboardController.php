@@ -14,8 +14,9 @@ class ManageDashboardController extends Controller
     {
         $total_komik = Comic::count();
         $total_artikel = Blog::count();
-        $total_komunitas = User::count();
+        $total_blog_publish = Blog::where('status', 'Publish')->count();
+        $total_blog_unpublish = Blog::where('status', 'Unpublish')->count();
 
-        return view('pages.admin.dashboard.index', compact(['total_komik', 'total_artikel', 'total_komunitas']));
+        return view('pages.admin.dashboard.index', compact(['total_komik', 'total_artikel', 'total_blog_unpublish', 'total_blog_publish']));
     }
 }

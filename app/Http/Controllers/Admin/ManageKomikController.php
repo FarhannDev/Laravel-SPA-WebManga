@@ -326,4 +326,43 @@ class ManageKomikController extends Controller
 
         return redirect()->route('manageKomikShow', $comic->comic_slug);
     }
+
+    public function genres()
+    {
+        $genres = ComicGenre::orderBy('genre_name', 'ASC')->get();
+
+        return view('pages.admin.komik.genre.index', compact(['genres']));
+    }
+
+    public function genres_add(Request $request)
+    {
+        $request->validate([
+            'genre_name' => 'required|unique:comic_genres,genre_name',
+        ]);
+
+        $generate_slug = Str::slug($request->genre_name, '-');
+        ComicGenre::create([
+            'genre_name' => $request->genre_name,
+            'genre_slug' => $generate_slug,
+            'created_at' => new \DateTime(),
+            'updated_at' => new \DateTime(),
+        ]);
+
+        return redirect()->route('manageGenreIndex')
+            ->with('message_success', 'Berhasil menambahkan genre' . ' ' . $request->genre_name);
+    }
+
+    public function genres_deleted($id)
+    {
+        $genres = ComicGenre::where('id', $id)->first();
+
+        if ($genres->id == $id) {
+            $genres->delete();
+
+            return redirect()->route('manageGenreIndex')
+                ->with('message_success', 'Berhasil menghapus genre' . ' ' . $genres->genre_name);
+        } else {
+            return $genres = [];
+        }
+    }
 }
