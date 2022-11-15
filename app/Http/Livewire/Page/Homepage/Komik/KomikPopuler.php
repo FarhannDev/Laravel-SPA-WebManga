@@ -34,6 +34,8 @@ class KomikPopuler extends Component
         if (!is_null($this->search)) {
             $data = Comic::when($this->search, function (Builder $query) {
                 $query->where('comic_title', 'like', '%' . $this->search . '%');
+                $query->orWhere('comic_author', 'like', '%' . $this->search . '%');
+                $query->orWhere('comic_artist', 'like', '%' . $this->search . '%');
             })
                 ->when($this->selected_genre, function (Builder $query) {
                     $query->where('comic_genre', 'like', '%' . $this->selected_genre . '%');
