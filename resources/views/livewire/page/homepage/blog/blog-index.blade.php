@@ -81,8 +81,8 @@
                             <div class="d-flex">
                                 <small class="text-muted">
                                     <a href="" class="text-dark">
-                                        <i class="far fa-user "> By <span
-                                                class="font-weight-bold">{{ $blog->user['name'] }}</span> </i>
+                                        <i class="far fa-user "><span class="font-weight-bold">
+                                                {{ $blog->publish_by }}</span> </i>
                                     </a>
                                     <br />
                                     <i class="fas fa-calendar-alt">

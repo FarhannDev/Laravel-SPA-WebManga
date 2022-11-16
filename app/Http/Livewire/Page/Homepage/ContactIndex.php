@@ -20,6 +20,10 @@ class ContactIndex extends Component
         'message' => 'required'
     ];
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
     public function send()
     {
         $this->validate();
