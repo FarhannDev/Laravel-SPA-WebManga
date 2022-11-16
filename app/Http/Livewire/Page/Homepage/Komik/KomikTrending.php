@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Page\Homepage\Komik;
 
 use App\Models\Comic;
 use Livewire\Component;
+use App\Models\ComicGenre;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -39,9 +40,12 @@ class KomikTrending extends Component
                 })
                 ->when($this->selected_status, function (Builder $query) {
                     $query->where('comic_status', $this->selected_status);
-                })->orderBy('comic_title', 'DESC')->latest()->paginate(16);
+                })->where('status', 'Publish')->inRandomOrder()->latest()->paginate(16);
 
-            return view('livewire..page.homepage.komik.komik-trending')
+            return view('livewire..page.homepage.komik.komik-trending', [
+                'data' => $data,
+                'genres' => ComicGenre::all(),
+            ])
                 ->extends('layouts.homepage.index')
                 ->section('content');
         }

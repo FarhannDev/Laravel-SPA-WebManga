@@ -27,7 +27,9 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">{{ date('Y') }}
-                    &copy; <a class="border-bottom" href="#"> Zaotaku</a>, All Right Reserved.</a>
+                    &copy; <a class="border-bottom" href="https://zaotaku.herokuapp.com/"> Zaotaku</a>, All Right
+                    Reserved.</a> <br />
+                    Develop By <a href="https://www.linkedin.com/in/farhan-20241221a/" class="text-white">Farhan</a>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu">

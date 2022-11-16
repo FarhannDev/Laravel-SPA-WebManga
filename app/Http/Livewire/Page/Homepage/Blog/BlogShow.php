@@ -43,7 +43,7 @@ class BlogShow extends Component
         $data = Blog::where('blog_slug', $blog->blog_slug)->first();
 
         if (!is_null($data)) {
-            $this->blog_by_user         = $data->user['name'];
+            $this->blog_by_user         = $data->publish_by;
             $this->blog_name            = $data->blog_name;
             $this->blog_desc            = $data->blog_desc;
             $this->blog_created         = $data->created_at;
