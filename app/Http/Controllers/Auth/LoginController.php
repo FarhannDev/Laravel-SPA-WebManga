@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo =  RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -44,10 +44,13 @@ class LoginController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
+        $remember_me = $request->has('remember_me') ? true : false;
 
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password], $remember_me)) {
             if (Auth::user()->role['role_name'] == 'admin') {
                 return redirect()->route('manageDashboard');
+            } else if (Auth::user()->role['role_name'] == 'author') {
+                return redirect()->route('dashboardAuthor');
             } else {
                 return redirect()->route('homePageIndex');
             }

@@ -87,3 +87,36 @@ Breadcrumbs::for('data-author', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Data Author', route('manageAuthorIndex'));
 });
+
+
+// Author
+Breadcrumbs::for('dashboard-author', function (BreadcrumbTrail $trail) {
+    $trail->push('Dashboard', route('dashboardAuthor'));
+});
+
+Breadcrumbs::for('author-blog', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard-author');
+    $trail->push('Data Blog', route('authorBlog'));
+});
+
+Breadcrumbs::for('author-blog-add', function (BreadcrumbTrail $trail) {
+    $trail->parent('author-blog');
+    $trail->push('Add New Blog', route('authorBlogAdd'));
+});
+
+Breadcrumbs::for('author-blog-detail', function (BreadcrumbTrail $trail, $blog) {
+    $trail->parent('author-blog');
+    $trail->push(\Illuminate\Support\Str::limit($blog->blog_name ?? '', 50, ' ...'), route('manageBlogEdit', $blog));
+});
+Breadcrumbs::for('author-blog-edit', function (BreadcrumbTrail $trail, $blog) {
+    $trail->parent('author-blog');
+    $trail->push('Edit / ' . \Illuminate\Support\Str::limit($blog->blog_name ?? '', 50, ' ...'), route('manageBlogEdit', $blog));
+});
+Breadcrumbs::for('author-blog-publish', function (BreadcrumbTrail $trail) {
+    $trail->parent('author-blog');
+    $trail->push('Blog Publish', route('authorBlog'));
+});
+Breadcrumbs::for('author-blog-draft', function (BreadcrumbTrail $trail) {
+    $trail->parent('author-blog');
+    $trail->push('Blog Draft', route('authorBlog'));
+});

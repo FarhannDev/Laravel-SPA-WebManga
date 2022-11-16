@@ -57,6 +57,7 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
+            @include('layouts.dashboard.footer')
         </div>
         <!-- End of Content Wrapper -->
     </div>
