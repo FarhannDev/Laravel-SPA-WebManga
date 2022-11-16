@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ManageDashboardController;
 use App\Http\Controllers\Admin\ManageKomikController;
 use App\Http\Controllers\Admin\ManageKomikGenre;
 use App\Http\Controllers\Admin\ManageUserController;
+use App\Http\Controllers\Author\DashboardAuthorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Page\Homepage\AboutIndex;
@@ -103,4 +104,24 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::delete('/dashboard/user/{id}', [ManageUserController::class, 'destroy'])->name('manageUserDestroy');
 
     Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
+});
+
+
+Route::middleware(['auth', 'user-access:author'])->group(function () {
+    Route::get('/dashboard/author', [DashboardAuthorController::class, 'index'])->name('dashboardAuthor');
+
+    Route::get('/dashboard/author/blog', [DashboardAuthorController::class, 'blog_index'])->name('authorBlog');
+    Route::get('/dashboard/author/blog/add', [DashboardAuthorController::class, 'blog_add'])->name('authorBlogAdd');
+    Route::post('/dashboard/author/blog/add', [DashboardAuthorController::class, 'blog_store'])->name('authorBlogStore');
+
+    Route::get('/dashboard/author/blog/preview/{blog:blog_slug}', [DashboardAuthorController::class, 'blog_show'])->name('authorBlogShow');
+    Route::get('/dashboard/author/blog/edit/{blog:blog_slug}', [DashboardAuthorController::class, 'blog_edit'])->name('authorBlogEdit');
+    Route::put('/dashboard/author/blog/edit/{blog:blog_slug}', [DashboardAuthorController::class, 'blog_update'])->name('authorBlogUpdate');
+    Route::delete('/dashboard/author/blog/{blog:blog_slug}', [DashboardAuthorController::class, 'blog_destroy'])->name('authorBlogDestroy');
+
+    Route::get('/dashboard/author/blog/publish', [DashboardAuthorController::class, 'blog_publish'])->name('authorBlogPublish');
+    Route::put('/dashboard/author/blog/publish/{id}', [DashboardAuthorController::class, 'blog_publish_update'])->name('authorBlogPublishUpdate');
+
+    Route::get('/dashboard/author/blog/draft', [DashboardAuthorController::class, 'blog_draft'])->name('authorBlogDraft');
+    Route::put('/dashboard/author/blog/draft/{id}', [DashboardAuthorController::class, 'blog_draft_update'])->name('authorBlogDraftUpdate');
 });
