@@ -15,7 +15,7 @@
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider">
-         {{-- <li class="nav-item">
+         <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse"
                  aria-expanded="true" aria-controls="collapse">
                  <i class="fas fa-fw fa-users"></i>
@@ -25,10 +25,10 @@
                  <div class="bg-white py-2 collapse-inner rounded">
                      <h6 class="collapse-header">Manage Data Users:</h6>
                      <a class="collapse-item" href="{{ route('manageUserIndex') }}">Daftar User</a>
-                     <a class="collapse-item" href="{{ route('manageAuthorIndex') }}">Author</a>
+                     {{-- <a class="collapse-item" href="{{ route('manageAuthorIndex') }}">Author</a> --}}
                  </div>
              </div>
-         </li> --}}
+         </li>
          <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                  aria-expanded="true" aria-controls="collapseTwo">

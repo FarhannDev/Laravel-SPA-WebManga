@@ -43,7 +43,7 @@ class KomikTrending extends Component
 
             return view('livewire..page.homepage.komik.komik-trending')
                 ->extends('layouts.homepage.index')
-                ->section('content')
+                ->section('content');
         }
     }
 }

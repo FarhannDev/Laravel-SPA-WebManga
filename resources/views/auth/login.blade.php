@@ -49,6 +49,15 @@
                                                      </span>
                                                  @enderror
                                              </div>
+
+                                             <div class="form-group">
+                                                 <div class="form-group form-check pt-2">
+                                                     <input type="checkbox" class="form-check-input" name="remember_me"
+                                                         id="remember_me" value="{{ old('remember_me') }}">
+                                                     <label class="form-check-label" for="remember_me">Ingatkan saya
+                                                         selalu</label>
+                                                 </div>
+                                             </div>
                                              <div class="form-group pt-3 mb-3 pt-3">
                                                  <div class="d-block ">
                                                      <button type="submit"
