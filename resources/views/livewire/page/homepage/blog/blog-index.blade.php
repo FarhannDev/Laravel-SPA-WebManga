@@ -47,10 +47,13 @@
         <div class="col-lg-4 col-md-6">
             <div class="search-blog">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Cari berdasarkan status:</label>
-                    <select wire:model.debounce.500ms="status" class="form-select" aria-label="Default select example">
-                        <option selected hidden value="">Pilih status</option>
-                        <option value="Publish">Publish</option>
+                    <label for="exampleInputEmail1" class="form-label">Cari berdasarkan penulis:</label>
+                    <select wire:model.debounce.500ms="author" class="form-select" aria-label="Default select example">
+                        <option selected value="">Pilih semua penulis</option>
+                        @foreach ($authors as $data)
+                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                        @endforeach
+
                         {{-- <option value="Unpublish">Unpublish</option> --}}
                     </select>
                 </div>

@@ -33,7 +33,7 @@
                                 {{-- <img src="{{ asset($blog_cover ? 'images/blog/' . $blog_cover : 'images/blog/default.jpg') }}"
                             width="100%" style="max-width: 100%;" class="img-fluid"> --}}
                             </div>
-                            <div class="d-flex flex-column justify-content-center">
+                            <div class="d-flex flex-column justify-content-center pt-2">
                                 <div class="mx-auto text-center">
                                     <div class="author-image ">
                                         <figure class="figure">
