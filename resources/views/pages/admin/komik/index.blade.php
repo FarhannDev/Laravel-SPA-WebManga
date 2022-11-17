@@ -9,7 +9,8 @@
 @endsection
 
 @section('container')
-    <div class="card mx-2" style="border-radius: 12px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;">
+    <div class="card mx-2 p-3"
+        style="border-radius: 12px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;">
         <div class="row">
             <div class="col">
                 <div class="dashboard">
@@ -25,16 +26,6 @@
                             </div>
                         </div>
                     @endif
-
-                    <div class="dashboard-inner border-bottom mb-3">
-                        <div class="dashboard-inner__text px-3 mx-2 pt-2 mb-2">
-                            <div class="d-flex justify-content-arroud align-items-center">
-                                <span class="fas fa-2x fa-folder mr-2"></span>
-                                <h4 class="text-dark text-capitalize pt-2">Manage All Data Komik</h4>
-                            </div>
-
-                        </div>
-                    </div>
                     <div class="dashboard-inner__item px-3 mb-3">
                         <div class="dashboard-inner__addbutton mb-3 ">
                             <a style="background-color: #c22dba;" href="{{ route('manageKomikCreate') }}"

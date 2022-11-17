@@ -61,7 +61,7 @@ class ManageBlogController extends Controller
 
 
             Blog::create([
-                'user_id'       => (!Auth::user()->role_id ? 'Administrator' : Auth::user()->role_id),
+                'user_id'       => Auth::user()->id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
@@ -82,7 +82,7 @@ class ManageBlogController extends Controller
             $generate_slug .= '.html';
 
             Blog::create([
-                'user_id'       => Auth::user()->role_id,
+                'user_id'       => Auth::user()->id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
@@ -163,7 +163,7 @@ class ManageBlogController extends Controller
             $generate_slug .= '.html';
 
             Blog::where('blog_slug', $blog->blog_slug)->update([
-                'user_id'       => (!Auth::user()->role_id ? '1' : Auth::user()->role_id),
+                'user_id'       => Auth::user()->id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
@@ -183,7 +183,7 @@ class ManageBlogController extends Controller
             $generate_slug .= '.html';
 
             Blog::where('blog_slug', $blog->blog_slug)->update([
-                'user_id'       => (!Auth::user()->role_id ? '1' : Auth::user()->role_id),
+                'user_id'       => Auth::user()->id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
