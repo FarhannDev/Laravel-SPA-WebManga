@@ -9,7 +9,7 @@
 
 @section('container')
     <!-- Begin Page Content -->
-    <div class="card mx-3" style="border-radius: 8px; background-color: #fff;">
+    <div class="card mx-3 p-3" style="border-radius: 8px; background-color: #fff;">
         <div class="row">
             <div class="col">
                 <div class="dashboard">
@@ -25,16 +25,6 @@
                             </div>
                         </div>
                     @endif
-
-                    <div class="dashboard-inner border-bottom mb-3">
-                        <div class="dashboard-inner__text px-3 mx-2 pt-2 mb-2">
-                            <div class="d-flex justify-content-arroud align-items-center">
-                                <span class="fas fa-2x fa-blog mr-2"></span>
-                                <h4 class="text-dark text-capitalize pt-2">Manage All Data Blog</h4>
-                            </div>
-
-                        </div>
-                    </div>
                     <div class="dashboard-inner__item px-3 mb-3">
                         <div class="dashboard-inner__addbutton mt-3  mb-3">
                             <a style="background-color: #c22dba;" href="{{ route('manageBlogCreate') }}"
