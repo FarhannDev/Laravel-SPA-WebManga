@@ -70,20 +70,24 @@
                 <i class="fas fa-fw fa-home"></i>
                 <span>Dashboard</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                aria-expanded="true" aria-controls="collapseThree">
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Management Data Blog
+        </div>
+        <li class="nav-item {{ Route::is('authorBlog') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('authorBlog') }}">
                 <i class="fas fa-fw fa-blog"></i>
-                <span>Manage Data Blog</span>
-            </a>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Manage Data Blog:</h6>
-                    <a class="collapse-item" href="{{ route('authorBlog') }}">Semua Daftar Blog</a>
-                    <a class="collapse-item" href="{{ route('authorBlogPublish') }}">Blog Publish</a>
-                    <a class="collapse-item" href="{{ route('authorBlogDraft') }}">Blog Draft</a>
-                </div>
-            </div>
+                <span>Daftar Postingan</span></a>
+        </li>
+        <li class="nav-item {{ Route::is('authorBlogDraft') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('authorBlogDraft') }}">
+                <i class="fas fa-fw fa-bookmark"></i>
+                <span>Postingan Tersimpan</span></a>
+        </li>
+        <li class="nav-item {{ Route::is('authorBlogPublish') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('authorBlogPublish') }}">
+                <i class="fas fa-fw fa-globe"></i>
+                <span>Postingan Diterbitkan</span></a>
         </li>
     @endif
     <!-- Divider -->

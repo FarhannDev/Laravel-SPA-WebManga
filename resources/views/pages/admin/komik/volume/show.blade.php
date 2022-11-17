@@ -77,10 +77,15 @@
                                                             {{ !is_null($volume->created_at) ? date('d/m/Y, H:i:s', strtotime($volume->updated_at)) : '-' }}
                                                         </td> --}}
                                                         <td class="align-middle">
-                                                            <a href="{{ route('manageVolumeShow', $comic->comic_slug) }}"
-                                                                class="btn btn-md text-white mb-2"
-                                                                style="background-color: #c22dba;"><span
-                                                                    class="fas fa-trash-alt"></span></a>
+                                                            <form action="{{ route('manageVolumeDelete', $volume->id) }}"
+                                                                method="post">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-md text-white mb-2"
+                                                                    style="background-color: #c22dba;"><span
+                                                                        class="fas fa-trash-alt"></span></button>
+                                                            </form>
+
                                                             {{-- <a data-toggle="modal"
                                                                 data-target="#exampleModalEdit{{ $comic->id }}"
                                                                 href="#" class="btn btn-md text-white  mb-2"

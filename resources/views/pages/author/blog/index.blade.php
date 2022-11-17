@@ -25,21 +25,11 @@
                             </div>
                         </div>
                     @endif
-
-                    <div class="dashboard-inner border-bottom mb-3">
-                        <div class="dashboard-inner__text px-3 mx-2 pt-2 mb-2">
-                            <div class="d-flex justify-content-arroud align-items-center">
-                                <span class="fas fa-2x fa-blog mr-2"></span>
-                                <h4 class="text-dark text-capitalize pt-2">Kelola Semua Data Blog</h4>
-                            </div>
-
-                        </div>
-                    </div>
                     <div class="dashboard-inner__item px-3 mb-3">
                         <div class="dashboard-inner__addbutton mt-3  mb-3">
                             <a style="background-color: #c22dba;" href="{{ route('authorBlogAdd') }}"
                                 class="btn  text-white">
-                                {{ __('Buat Blog Baru') }} <span class="fas fa-edit "></span>
+                                {{ __('Buat Blog Baru') }} <span class="fas fa-plus "></span>
                             </a>
                         </div>
                         <div class="dashboard-item__list">
@@ -51,10 +41,9 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col-lg-6">Judul Blog</th>
-                                                    <th scope="col-*">Publish</th>
-                                                    <th scope="col-*">Draft</th>
                                                     <th scope="col-*">Dibuat</th>
                                                     <th scope="col-*">Diperbarui</th>
+                                                    <th scope="col-*">Status</th>
                                                     <th scope="col-*">Aksi</th>
                                                 </tr>
                                             </thead>
@@ -69,16 +58,17 @@
                                                                 class="btn btn-link text-dark">
                                                                 {{ $data->blog_name }} </a></td>
                                                         <td class="align-middle">
-                                                            {{ $data->status == 'Publish' ? date('d/m/y H:i:s', strtotime($data->publish_date)) : $data->status }}
-                                                        </td>
-                                                        <td class="align-middle">
-                                                            {{ $data->status == 'Unpublish' ? date('d/m/y H:i:s', strtotime($data->unpublish_date)) : $data->status }}
-                                                        </td>
-                                                        <td class="align-middle">
                                                             {{ date('d/m/y H:i:s', strtotime($data->created_at)) }}
                                                         </td>
                                                         <td class="align-middle">
                                                             {{ date('d/m/y H:i:s', strtotime($data->updated_at)) }}
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            @if ($data->status == 'Unpublish')
+                                                                <span class="text-danger">Tersimpan</span>
+                                                            @else
+                                                                <span class="text-success">Diterbitkan</span>
+                                                            @endif
                                                         </td>
                                                         <td class="align-middle">
                                                             <form
