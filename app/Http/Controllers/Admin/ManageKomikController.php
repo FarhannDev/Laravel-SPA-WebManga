@@ -319,12 +319,13 @@ class ManageKomikController extends Controller
             ->with('message_success', 'Successfully added' . ' ' . $request->volume_name);
     }
 
-    public function delete_volumes($id, Comic $comic)
+    public function delete_volumes($id)
     {
         $volumes = ComicVolume::where('id', $id)->first();
         $volumes->delete();
 
-        return redirect()->route('manageKomikShow', $comic->comic_slug);
+        return redirect()->back()->with('message_success', 'Successfully Deleted Volume ' . $volumes->volume_name);
+        // return redirect()->route('manageKomikShow', $comic->comic_slug);
     }
 
     public function genres()
