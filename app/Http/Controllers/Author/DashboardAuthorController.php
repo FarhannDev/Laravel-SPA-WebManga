@@ -19,17 +19,19 @@ class DashboardAuthorController extends Controller
      */
     public function index()
     {
+        $id = Auth::user()->id;
         $total_komik = Comic::count();
-        $total_artikel = Blog::where('user_id', Auth::user()->role_id)->count();
-        $total_blog_publish = Blog::where('user_id', Auth::user()->role_id)->where('status', 'Publish')->count();
-        $total_blog_unpublish = Blog::where('user_id', Auth::user()->role_id)->where('status', 'Unpublish')->count();
+        $total_artikel = Blog::where('user_id', $id)->count();
+        $total_blog_publish = Blog::where('user_id', $id)->where('status', 'Publish')->count();
+        $total_blog_unpublish = Blog::where('user_id', $id)->where('status', 'Unpublish')->count();
 
         return view('pages.author.dashboard.index', compact(['total_komik', 'total_artikel', 'total_blog_unpublish', 'total_blog_publish']));
     }
 
     public function blog_index()
     {
-        $blog = Blog::where('user_id', Auth::user()->role_id)->get();
+        $id = Auth::user()->id;
+        $blog = Blog::where('user_id', $id)->get();
 
         return view('pages.author.blog.index', compact(['blog']));
     }
@@ -41,6 +43,7 @@ class DashboardAuthorController extends Controller
 
     public function blog_store(Request $request)
     {
+        $id = Auth::user()->id;
         $request->validate([
             'blog_name' => 'required|unique:blogs,blog_name',
             'blog_desc' => 'required',
@@ -57,7 +60,7 @@ class DashboardAuthorController extends Controller
             $generate_slug .= '.html';
 
             Blog::create([
-                'user_id'       => (!Auth::user()->role_id ? 'Administrator' : Auth::user()->role_id),
+                'user_id'       => $id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
@@ -77,7 +80,7 @@ class DashboardAuthorController extends Controller
             $generate_slug = Str::slug($request->blog_name, '-');
             $generate_slug .= '.html';
             Blog::create([
-                'user_id'       => Auth::user()->role_id,
+                'user_id'       => $id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
@@ -98,9 +101,10 @@ class DashboardAuthorController extends Controller
 
     public function blog_show(Blog $blog)
     {
+        $id = Auth::user()->id;
         // $blog = Blog::where('user_id', Auth::user()->role_id)->get();
         // $blogs = $blog->where('blog_slug', $blog->blog_slug)->first();
-        $blogs = $blog->where('user_id', Auth::user()->role_id)
+        $blogs = $blog->where('user_id', $id)
             ->orWhere('blog_slug', $blog->blog_slug)->first();
 
         return view('pages.author.blog.show', compact(['blogs']));
@@ -108,7 +112,8 @@ class DashboardAuthorController extends Controller
 
     public function blog_edit(Blog $blog)
     {
-        $blogs = $blog->where('user_id', Auth::user()->role_id)
+        $id = Auth::user()->id;
+        $blogs = $blog->where('user_id', $id)
             ->orWhere('blog_slug', $blog->blog_slug)->first();
 
         return view('pages.author.blog.edit', compact(['blog']));
@@ -116,6 +121,7 @@ class DashboardAuthorController extends Controller
 
     public function blog_update(Request $request, Blog $blog)
     {
+        $id = Auth::user()->id;
         $request->validate([
             // 'blog_name' => 'required|min:6|unique:blogs,blog_name',
             'blog_desc' => 'required',
@@ -141,7 +147,7 @@ class DashboardAuthorController extends Controller
             $generate_slug .= '.html';
 
             Blog::where('blog_slug', $blog->blog_slug)->update([
-                'user_id'       =>  Auth::user()->role_id,
+                'user_id'       =>  $id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
@@ -161,7 +167,7 @@ class DashboardAuthorController extends Controller
             $generate_slug .= '.html';
 
             Blog::where('blog_slug', $blog->blog_slug)->update([
-                'user_id'       => Auth::user()->role_id,
+                'user_id'       => $id,
                 'blog_name'     => $request->blog_name,
                 'blog_slug'     => $generate_slug,
                 'blog_desc'     => $request->blog_desc,
@@ -181,7 +187,8 @@ class DashboardAuthorController extends Controller
 
     public function blog_destroy(Blog $blog)
     {
-        $blogs = $blog->where('user_id', Auth::user()->role_id)
+        $id = Auth::user()->id;
+        $blogs = $blog->where('user_id', $id)
             ->orWhere('blog_slug', $blog->blog_slug)->first();
 
         $cover_old = public_path('images/blog/' . $blogs->blog_cover);
@@ -194,7 +201,8 @@ class DashboardAuthorController extends Controller
 
     public function blog_publish()
     {
-        $blog = Blog::where('user_id', Auth::user()->role_id)->get();
+        $id = Auth::user()->id;
+        $blog = Blog::where('user_id', $id)->get();
 
         return view('pages.author.blog.publish', compact(['blog']));
     }
@@ -222,7 +230,8 @@ class DashboardAuthorController extends Controller
 
     public function blog_draft()
     {
-        $blog = Blog::where('user_id', Auth::user()->role_id)->get();
+        $id = Auth::user()->id;
+        $blog = Blog::where('user_id', $id)->get();
 
         return view('pages.author.blog.draft', compact(['blog']));
     }
