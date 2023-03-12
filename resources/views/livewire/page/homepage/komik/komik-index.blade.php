@@ -1,59 +1,123 @@
-     @include('layouts.homepage.navbar')
-     <div class="container-xxl position-relative p-0">
-         <div class="container-xxl py-5 bg-primary hero-header">
+@section('header')
+    <header class="header-content-main">
+        <div class="container-xxl hero-header">
+            <div class="container px-lg-6">
+                <div class="row g-5 justify-content-end align-items-center">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <h1 class="text-dark mb-4 animated slideInDown text-capitalize"> Cari & Temukan semua daftar komik
+                        </h1>
+                        <div class="d-flex justify-content-start">
+                            <nav aria-label="breadcrumb"
+                                style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ route('homePageIndex') }}">Beranda</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Daftar Komik</li>
+                                </ol>
+                            </nav>
+                        </div>
 
-         </div>
-         <div class="container py-5 px-lg-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+@endsection
 
-             <div class="row justify-content-arround align-content-center mb-5">
-                 <div class="col-lg-4 col-md-6">
-                     <div class="input-group mb-3">
-                         <input type="text" class="form-control" placeholder="Search Komik Name"
-                             aria-label="Search Komik Name" aria-describedby="button-addon2">
-                     </div>
-                 </div>
-                 <div class="col-lg-4 col-md-6">
-                     <select class="form-select" aria-label="Default select example">
-                         <option selected>Selected Genre</option>
-                         <option value="1">One</option>
-                     </select>
-                 </div>
-                 <div class="col-lg-4 col-md-6">
-                     <select class="form-select" aria-label="Default select example">
-                         <option selected>Selected Status</option>
-                         <option value="1">One</option>
-                     </select>
-                 </div>
-             </div>
+<div class="container-xxl position-relative p-0 py-3 mt-5">
+    <div class="container py-3 px-lg-5">
+        <div class="row filtering-data pt-3 mb-3">
+            <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cari Berdasarkan Judul & Penulis /
+                        Pemeran :</label>
+                    <div class="input-group mb-3">
+                        <input wire:model.debounce.500ms="search" type="search" class="form-control"
+                            placeholder="Cari komik ..." aria-label="Cari komik..." aria-describedby="button-addon2">
+                        {{-- <button class="btn btn-outline-primary" type="button" id="button-addon2"><i
+                            class="fas fa-search"></i></button> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cari Berdasarkan Genre:</label>
+                    <select wire:model.debounce.500ms="selected_genre" class="form-select" aria-label="Selected Genre">
+                        <option selected value="">Pilih Semua Genre</option>
+                        @foreach ($genres as $genre)
+                            <option value="{{ $genre->genre_name }}">{{ $genre->genre_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-             <div class="row justify-content-arround g-4 portfolio-container">
+            </div>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cari Berdasarkan Status:</label>
+                    <select wire:model.debounce.500ms="selected_status" class="form-select"
+                        aria-label="Selected Status">
+                        <option selected value="">Pilih Semua Status</option>
+                        <option selected value="Ongoing">Ongoing</option>
+                        <option selected value="Completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row justify-content-arround g-4 portfolio-container pt-5">
+                    @if (!is_null($data))
+                        @forelse ($data as $value)
+                            @if ($value->status == 'Publish')
+                                <div class="col-lg-3 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="rounded overflow-hidden">
+                                        <div class="comic-inner">
+                                            <div class="comic-inner__image">
+                                                <div class="position-relative overflow-hidden ">
+                                                    <a href="{{ route('komikShow', $value->comic_slug) }}">
+                                                        <img class="img-fluid w-100 rounded"
+                                                            src="{{ $value->comic_link_cover }}" style="height: 350px;"
+                                                            alt="{{ $value->comic_title }}">
+                                                        {{-- <img class="img-fluid w-100 rounded"
+                                                    src="{{ asset($value->comic_cover ? 'images/komik/' . $value->comic_cover : 'images/komik/default.jpg') }}"
+                                                    style="height: 250px;" alt="{{ $value->comic_title }}"> --}}
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                 @if (!is_null($comics))
-                     @foreach ($comics as $comic)
-                         <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                             <div class="rounded overflow-hidden">
-                                 <div class="position-relative overflow-hidden">
-                                     <img class="img-fluid w-100" src="{{ asset('images/' . $comic->comic_cover) }}"
-                                         style="height: 350px;">
-                                 </div>
-                                 <div class="bg-light p-4">
-                                     <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                                         <a href=""
-                                             class="ls-base btn btn-primary btn-sm rounded-pill mx-2">{{ $comic->genre['genre_name'] }}</a>
-                                         <a href=""
-                                             class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
-                                     </div>
-                                     <h5 class="lh-base mb-0">{{ $comic->comic_title }}</h5>
+                                            <div class="comic-inner mb-3">
+                                                <div class="comic-inner__text pt-2 mb-3">
+                                                    <a href="{{ route('komikShow', $value->comic_slug) }}"
+                                                        class="text-dark">
+                                                        <h5 class="text-dark text-capitalize col-lg-auto">
+                                                            {!! \Illuminate\Support\Str::limit($value->comic_title ?? '', 50, ' ...') !!}
+                                                        </h5>
+                                                    </a>
+                                                </div>
+                                                {{-- <div class="comic-inner__desc px-3 mb-3">
+                                        {!! \Illuminate\Support\Str::limit($comic->comic_sinopsis ?? '', 100, ' ...') !!}
+                                    </div> --}}
+                                            </div>
+                                        </div>
 
-                                     <a href="{{ route('komikShow', $comic->comic_slug) }}"
-                                         class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                             class="fas fa-arrow-right"></span></a>
-                                 </div>
-                             </div>
-                         </div>
-                     @endforeach
-                 @endif
+                                    </div>
+                                </div>
+                            @endif
+                        @empty
+                            <div class="d-flex justify-content-center">
+                                <p class="text-dark">Komik <strong> {{ $search }} </strong> tidak di ditemukan.
+                                </p>
+                            </div>
+                        @endforelse
+                    @endif
+                </div>
 
-             </div>
-         </div>
-     </div>
+                <div class="d-flex  pagination-start pt-5">
+                    {{ $data->links() }}
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

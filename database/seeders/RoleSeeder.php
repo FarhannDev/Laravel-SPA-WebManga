@@ -16,12 +16,12 @@ class RoleSeeder extends Seeder
     {
         $data = [
             [
-                'role_name' => 'Admin',
+                'role_name' => 'admin',
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ],
             [
-                'role_name' => 'Member',
+                'role_name' => 'author',
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ],

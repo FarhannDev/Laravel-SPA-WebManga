@@ -16,23 +16,19 @@ class CreateComicsTable extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('comics', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('comic_genre_id')->nullable()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->string('comic_title', 100);
-            $table->string('comic_slug', 100);
+            $table->string('comic_title', 255);
+            $table->string('comic_genre', 255)->nullable();
+            $table->string('comic_slug', 255)->unique();
             $table->string('comic_author', 100);
             $table->string('comic_artist', 100);
-            $table->string('comic_rating', 100);
-            $table->year('comic_released');
-            $table->string('comic_cover', 255);
-            $table->string('comic_alternative');
-            $table->longText('comic_sinopsis');
-
-            $table->enum('is_active', ['Publish', 'Unpublish']);
-
+            $table->string('comic_rating', 100)->nullable();
+            $table->dateTime('comic_released')->nullable();
+            $table->enum('comic_status', ['Ongoing', 'Completed'])->default('Ongoing');
+            $table->string('comic_cover', 255)->default('default.jpg');
+            $table->string('comic_link_cover', 255)->nullable();
+            $table->longText('comic_alternative')->nullable();
+            $table->longText('comic_sinopsis')->nullable();
+            $table->enum('status', ['Publish', 'Unpublish'])->default('Publish');
             $table->timestamps();
         });
     }

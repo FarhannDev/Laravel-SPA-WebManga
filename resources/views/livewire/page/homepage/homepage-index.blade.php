@@ -1,147 +1,266 @@
-@include('layouts.homepage.navbar')
-<div class="container-xxl position-relative p-0">
-    <div class="container-xxl bg-primary hero-header">
-        <div class="container px-lg-6">
-            <div class="row g-5 justify-content-end align-content-center">
-                <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="text-dark mb-4 animated slideInDown">Halo, Selamat datang di <span class="">
-                            Zaotaku - Situs Download Komik Manga</span></h1>
-                    <a href="{{ route('komikIndex') }}"
-                        class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Temukan
-                        Daftar
-                        Komik</a>
-                    <a href="" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Bergabung
-                        Sekarang</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container py-5 px-lg-5">
-        <div class="d-flex justify-content-center mb-3">
-            <div class="kategori">
-                <div class="kategori-title">
-                    <h3>Semua Daftar Genre</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row g-4">
+@section('header')
+    <header class="header-content-main">
+        <div class="container-xxl hero-header">
+            <div class="container px-lg-6">
+                <div class="row g-5 justify-content-end align-items-center">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <h1 class="text-dark mb-4 animated slideInDown">Selamat datang di
+                            Zaotaku <br> <span> Situs Download Volume Manga</span></h1>
 
-            @foreach ($genres as $genre)
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item bg-light rounded text-center p-4">
-                        <i class="fa fa-3x fa-bookmark text-primary mb-4"></i>
-                        <h5 class="mb-3"><a href="" class="text-dark">
-                                {{ $genre->genre_name }}
-                            </a></h5>
+                        <div class="mx-auto ">
+                            <a href="{{ route('komikIndex') }}"
+                                class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Lihat
+                                Semua Komik</a>
+                        </div>
+
                     </div>
                 </div>
-            @endforeach
+            </div>
+        </div>
+    </header>
+@endsection
+
+<div class="continer-fluid position-relative py-5 p-0">
+    <div class="container px-lg-5">
+        <div class="row g-5 justify-content-between align-items-center">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p class="section-title text-secondary">About Us<span></span></p>
+                <h1 class="mb-5 text-dark ">Zaotaku - Situs Download Volume Manga</h1>
+                <h5 class="mb-4 text-dark ">ZaOtaku merupakan situs download volume manga. Kamu bisa membaca beberapa
+                    komik
+                    yang kami update setiap hari secara gratis. Memiliki desain yang responsif dan modern, website
+                    ini
+                    adalah tempat terbaik untuk kalian yang biasa membaca satu volume lengkap.</h5>
+                <a href="{{ route('aboutIndex') }}"
+                    class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Baca
+                    Selengkapnya</a>
+            </div>
+            <div class="col-lg-6">
+                <img class="img-fluid wow zoomIn" data-wow-delay="0.5s"
+                    src="{{ asset('images/logo/zaotaku-logo.png') }}">
+            </div>
         </div>
     </div>
-
-    <div class="container py-5 px-lg-5">
-        <div class="d-flex justify-content-between align-cotent-center">
+</div>
+<hr />
+<div class="container-fluid  position-relative p-0 pt-5 ">
+    <div class="container px-lg-5">
+        <div class="row mb-5">
+            <div class="col">
+                <div class="latest-comic-wrapper mb-3">
+                    <div class="d-flex justify-content-between align-content-center mb-3">
+                        <div class="latest-title">
+                            {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
+                            <h3 class="">Paling Terbaru</h3>
+                            {{-- </div> --}}
+                        </div>
+                        <a href="{{ route('komikLatest') }}" class=" text-decoration-none text-dark">
+                            {{ __('Lihat semua') }} <span class="fas fa-arrow-right"></span>
+                        </a>
+                    </div>
+                    <div class="row justify-content-arround g-4 portfolio-container">
+                        @foreach ($comic_latest as $latest)
+                            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="rounded overflow-hidden  ">
+                                    <div class="comic-inner mb-2 ">
+                                        <div class="comic-inner__image">
+                                            <div class="position-relative overflow-hidden ">
+                                                <a href="{{ route('komikShow', $latest->comic_slug) }}">
+                                                    <img class="img-fluid w-100 rounded"
+                                                        src="{{ $latest->comic_link_cover }}" style="height: 350px;"
+                                                        alt="{{ $latest->comic_title }}">
+                                                    {{-- <img class="img-fluid w-100 rounded"
+                                                        src="{{ asset($latest->comic_cover ? 'images/komik/' . $latest->comic_cover : 'images/komik/default.jpg') }}"
+                                                        style="height: 250px; max-width: 100%;"
+                                                        alt="{{ $latest->comic_title }}"> --}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="comic-inner mb-3">
+                                            <div class="comic-inner__text pt-2 mb-3">
+                                                <a href="{{ route('komikShow', $latest->comic_slug) }}"
+                                                    class="text-dark">
+                                                    <h5 class="text-dark text-capitalize col-lg-auto">
+                                                        {!! \Illuminate\Support\Str::limit($latest->comic_title ?? '', 40, ' ...') !!}
+                                                    </h5>
+                                                </a>
+                                            </div>
+                                            {{-- <div class="comic-inner__desc px-3 mb-3">
+                                        {!! \Illuminate\Support\Str::limit($comic->comic_sinopsis ?? '', 100, ' ...') !!}
+                                    </div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col">
+                <div class="latest-comic-wrapper mb-3">
+                    <div class="d-flex justify-content-between align-content-center mb-3">
+                        <div class="latest-title">
+                            {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
+                            <h3>Sedang Trending</h3>
+                            {{-- </div> --}}
+                        </div>
+                        <a href="{{ route('komikTrending') }}" class=" text-decoration-none text-dark">
+                            {{ __('Lihat semua') }} <span class="fas fa-arrow-right"></span>
+                        </a>
+                    </div>
+                    <div class="row justify-content-arround g-4 portfolio-container">
+                        @foreach ($trending as $data)
+                            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="rounded overflow-hidden  ">
+                                    <div class="comic-inner mb-2 ">
+                                        <div class="comic-inner__image">
+                                            <div class="position-relative overflow-hidden ">
+                                                <a href="{{ route('komikShow', $data->comic_slug) }}">
+                                                    <img class="img-fluid w-100 rounded"
+                                                        src="{{ $data->comic_link_cover }}" style="height: 350px;"
+                                                        alt="{{ $data->comic_title }}">
+                                                    {{-- <img class="img-fluid w-100 rounded"
+                                                        src="{{ asset($latest->comic_cover ? 'images/komik/' . $latest->comic_cover : 'images/komik/default.jpg') }}"
+                                                        style="height: 250px; max-width: 100%;"
+                                                        alt="{{ $latest->comic_title }}"> --}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="comic-inner mb-3">
+                                            <div class="comic-inner__text pt-2 mb-3">
+                                                <a href="{{ route('komikShow', $data->comic_slug) }}"
+                                                    class="text-dark">
+                                                    <h5 class="text-dark text-capitalize col-lg-auto">
+                                                        {!! \Illuminate\Support\Str::limit($data->comic_title ?? '', 40, ' ...') !!}
+                                                    </h5>
+                                                </a>
+                                            </div>
+                                            {{-- <div class="comic-inner__desc px-3 mb-3">
+                                        {!! \Illuminate\Support\Str::limit($comic->comic_sinopsis ?? '', 100, ' ...') !!}
+                                    </div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col">
+                <div class="latest-comic-wrapper mb-3">
+                    <div class="d-flex justify-content-between align-content-center mb-3">
+                        <div class="latest-title">
+                            {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
+                            <h3 class="">Sedang Populer</h3>
+                            {{-- </div> --}}
+                        </div>
+                        <a href="{{ route('komikPopuler') }}" class=" text-decoration-none text-dark">
+                            {{ __('Lihat semua') }} <span class="fas fa-arrow-right"></span>
+                        </a>
+                    </div>
+                    <div class="row justify-content-arround g-4 portfolio-container">
+                        @foreach ($populer as $data)
+                            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="rounded overflow-hidden  ">
+                                    <div class="comic-inner mb-2 ">
+                                        <div class="comic-inner__image">
+                                            <div class="position-relative overflow-hidden ">
+                                                <a href="{{ route('komikShow', $data->comic_slug) }}">
+                                                    <img class="img-fluid w-100 rounded"
+                                                        src="{{ $data->comic_link_cover }}" style="height: 350px;"
+                                                        alt="{{ $data->comic_title }}">
+                                                    {{-- <img class="img-fluid w-100 rounded"
+                                                        src="{{ asset($latest->comic_cover ? 'images/komik/' . $latest->comic_cover : 'images/komik/default.jpg') }}"
+                                                        style="height: 250px; max-width: 100%;"
+                                                        alt="{{ $latest->comic_title }}"> --}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="comic-inner mb-3">
+                                            <div class="comic-inner__text pt-2 mb-3">
+                                                <a href="{{ route('komikShow', $data->comic_slug) }}"
+                                                    class="text-dark">
+                                                    <h5 class="text-dark text-capitalize col-lg-auto">
+                                                        {!! \Illuminate\Support\Str::limit($data->comic_title ?? '', 40, ' ...') !!}
+                                                    </h5>
+                                                </a>
+                                            </div>
+                                            {{-- <div class="comic-inner__desc px-3 mb-3">
+                                        {!! \Illuminate\Support\Str::limit($comic->comic_sinopsis ?? '', 100, ' ...') !!}
+                                    </div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container-fluid  position-relative p-0 pt-5 ">
+    <div class="container px-lg-5">
+        <div class="d-flex justify-content-between align-content-center mb-3">
             <div class="latest-title">
                 {{-- <div class="wow fadeInUp" data-wow-delay="0.1s"> --}}
-                <h3 class="text-center mb-5">Komik Terbaru Dari Kami</h3>
+                <h3 class="">Baca Artikel Terbaru</h3>
                 {{-- </div> --}}
             </div>
-            <div class="latest-action__details">
-                <a href="" class="ls-base text-dark">Lihat Detail</a> <span class="fas fa-arrow-right"></span>
-            </div>
+            <a href="{{ route('blogIndex') }}" class=" text-decoration-none text-dark">
+                {{ __('Lihat semua') }} <span class="fas fa-arrow-right"></span>
+            </a>
         </div>
 
-        <div class="row justify-content-arround g-4 portfolio-container">
+        <div class="row justify-content-arround align-content-center">
+            @forelse ($blogs as $blog)
+                @if ($blog->status == 'Publish')
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card mb-3">
+                            <img class="card-img-top" src="{{ $blog->blog_cover_link }}"
+                                alt="{{ $blog->blog_name }}" height="300px;">
+                            {{-- <img class="card-img-top"
+                            src="{{ asset($blog->blog_cover ? 'images/blog/' . $blog->blog_cover : 'images/blog/default.jpg') }}"
+                            alt="{{ $blog->blog_name }}" height="300px;"> --}}
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="{{ route('blogShow', $blog->blog_slug) }}"
+                                        class="text-dark">
+                                        {{ \Illuminate\Support\Str::limit($blog->blog_name ?? '', 50, ' ...') }}
+                                    </a>
+                                </h4>
+                                <div class="text-dark">
+                                    {!! \Illuminate\Support\Str::limit($blog->blog_desc ?? '', 160, ' ...') !!}
+                                </div>
 
-            @foreach ($comics as $comic)
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="rounded overflow-hidden">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="{{ asset('images/' . $comic->comic_cover) }}"
-                                style="height: 350px;">
-                        </div>
-                        <div class="bg-light p-4">
-                            <div class="d-flex flex-wrap justify-content-end align-items-center mb-3">
-                                <a href=""
-                                    class="ls-base btn btn-primary btn-sm rounded-pill mx-2">{{ $comic->genre['genre_name'] }}</a>
-                                <a href="" class="ls-base btn btn-primary btn-sm rounded-pill">ongoing</a>
+                                <p class="card-text">
+                                <div class="d-flex">
+                                    <small class="text-muted">
+                                        <a href="" class="text-dark">
+                                            <i class="far fa-user "> <span
+                                                    class="font-weight-bold">{{ $blog->publish_by }}</span> </i>
+                                        </a>
+                                        <br />
+                                        <i class="fas fa-clock text-capitalize">
+                                            {{ $blog->created_at->diffForHumans() }}</i>
+                                    </small>
+                                </div>
+
                             </div>
-                            <h5 class="lh-base mb-0">{{ $comic->comic_title }}</h5>
-
-                            <a href="" class="ls-base btn btn-primary w-100 d-block mt-3">Details <span
-                                    class="fas fa-arrow-right"></span></a>
                         </div>
                     </div>
-                </div>
-            @endforeach
-
-        </div>
-    </div>
-    <div class="container-xxl newsletter py-5 wow fadeInUp" data-wow-delay="0.1s"
-        style="background: #f1f1f1 !important;">
-        <div class="container py-5 px-lg-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-7 text-center">
-                    <h1 class="text-center text-dark  mb-4">Tetap Selalu Terhubung</h1>
-                    <p class="text-dark  mb-4">Mohon masukan alamat email dengan benar, agar bisa terhubung dengan
-                        kami
+                @endif
+            @empty
+                <div class="d-flex justify-content-center">
+                    <p class="text-dark">
+                        Berita <strong> {{ $search }}</strong> tidak ditemukan.
                     </p>
-                    <div class="position-relative w-100 mt-3">
-                        <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text"
-                            placeholder="Enter Your Email" style="height: 48px;">
-                        <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i
-                                class="fa fa-paper-plane text-primary fs-4"></i></button>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container py-5 px-lg-5">
-            <h1 class="text-center mb-5">Apa Kata Mereka</h1>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item bg-light rounded my-4">
-                    <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam
-                        ipsum
-                        sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo
-                        justo.</p>
-                    <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            src="{{ asset('assets/img/testimonial-1.jpg') }}" style="width: 65px; height: 65px;">
-                        <div class="ps-4">
-                            <h5 class="mb-1">Client Name</h5>
-                            <span>Profession</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light rounded my-4">
-                    <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam
-                        ipsum
-                        sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo
-                        justo.</p>
-                    <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            src="{{ asset('assets/img/testimonial-2.jpg') }}" style="width: 65px; height: 65px;">
-                        <div class="ps-4">
-                            <h5 class="mb-1">Client Name</h5>
-                            <span>Profession</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light rounded my-4">
-                    <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam
-                        ipsum
-                        sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo
-                        justo.</p>
-                    <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            src="{{ asset('assets/img/testimonial-3.jpg') }}" style="width: 65px; height: 65px;">
-                        <div class="ps-4">
-                            <h5 class="mb-1">Client Name</h5>
-                            <span>Profession</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
-
 </div>
